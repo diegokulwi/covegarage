@@ -59,6 +59,7 @@ export default function ContactForm() {
           type="tel"
           inputMode="tel"
           placeholder="+34 600 000 000"
+          maxLength={13}
           required
           value={form.telefono}
           onChange={(e) => setForm({ ...form, telefono: e.target.value.replace(/[^\d+\s]/g, "") })}
