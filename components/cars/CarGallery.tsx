@@ -31,7 +31,7 @@ export default function CarGallery({ images, carName }: CarGalleryProps) {
             src={images[activeIndex]}
             alt={`${carName} - foto ${activeIndex + 1}`}
             fill
-            className="object-cover"
+            className="object-contain"
             priority={activeIndex === 0}
             sizes="(max-width: 1024px) 100vw, 60vw"
           />
