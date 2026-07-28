@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-dark-900 text-white antialiased;
+  }
+
+  * {
+    @apply box-border;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-barlow), "Impact", "Arial Narrow", sans-serif;
+    @apply uppercase tracking-wide;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-gradient-green {
+    background: linear-gradient(135deg, #7DC832 0%, #aef032 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-blue-green {
+    background: linear-gradient(135deg, #38bdf8 0%, #7DC832 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .border-gradient {
+    border: 2px solid transparent;
+    background: linear-gradient(#0a0a0a, #0a0a0a) padding-box,
+                linear-gradient(135deg, #38bdf8, #7DC832) border-box;
+  }
+
+  .bg-dark-card {
+    background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+  }
+
+  .glow-green {
+    box-shadow: 0 0 20px rgba(125, 200, 50, 0.3);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+  }
+}
