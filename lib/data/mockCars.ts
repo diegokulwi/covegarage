@@ -204,7 +204,7 @@ export const mockCars: Car[] = [
       "Seat Ibiza FR Plus en excelente estado, muy cuidado y con mantenimiento al día. Unidad nacional equipada con Full LED, cámara trasera, modos de conducción y Apple CarPlay / Android Auto. Sensores de aparcamiento, control de crucero, climatizador automático, volante multifunción deportivo y elevalunas eléctricos. Visitas con cita previa en Barcelona.",
     imagenes: [
       "/FOTOS PUBLICACION VENTA COCHES/SEAT IBIZA/WhatsApp Image 2026-06-30 at 12.33.11 (11).jpeg",
-      "/coches/ibiza/ibiza-35.jpg",
+      "/FOTOS PUBLICACION VENTA COCHES/SEAT IBIZA/WhatsApp Image 2026-06-30 at 12.33.11 (1).jpeg",
       "/coches/ibiza/ibiza-15.jpg",
       "/coches/ibiza/ibiza-01.jpg",
       "/coches/ibiza/ibiza-07.jpg",
