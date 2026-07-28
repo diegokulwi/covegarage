@@ -4,8 +4,6 @@ import { useState } from "react";
 import { CheckCircle } from "lucide-react";
 import { Input, Textarea, Select } from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
-import { createSellLead } from "@/lib/services/leads";
-
 // Solo letras, espacios y guiones (sin caracteres especiales ni números)
 const onlyLetters = (e: React.ChangeEvent<HTMLInputElement>, key: string, setForm: Function, form: any) => {
   const val = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s\-]/g, "");
@@ -52,17 +50,21 @@ export default function SellCarForm() {
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
     if (!valid) { setEmailError("Introduce un email válido (ejemplo@dominio.com)"); return; }
     setLoading(true);
-    await createSellLead({
-      tipo: "sell",
-      nombre: form.nombre,
-      email: form.email,
-      telefono: form.telefono,
-      marcaCoche: form.marcaCoche,
-      modeloCoche: form.modeloCoche,
-      añoCoche: parseInt(form.añoCoche),
-      kilometrajeCoche: parseInt(form.kilometrajeCoche),
-      combustibleCoche: form.combustibleCoche,
-      mensaje: `Transmisión: ${form.transmisionCoche}${form.mensaje ? `. ${form.mensaje}` : ""}`,
+    await fetch("https://formspree.io/f/xkodyrjv", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        Nombre: form.nombre,
+        Email: form.email,
+        Teléfono: form.telefono,
+        Marca: form.marcaCoche,
+        Modelo: form.modeloCoche,
+        Año: form.añoCoche,
+        Kilometraje: form.kilometrajeCoche,
+        Combustible: form.combustibleCoche,
+        Transmisión: form.transmisionCoche,
+        "Información adicional": form.mensaje,
+      }),
     });
     setLoading(false);
     setSuccess(true);

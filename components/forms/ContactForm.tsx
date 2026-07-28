@@ -4,8 +4,6 @@ import { useState } from "react";
 import { CheckCircle } from "lucide-react";
 import { Input, Textarea } from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
-import { createLead } from "@/lib/services/leads";
-
 export default function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -23,7 +21,11 @@ export default function ContactForm() {
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
     if (!valid) { setEmailError("Introduce un email válido (ejemplo@dominio.com)"); return; }
     setLoading(true);
-    await createLead({ tipo: "contact", ...form });
+    await fetch("https://formspree.io/f/xgogdkay", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ Nombre: form.nombre, Email: form.email, Teléfono: form.telefono, Mensaje: form.mensaje }),
+    });
     setLoading(false);
     setSuccess(true);
   };

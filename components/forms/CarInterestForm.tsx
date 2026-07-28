@@ -5,8 +5,6 @@ import { CheckCircle } from "lucide-react";
 import { Car } from "@/types/car";
 import { Input, Textarea } from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
-import { createLead } from "@/lib/services/leads";
-
 interface CarInterestFormProps {
   car: Car;
 }
@@ -19,12 +17,16 @@ export default function CarInterestForm({ car }: CarInterestFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await createLead({
-      tipo: "interest",
-      ...form,
-      carId: car.id,
-      carSlug: car.slug,
-      carName: `${car.marca} ${car.modelo} ${car.año}`,
+    await fetch("https://formspree.io/f/xpqvbdpl", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        Coche: `${car.marca} ${car.modelo} ${car.año}`,
+        Nombre: form.nombre,
+        Email: form.email,
+        Teléfono: form.telefono,
+        Mensaje: form.mensaje,
+      }),
     });
     setLoading(false);
     setSuccess(true);
