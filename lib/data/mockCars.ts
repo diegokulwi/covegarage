@@ -409,7 +409,7 @@ export const mockCars: Car[] = [
     slug: "mini-cooper-s-20sd-190cv-all4-2018",
     marca: "MINI",
     modelo: "Cooper S",
-    version: "2.0 SD (190 CV) ALL4",
+    version: "2.0 SD ALL4 (190 CV)",
     año: 2018,
     kilometraje: 154000,
     combustible: "diésel",
