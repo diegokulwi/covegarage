@@ -93,7 +93,7 @@ export default function CarCard({ car, className }: CarCardProps) {
 
           <div className="flex items-center justify-between pt-4 border-t border-dark-600">
             <p className="font-heading text-2xl font-bold text-white">
-              {formatPrice(car.precio)}
+              {car.estado === "vendido" ? "Vendido" : formatPrice(car.precio)}
             </p>
             <span className="text-xs font-bold uppercase tracking-wider group-hover:underline" style={{ color: "#7DC832" }}>
               Ver ficha →
