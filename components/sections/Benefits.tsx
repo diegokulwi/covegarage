@@ -19,7 +19,7 @@ export default function Benefits() {
             Confianza, Trato y Calidad
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto font-sans normal-case tracking-normal">
-            Más de 15 años ofreciendo vehículos seleccionados con total transparencia y garantía real.
+            Más de 5 años ofreciendo vehículos seleccionados con total transparencia y garantía real.
           </p>
         </div>
 

@@ -27,7 +27,7 @@ const values = [
     icon: Award,
     title: "Calidad garantizada",
     description:
-      "Cada vehículo pasa una revisión de 150 puntos antes de entrar en nuestro stock.",
+      "Cada vehículo pasa una revisión de 80 puntos antes de entrar en nuestro stock.",
   },
   {
     icon: Users,
@@ -119,10 +119,10 @@ export default function SobreNosotrosPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             {[
-              { value: "+100", label: "Coches vendidos" },
+              { value: "+50", label: "Coches vendidos" },
               { value: "+5", label: "Años de experiencia" },
               { value: "98%", label: "Clientes satisfechos" },
-              { value: "48h", label: "Tiempo medio de venta" },
+              { value: "15 días", label: "Tiempo medio de venta" },
             ].map((stat) => (
               <div key={stat.label} className="bg-white rounded-2xl p-8 border border-slate-100">
                 <p className="text-4xl font-black text-brand-600 mb-1">{stat.value}</p>

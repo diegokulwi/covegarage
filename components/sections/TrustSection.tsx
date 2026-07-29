@@ -2,10 +2,10 @@ import { Star } from "lucide-react";
 import { siteContent } from "@/lib/data/mockSettings";
 
 const STATS = [
-  { value: "+100", label: "Coches vendidos" },
+  { value: "+50", label: "Coches vendidos" },
   { value: "+5", label: "Años de experiencia" },
   { value: "98%", label: "Clientes satisfechos" },
-  { value: "48h", label: "Tiempo medio de venta" },
+  { value: "15 días", label: "Tiempo medio de venta" },
 ];
 
 export default function TrustSection() {

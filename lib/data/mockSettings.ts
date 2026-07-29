@@ -30,7 +30,7 @@ export const siteContent: SiteContent = {
       icono: "Shield",
       titulo: "Garantía incluida",
       descripcion:
-        "Todos nuestros vehículos incluyen garantía mecánica y pasan por una revisión de 150 puntos.",
+        "Todos nuestros vehículos incluyen garantía mecánica y pasan por una revisión de 80 puntos.",
     },
     {
       icono: "FileCheck",
