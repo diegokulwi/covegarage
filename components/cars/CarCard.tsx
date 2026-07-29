@@ -67,7 +67,7 @@ export default function CarCard({ car, className }: CarCardProps) {
             <h3 className="font-heading text-xl font-bold text-white leading-tight group-hover:text-[#7DC832] transition-colors">
               {car.modelo}
               {car.version && (
-                <span className="text-slate-500 font-normal text-base ml-1 normal-case">{car.version}</span>
+                <span className="text-slate-500 font-normal text-base ml-1 uppercase">{car.version}</span>
               )}
             </h3>
           </div>
