@@ -101,8 +101,7 @@ export async function getSimilarCars(carId: string, limit = 3): Promise<Car[]> {
       (c) =>
         c.id !== carId &&
         c.estado === "disponible" &&
-        (c.marca === car.marca ||
-          Math.abs(c.precio - car.precio) < car.precio * 0.3)
+        c.carroceria === car.carroceria
     )
     .slice(0, limit);
 }
