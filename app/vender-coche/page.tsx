@@ -46,7 +46,7 @@ export default function VenderCochePage() {
               Te compramos el coche directamente, sin anuncios, sin esperas y sin tratar con desconocidos. Tasación gratuita y pago al firmar.
             </p>
             <p className="text-slate-400 text-sm mb-8">
-              ¿No llegamos a un acuerdo de precio? Sin problema — te ofrecemos gestión de venta y nos encargamos de todo.
+              ¿No llegamos a un acuerdo de precio? ¿No tienes apuro en vender? Sin problema — te ofrecemos gestión de venta y nos encargamos de todo.
             </p>
             <div className="flex flex-wrap gap-5">
               {[
