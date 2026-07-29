@@ -246,7 +246,9 @@ export default function CarDetail({ car }: CarDetailProps) {
             </div>
           </div>
           <div className="text-right">
-            <p className="text-4xl font-black text-slate-900">{formatPrice(car.precio)}</p>
+            {car.estado !== "vendido" && (
+              <p className="text-4xl font-black text-slate-900">{formatPrice(car.precio)}</p>
+            )}
             <p className="text-sm text-slate-400 mt-1">{car.año} · {formatKm(car.kilometraje)}</p>
           </div>
         </div>
