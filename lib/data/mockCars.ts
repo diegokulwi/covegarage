@@ -435,7 +435,7 @@ export const mockCars: Car[] = [
     destacado: false,
     fechaPublicacion: "2024-01-10",
     potencia: 190,
-    color: "Gris",
+    color: "Negro",
     puertas: 5,
     plazas: 5,
     carroceria: "Berlina",
