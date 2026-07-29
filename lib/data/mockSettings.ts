@@ -19,9 +19,9 @@ export const siteSettings: SiteSettings = {
 
 export const siteContent: SiteContent = {
   hero: {
-    titulo: "Tu próximo coche premium te espera",
+    titulo: "Coches seleccionados como si fueran para nosotros.",
     subtitulo:
-      "Selección exclusiva de vehículos de alta gama verificados, con garantía y sin sorpresas. Compramos y vendemos con total transparencia.",
+      "Revisados, garantizados y listos para disfrutar. Cada coche en nuestro stock ha pasado por nuestras manos como si lo fuéramos a conducir nosotros.",
     ctaCompra: "Ver coches disponibles",
     ctaVenta: "Vender mi coche",
   },
