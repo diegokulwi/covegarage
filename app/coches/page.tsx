@@ -21,15 +21,20 @@ const SORT_OPTIONS: { value: SortOption; label: string }[] = [
 ];
 
 function sortCars(cars: Car[], sort: SortOption): Car[] {
+  const vendidos = (a: Car, b: Car) => {
+    if (a.estado !== "vendido" && b.estado === "vendido") return -1;
+    if (a.estado === "vendido" && b.estado !== "vendido") return 1;
+    return 0;
+  };
   const c = [...cars];
   switch (sort) {
-    case "precio_asc":  return c.sort((a, b) => a.precio - b.precio);
-    case "precio_desc": return c.sort((a, b) => b.precio - a.precio);
-    case "km_asc":      return c.sort((a, b) => a.kilometraje - b.kilometraje);
-    case "km_desc":     return c.sort((a, b) => b.kilometraje - a.kilometraje);
-    case "nuevos":      return c.sort((a, b) => b.año - a.año);
-    case "antiguos":    return c.sort((a, b) => new Date(b.fechaPublicacion).getTime() - new Date(a.fechaPublicacion).getTime());
-    case "potencia":    return c.sort((a, b) => (b.potencia ?? 0) - (a.potencia ?? 0));
+    case "precio_asc":  return c.sort((a, b) => vendidos(a, b) || a.precio - b.precio);
+    case "precio_desc": return c.sort((a, b) => vendidos(a, b) || b.precio - a.precio);
+    case "km_asc":      return c.sort((a, b) => vendidos(a, b) || a.kilometraje - b.kilometraje);
+    case "km_desc":     return c.sort((a, b) => vendidos(a, b) || b.kilometraje - a.kilometraje);
+    case "nuevos":      return c.sort((a, b) => vendidos(a, b) || b.año - a.año);
+    case "antiguos":    return c.sort((a, b) => vendidos(a, b) || new Date(b.fechaPublicacion).getTime() - new Date(a.fechaPublicacion).getTime());
+    case "potencia":    return c.sort((a, b) => vendidos(a, b) || (b.potencia ?? 0) - (a.potencia ?? 0));
     default:            return c;
   }
 }
