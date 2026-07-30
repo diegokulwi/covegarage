@@ -456,7 +456,7 @@ export const mockCars: Car[] = [
     ubicacion: "Barcelona",
     descripcion: "SEAT León 1.4 TSI FR Plus en muy buen estado. Acabado deportivo FR Plus con equipamiento completo, pegatina medioambiental C. Listo para circular.",
     imagenes: [
-      "/coches/seat leon gris/leon1.jpeg",
+      "/coches/seat leon gris/leon1.jpg",
       "/coches/seat leon gris/leon2.jpeg",
       "/coches/seat leon gris/leon3.jpeg",
       "/coches/seat leon gris/leon4.jpeg",
