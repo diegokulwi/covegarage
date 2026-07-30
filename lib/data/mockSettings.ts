@@ -2,7 +2,7 @@ import { SiteSettings, SiteContent } from "@/types/settings";
 
 export const siteSettings: SiteSettings = {
   nombreEmpresa: "Cove Garage BCN",
-  slogan: "Tu próximo coche, nueva historia",
+  slogan: "Encontramos tu próximo coche",
   descripcion:
     "Especialistas en compra y venta de vehículos de segunda mano en Barcelona. Coches nacionales e importación bajo pedido de toda Europa. Garantía 12 meses, trato personalizado y total transparencia.",
   telefono: "+34 647 138 383",
