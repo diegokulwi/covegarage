@@ -496,7 +496,7 @@ export const mockCars: Car[] = [
       "/coches/bmw serie 5 - 550D/BMW5-removebg-preview (1).png",
       "/coches/bmw serie 5 - 550D/BMW6-removebg-preview.png",
     ],
-    estado: "disponible",
+    estado: "reservado",
     destacado: true,
     fechaPublicacion: "2026-07-30",
     potencia: 381,
