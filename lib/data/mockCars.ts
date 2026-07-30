@@ -69,7 +69,7 @@ export const mockCars: Car[] = [
     kilometraje: 182500,
     combustible: "diésel",
     transmision: "manual",
-    precio: 8999,
+    precio: 9000,
     ubicacion: "Barcelona",
     descripcion:
       "BMW 120d Cabrio en muy buen estado general, con mantenimiento al día y listo para disfrutar el verano. Motor diésel de 177 CV, potente, fiable y con muy buenos consumos. Unidad NACIONAL, segundo propietario y cambio manual de 6 velocidades. Capota eléctrica funcionando perfecto, asientos deportivos, climatizador automático, control de crucero y arranque por botón. Visitas con cita previa en Barcelona.",
@@ -191,7 +191,7 @@ export const mockCars: Car[] = [
     kilometraje: 84000,
     combustible: "gasolina",
     transmision: "manual",
-    precio: 14000,
+    precio: 13999,
     ubicacion: "Barcelona",
     descripcion:
       "Seat Ibiza FR Plus en excelente estado, muy cuidado y con mantenimiento al día. Unidad nacional equipada con Full LED, cámara trasera, modos de conducción y Apple CarPlay / Android Auto. Sensores de aparcamiento, control de crucero, climatizador automático, volante multifunción deportivo y elevalunas eléctricos. Visitas con cita previa en Barcelona.",
@@ -252,7 +252,7 @@ export const mockCars: Car[] = [
     kilometraje: 156500,
     combustible: "gasolina",
     transmision: "manual",
-    precio: 8250,
+    precio: 8200,
     ubicacion: "Barcelona",
     descripcion:
       "Hyundai i20 100CV con Apple CarPlay y bajo consumo. Perfecto para ciudad, económico y fiable. Bien mantenido con revisiones al día. Ideal para quien busca un urbano práctico con buena conectividad. Visitas con cita previa en Barcelona.",
