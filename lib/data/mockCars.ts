@@ -348,7 +348,7 @@ export const mockCars: Car[] = [
     ubicacion: "Barcelona",
     descripcion: "BMW X5 3.0 231CV con etiqueta medioambiental B. Gran SUV de lujo con potente motor gasolina y cambio automático. Amplio equipamiento de serie.",
     imagenes: [
-      "/coches/bmw x5/bmw1.png",
+      "/coches/bmw x5/bmw1.jpg",
       "/coches/bmw x5/bmw2.png",
       "/coches/bmw x5/bmw3.png",
       "/coches/bmw x5/bmw4.png",
@@ -383,7 +383,7 @@ export const mockCars: Car[] = [
     ubicacion: "Barcelona",
     descripcion: "SEAT Ibiza 1.0 Style 95CV en excelente estado con muy bajos kilómetros. Libro de revisiones completo, pegatina medioambiental C. Ideal para ciudad.",
     imagenes: [
-      "/coches/seat ibiza gris/ibiza1.png",
+      "/coches/seat ibiza gris/ibiza1.jpg",
       "/coches/seat ibiza gris/ibiza2.png",
       "/coches/seat ibiza gris/ibiza3.png",
       "/coches/seat ibiza gris/ibiza4.png",
@@ -418,7 +418,7 @@ export const mockCars: Car[] = [
     ubicacion: "Barcelona",
     descripcion: "MINI Cooper S 2.0 SD ALL4 en excelente estado. Tracción total, cambio automático y motor diésel de 190 CV. Libro de revisiones completo, pegatina medioambiental C.",
     imagenes: [
-      "/coches/mini cooper clubman/clubman1.png",
+      "/coches/mini cooper clubman/clubman1.jpg",
       "/coches/mini cooper clubman/clubman2.png",
       "/coches/mini cooper clubman/clubman3.png",
       "/coches/mini cooper clubman/clubman4.png",
