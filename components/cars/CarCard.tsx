@@ -17,7 +17,7 @@ export default function CarCard({ car, className }: CarCardProps) {
 
   return (
     <Link href={`/coches/${car.slug}`} className={cn("group block", className)}>
-      <article className="bg-dark-800 rounded-xl overflow-hidden border border-dark-600 hover:border-[#7DC832]/50 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300">
+      <article className="bg-dark-800 rounded-xl overflow-hidden border border-dark-600 hover:border-[#7DC832]/50 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 flex flex-col h-full">
         {/* Image */}
         <div className="relative aspect-[16/10] overflow-hidden bg-dark-700">
           {car.imagenes[0] ? (
@@ -59,12 +59,12 @@ export default function CarCard({ car, className }: CarCardProps) {
         </div>
 
         {/* Content */}
-        <div className="p-5">
+        <div className="p-5 flex flex-col flex-1">
           <div className="mb-3">
             <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#7DC832" }}>
               {car.marca}
             </p>
-            <h3 className="font-heading text-xl font-bold text-white leading-tight group-hover:text-[#7DC832] transition-colors">
+            <h3 className="font-heading text-xl font-bold text-white leading-tight group-hover:text-[#7DC832] transition-colors truncate">
               {car.modelo}
               {car.version && (
                 <span className="text-slate-500 font-normal text-base ml-1 uppercase">{car.version}</span>
@@ -91,7 +91,7 @@ export default function CarCard({ car, className }: CarCardProps) {
             </div>
           </div>
 
-          <div className="flex items-center justify-between pt-4 border-t border-dark-600">
+          <div className="flex items-center justify-between pt-4 border-t border-dark-600 mt-auto">
             <p className="font-heading text-2xl font-bold text-white">
               {car.estado === "vendido" ? "VENDIDO" : formatPrice(car.precio)}
             </p>
