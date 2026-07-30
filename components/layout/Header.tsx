@@ -25,11 +25,11 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0">
             <Image
-              src="/logo.jpeg"
+              src="/logo.png"
               alt="Cove Garage BCN"
               width={64}
               height={64}
-              className="w-14 h-14 lg:w-16 lg:h-16 object-contain"
+              className="w-20 h-20 lg:w-24 lg:h-24 object-contain"
               priority
             />
           </Link>
