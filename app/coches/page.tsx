@@ -35,7 +35,7 @@ function sortCars(cars: Car[], sort: SortOption): Car[] {
     case "nuevos":      return c.sort((a, b) => vendidos(a, b) || b.año - a.año);
     case "antiguos":    return c.sort((a, b) => vendidos(a, b) || new Date(b.fechaPublicacion).getTime() - new Date(a.fechaPublicacion).getTime());
     case "potencia":    return c.sort((a, b) => vendidos(a, b) || (b.potencia ?? 0) - (a.potencia ?? 0));
-    default:            return c;
+    default:            return c.sort((a, b) => vendidos(a, b) || b.año - a.año);
   }
 }
 
