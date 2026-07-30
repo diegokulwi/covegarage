@@ -29,7 +29,7 @@ export default function Header() {
               alt="Cove Garage BCN"
               width={64}
               height={64}
-              className="w-20 h-20 lg:w-24 lg:h-24 object-contain"
+              className="w-20 h-20 lg:w-24 lg:h-24 object-contain mix-blend-lighten"
               priority
             />
           </Link>
