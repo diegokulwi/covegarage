@@ -71,11 +71,11 @@ export async function getCars(filters?: CarFilters): Promise<Car[]> {
     }
   }
 
-  return cars.sort(
-    (a, b) =>
-      new Date(b.fechaPublicacion).getTime() -
-      new Date(a.fechaPublicacion).getTime()
-  );
+  return cars.sort((a, b) => {
+    if (a.estado === "disponible" && b.estado !== "disponible") return -1;
+    if (a.estado !== "disponible" && b.estado === "disponible") return 1;
+    return new Date(b.fechaPublicacion).getTime() - new Date(a.fechaPublicacion).getTime();
+  });
 }
 
 export async function getFeaturedCars(): Promise<Car[]> {
