@@ -485,7 +485,7 @@ export const mockCars: Car[] = [
     kilometraje: 210000,
     combustible: "diésel",
     transmision: "automático",
-    precio: 19900,
+    precio: 24999,
     ubicacion: "Barcelona",
     descripcion: "BMW M550d Touring xDrive con motor tri-turbo diésel de 381 CV y tracción total. Cambio automático Steptronic, versión Touring (familiar) con maletero de gran capacidad. Pegatina medioambiental C. Visitas con cita previa en Barcelona.",
     imagenes: [
