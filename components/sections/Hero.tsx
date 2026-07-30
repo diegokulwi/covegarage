@@ -27,7 +27,7 @@ export default function Hero() {
 
           {/* Título principal estilo COVE */}
           <h1 className="font-heading font-extrabold leading-none mb-2 text-white" style={{ fontSize: "clamp(3rem, 8vw, 7rem)" }}>
-            VENDEMOS
+            ENCONTRAMOS
           </h1>
           <h1 className="font-heading font-extrabold leading-none mb-6" style={{ fontSize: "clamp(3rem, 8vw, 7rem)", color: "#7DC832" }}>
             TU PRÓXIMO
