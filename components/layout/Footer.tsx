@@ -14,7 +14,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-flex mb-5">
               <Image
-                src="/logo.png"
+                src="/logo.jpeg"
                 alt="Cove Garage BCN"
                 width={80}
                 height={80}

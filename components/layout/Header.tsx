@@ -25,7 +25,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0">
             <Image
-              src="/logo.png"
+              src="/logo.jpeg"
               alt="Cove Garage BCN"
               width={64}
               height={64}
