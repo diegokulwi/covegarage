@@ -480,7 +480,7 @@ export const mockCars: Car[] = [
     slug: "bmw-serie5-m550d-touring-xdrive-2016",
     marca: "BMW",
     modelo: "Serie 5",
-    version: "M550d Touring xDrive Steptronic (381 CV)",
+    version: "M550d Touring xDrive (381 CV)",
     año: 2016,
     kilometraje: 210000,
     combustible: "diésel",
