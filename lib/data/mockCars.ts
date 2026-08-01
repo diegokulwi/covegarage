@@ -517,7 +517,7 @@ export const mockCars: Car[] = [
     kilometraje: 142000,
     combustible: "gasolina",
     transmision: "automático",
-    precio: 15999,
+    precio: 15500,
     ubicacion: "Barcelona",
     descripcion: "Volkswagen Golf GTI 2.0 TSI 211 CV con cambio automático DSG6. Versión deportiva GTI en muy buen estado, pegatina medioambiental C. Visitas con cita previa en Barcelona.",
     imagenes: [

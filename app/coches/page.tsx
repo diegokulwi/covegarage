@@ -21,11 +21,8 @@ const SORT_OPTIONS: { value: SortOption; label: string }[] = [
 ];
 
 function sortCars(cars: Car[], sort: SortOption): Car[] {
-  const vendidos = (a: Car, b: Car) => {
-    if (a.estado !== "vendido" && b.estado === "vendido") return -1;
-    if (a.estado === "vendido" && b.estado !== "vendido") return 1;
-    return 0;
-  };
+  const estadoOrder = (e: string) => e === "disponible" ? 0 : e === "reservado" ? 1 : 2;
+  const vendidos = (a: Car, b: Car) => estadoOrder(a.estado) - estadoOrder(b.estado);
   const c = [...cars];
   switch (sort) {
     case "precio_asc":  return c.sort((a, b) => vendidos(a, b) || a.precio - b.precio);

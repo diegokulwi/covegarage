@@ -71,9 +71,10 @@ export async function getCars(filters?: CarFilters): Promise<Car[]> {
     }
   }
 
+  const estadoOrder = (e: string) => e === "disponible" ? 0 : e === "reservado" ? 1 : 2;
   return cars.sort((a, b) => {
-    if (a.estado === "disponible" && b.estado !== "disponible") return -1;
-    if (a.estado !== "disponible" && b.estado === "disponible") return 1;
+    const diff = estadoOrder(a.estado) - estadoOrder(b.estado);
+    if (diff !== 0) return diff;
     return new Date(b.fechaPublicacion).getTime() - new Date(a.fechaPublicacion).getTime();
   });
 }
