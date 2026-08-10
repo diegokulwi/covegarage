@@ -69,7 +69,7 @@ export const mockCars: Car[] = [
     kilometraje: 182500,
     combustible: "diésel",
     transmision: "manual",
-    precio: 9000,
+    precio: 8800,
     ubicacion: "Barcelona",
     descripcion:
       "BMW 120d Cabrio en muy buen estado general, con mantenimiento al día y listo para disfrutar el verano. Motor diésel de 177 CV, potente, fiable y con muy buenos consumos. Unidad NACIONAL, segundo propietario y cambio manual de 6 velocidades. Capota eléctrica funcionando perfecto, asientos deportivos, climatizador automático, control de crucero y arranque por botón. Visitas con cita previa en Barcelona.",
@@ -252,7 +252,7 @@ export const mockCars: Car[] = [
     kilometraje: 156500,
     combustible: "gasolina",
     transmision: "manual",
-    precio: 8200,
+    precio: 8100,
     ubicacion: "Barcelona",
     descripcion:
       "Hyundai i20 100CV con Apple CarPlay y bajo consumo. Perfecto para ciudad, económico y fiable. Bien mantenido con revisiones al día. Ideal para quien busca un urbano práctico con buena conectividad. Visitas con cita previa en Barcelona.",
@@ -530,7 +530,7 @@ export const mockCars: Car[] = [
       "/coches/vw golf gris/golf7.jpg",
       "/coches/vw golf gris/golf8.jpg",
     ],
-    estado: "disponible",
+    estado: "reservado",
     destacado: true,
     fechaPublicacion: "2026-07-30",
     potencia: 211,
@@ -551,7 +551,7 @@ export const mockCars: Car[] = [
     kilometraje: 175500,
     combustible: "diésel",
     transmision: "manual",
-    precio: 5500,
+    precio: 8499,
     ubicacion: "Barcelona",
     descripcion: "Volkswagen Polo 1.2 TDI 75CV Advance 5 puertas en buen estado. Económico y fiable, ideal para ciudad. Pegatina medioambiental B. Visitas con cita previa en Barcelona.",
     imagenes: [
