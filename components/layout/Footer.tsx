@@ -14,11 +14,11 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-flex mb-5">
               <Image
-                src="/logo.png"
+                src="/logo1.png"
                 alt="Cove Garage BCN"
                 width={80}
                 height={80}
-                className="w-20 h-20 object-contain"
+                className="w-20 h-20 object-contain mix-blend-screen"
               />
             </Link>
           </div>
