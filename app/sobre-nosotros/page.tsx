@@ -119,7 +119,7 @@ export default function SobreNosotrosPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             {[
-              { value: "+50", label: "Coches vendidos" },
+              { value: "+100", label: "Coches vendidos" },
               { value: "+5", label: "Años de experiencia" },
               { value: "98%", label: "Clientes satisfechos" },
               { value: "15 días", label: "Tiempo medio de venta" },

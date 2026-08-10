@@ -83,7 +83,7 @@ export default function Hero() {
           {/* Stats */}
           <div className="flex flex-wrap gap-10 mt-10 pt-8 border-t border-white/10">
             {[
-              { value: "+50", label: "Coches vendidos" },
+              { value: "+100", label: "Coches vendidos" },
               { value: "+5", label: "Años de experiencia" },
               { value: "98%", label: "Clientes satisfechos" },
             ].map((stat) => (

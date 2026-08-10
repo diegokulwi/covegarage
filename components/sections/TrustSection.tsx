@@ -2,10 +2,10 @@ import { Star } from "lucide-react";
 import { siteContent } from "@/lib/data/mockSettings";
 
 const STATS = [
-  { value: "+50", label: "Coches vendidos" },
+  { value: "+100", label: "Coches vendidos" },
   { value: "+5", label: "Años de experiencia" },
   { value: "98%", label: "Clientes satisfechos" },
-  { value: "15 días", label: "Tiempo medio de venta" },
+  { value: "30 días", label: "Tiempo medio de venta" },
 ];
 
 export default function TrustSection() {
@@ -39,7 +39,7 @@ export default function TrustSection() {
               ))}
             </div>
             <span className="font-bold text-white">5.0</span>
-            <span className="text-slate-500 text-sm font-sans normal-case tracking-normal">— +200 reseñas verificadas</span>
+            <span className="text-slate-500 text-sm font-sans normal-case tracking-normal">— +100 reseñas verificadas</span>
           </div>
         </div>
 
