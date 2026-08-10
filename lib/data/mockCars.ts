@@ -145,7 +145,7 @@ export const mockCars: Car[] = [
       "/coches/seat ateca/ateca9.jpg",
       "/coches/seat ateca/ateca10.jpg",
     ],
-    estado: "disponible",
+    estado: "reservado",
     destacado: true,
     fechaPublicacion: "2024-03-08",
     potencia: 150,
