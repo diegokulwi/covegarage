@@ -91,32 +91,25 @@ export const siteContent: SiteContent = {
   ],
   testimonios: [
     {
-      nombre: "Carlos M.",
+      nombre: "Sebastian T.",
       texto:
-        "Compré mi BMW Serie 3 aquí y la experiencia fue inmejorable. El coche era exactamente como lo describían, sin sorpresas. Volveré sin duda.",
+        "Los recomiendo ampliamente! Diego me generó mucha confianza desde el primer momento. Profesional, responsable y confiable. Ya sé con quiénes venderé mi coche.",
       puntuacion: 5,
-      fecha: "Enero 2024",
+      fecha: "Hace 1 mes",
     },
     {
-      nombre: "Laura G.",
+      nombre: "Sergio S.",
       texto:
-        "Vendí mi coche rápidamente y al precio justo. El proceso fue muy sencillo, vinieron a recogerlo y en 48h tenía el dinero. Muy recomendable.",
+        "Todo el servicio muy bien, siempre atento a responder rápido para cualquier consulta y muy buena predisposición.",
       puntuacion: 5,
-      fecha: "Diciembre 2023",
+      fecha: "Hace 3 meses",
     },
     {
-      nombre: "Jordi P.",
+      nombre: "Endika",
       texto:
-        "Llevaba tiempo buscando un Porsche Macan y lo encontré aquí con el mejor precio del mercado. El trato fue excelente y la gestión rapidísima.",
+        "Diego es un tio de 10. Excelente vendedor, siempre atento a lo que necesitaba y resolviendo todas las dudas al instante. Muy recomendable.",
       puntuacion: 5,
-      fecha: "Febrero 2024",
-    },
-    {
-      nombre: "Ana R.",
-      texto:
-        "Compré mi coche sin complicaciones, trato directo y muy profesionales. Sin letra pequeña. Ya he recomendado a dos amigos.",
-      puntuacion: 5,
-      fecha: "Marzo 2024",
+      fecha: "Hace 5 meses",
     },
   ],
 };
