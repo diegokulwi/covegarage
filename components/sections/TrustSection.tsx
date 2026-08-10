@@ -64,7 +64,7 @@ export default function TrustSection() {
                   </div>
                   <span className="font-semibold text-white text-sm">{t.nombre}</span>
                 </div>
-                <span className="text-xs text-slate-600">{t.fecha}</span>
+                {t.fecha && <span className="text-xs text-slate-600">{t.fecha}</span>}
               </div>
             </div>
           ))}

@@ -95,21 +95,21 @@ export const siteContent: SiteContent = {
       texto:
         "Los recomiendo ampliamente! Diego me generó mucha confianza desde el primer momento. Profesional, responsable y confiable. Ya sé con quiénes venderé mi coche.",
       puntuacion: 5,
-      fecha: "Hace 1 mes",
+      fecha: "",
     },
     {
       nombre: "Sergio S.",
       texto:
         "Todo el servicio muy bien, siempre atento a responder rápido para cualquier consulta y muy buena predisposición.",
       puntuacion: 5,
-      fecha: "Hace 3 meses",
+      fecha: "",
     },
     {
       nombre: "Endika",
       texto:
         "Diego es un tio de 10. Excelente vendedor, siempre atento a lo que necesitaba y resolviendo todas las dudas al instante. Muy recomendable.",
       puntuacion: 5,
-      fecha: "Hace 5 meses",
+      fecha: "",
     },
   ],
 };
