@@ -530,7 +530,7 @@ export const mockCars: Car[] = [
       "/coches/vw golf gris/golf7.jpg",
       "/coches/vw golf gris/golf8.jpg",
     ],
-    estado: "reservado",
+    estado: "vendido",
     destacado: true,
     fechaPublicacion: "2026-07-30",
     potencia: 211,
