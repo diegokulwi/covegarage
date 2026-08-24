@@ -4,7 +4,7 @@ import { Fuel, Gauge, Calendar, Settings2 } from "lucide-react";
 import { Car } from "@/types/car";
 import { StatusBadge } from "@/components/ui/Badge";
 import EtiquetaBadge from "@/components/ui/EtiquetaBadge";
-import { formatPrice, formatKm } from "@/lib/utils/formatters";
+import { formatPrice, formatPrecioTachado, formatKm } from "@/lib/utils/formatters";
 import { cn } from "@/lib/utils/cn";
 
 interface CarCardProps {
@@ -92,9 +92,16 @@ export default function CarCard({ car, className }: CarCardProps) {
           </div>
 
           <div className="flex items-center justify-between pt-4 border-t border-dark-600 mt-auto">
-            <p className="font-heading text-2xl font-bold text-white">
-              {car.estado === "vendido" ? "VENDIDO" : formatPrice(car.precio)}
-            </p>
+            <div>
+              {car.estado !== "vendido" && (
+                <p className="text-xs text-slate-500 line-through leading-none mb-0.5">
+                  {formatPrecioTachado(car.precio)}
+                </p>
+              )}
+              <p className="font-heading text-2xl font-bold text-white">
+                {car.estado === "vendido" ? "VENDIDO" : formatPrice(car.precio)}
+              </p>
+            </div>
             <span className="text-xs font-bold uppercase tracking-wider group-hover:underline" style={{ color: "#7DC832" }}>
               Ver ficha →
             </span>

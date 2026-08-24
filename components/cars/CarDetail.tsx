@@ -8,7 +8,7 @@ import EtiquetaBadge from "@/components/ui/EtiquetaBadge";
 import Button from "@/components/ui/Button";
 import CarGallery from "./CarGallery";
 import CarInterestForm from "@/components/forms/CarInterestForm";
-import { formatPrice, formatKm, formatCarTitle } from "@/lib/utils/formatters";
+import { formatPrice, formatPrecioTachado, formatKm, formatCarTitle } from "@/lib/utils/formatters";
 import { generateCarWhatsAppUrl } from "@/lib/utils/whatsapp";
 import { siteSettings } from "@/lib/data/mockSettings";
 
@@ -247,7 +247,12 @@ export default function CarDetail({ car }: CarDetailProps) {
           </div>
           <div className="text-right">
             {car.estado !== "vendido" && (
-              <p className="text-4xl font-black text-slate-900">{formatPrice(car.precio)}</p>
+              <>
+                <p className="text-base text-slate-400 line-through leading-none mb-1">
+                  {formatPrecioTachado(car.precio)}
+                </p>
+                <p className="text-4xl font-black text-slate-900">{formatPrice(car.precio)}</p>
+              </>
             )}
           </div>
         </div>
