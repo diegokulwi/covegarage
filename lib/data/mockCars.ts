@@ -66,7 +66,7 @@ export const mockCars: Car[] = [
     marca: "BMW",
     modelo: "Serie 1",
     año: 2009,
-    kilometraje: 184000,
+    kilometraje: 183000,
     combustible: "diésel",
     transmision: "manual",
     precio: 8900,
