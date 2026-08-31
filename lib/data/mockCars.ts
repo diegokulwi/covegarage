@@ -191,7 +191,7 @@ export const mockCars: Car[] = [
     kilometraje: 87000,
     combustible: "gasolina",
     transmision: "manual",
-    precio: 13900,
+    precio: 13250,
     ubicacion: "Barcelona",
     descripcion:
       "Seat Ibiza FR Plus en excelente estado, muy cuidado y con mantenimiento al día. Unidad nacional equipada con Full LED, cámara trasera, modos de conducción y Apple CarPlay / Android Auto. Sensores de aparcamiento, control de crucero, climatizador automático, volante multifunción deportivo y elevalunas eléctricos. Visitas con cita previa en Barcelona.",
@@ -551,7 +551,7 @@ export const mockCars: Car[] = [
     kilometraje: 176000,
     combustible: "diésel",
     transmision: "manual",
-    precio: 5300,
+    precio: 5200,
     ubicacion: "Barcelona",
     descripcion: "Volkswagen Polo 1.2 TDI 75CV Advance 5 puertas en buen estado. Económico y fiable, ideal para ciudad. Pegatina medioambiental B. Visitas con cita previa en Barcelona.",
     imagenes: [
