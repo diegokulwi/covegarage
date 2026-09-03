@@ -266,7 +266,7 @@ export const mockCars: Car[] = [
       "/coches/hyundai i20/hyundai7.jpg",
       "/coches/hyundai i20/hyundai8.jpg",
     ],
-    estado: "disponible",
+    estado: "reservado",
     destacado: false,
     fechaPublicacion: "2024-03-12",
     potencia: 100,
