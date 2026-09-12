@@ -91,6 +91,20 @@ export const siteContent: SiteContent = {
   ],
   testimonios: [
     {
+      nombre: "Javi F.",
+      texto:
+        "Todo genial, Diego nos ayudó en todo momento a gestionar los papeles y el coche estaba impecable como decía el anuncio.",
+      puntuacion: 5,
+      fecha: "",
+    },
+    {
+      nombre: "tombon S.",
+      texto:
+        "La verdad son los mejores vendedores, compré un coche Hyundai i20, el coche es seminuevo, me ha gustado mucho el coche y sobre todo el vendedor que me ha vendido el coche es muy amable y un hombre con palabra.",
+      puntuacion: 5,
+      fecha: "",
+    },
+    {
       nombre: "Sebastian T.",
       texto:
         "Los recomiendo ampliamente! Diego me generó mucha confianza desde el primer momento. Profesional, responsable y confiable. Ya sé con quiénes venderé mi coche.",
