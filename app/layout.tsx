@@ -3,6 +3,7 @@ import { Inter, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import FAQSection from "@/components/sections/FAQSection";
 import { siteSettings } from "@/lib/data/mockSettings";
 
 const inter = Inter({
@@ -51,6 +52,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col bg-dark-900">
         <Header />
         <main className="flex-1">{children}</main>
+        <FAQSection />
         <Footer />
       </body>
     </html>
