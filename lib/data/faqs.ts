@@ -14,7 +14,7 @@ export const faqs: FAQ[] = [
   {
     pregunta: "¿El precio publicado incluye todo, sin sorpresas?",
     respuesta:
-      "Sí. El precio que ves en la ficha es el precio final — sin letra pequeña ni costes ocultos.",
+      "El precio incluye la garantía básica legal. El cambio de nombre no está incluido y se suma aparte. Si querés una garantía más completa (premium), también tiene un coste adicional — consultanos.",
   },
   {
     pregunta: "¿Puedo probar el coche antes de comprarlo?",
@@ -39,7 +39,7 @@ export const faqs: FAQ[] = [
   {
     pregunta: "¿Qué documentación necesito para vender mi coche?",
     respuesta:
-      "Lo básico: tu DNI, el permiso de circulación, la ficha técnica y el último recibo de la ITV en vigor. Nosotros nos ocupamos del resto del papeleo.",
+      "Lo básico: tu DNI, el permiso de circulación y la ficha técnica. El coche sí debe tener la ITV en vigor, pero no hace falta que traigas el papel — nosotros lo comprobamos. Nos ocupamos del resto del papeleo.",
   },
   {
     pregunta: "¿Hacen envíos fuera de Barcelona?",
@@ -52,7 +52,7 @@ export const faqs: FAQ[] = [
   },
   {
     pregunta: "¿Cuál es el horario de atención?",
-    respuesta: "Lunes a viernes de 10:00 a 20:00, y sábados de 10:00 a 19:00.",
+    respuesta: "Lunes a viernes de 10:00 a 20:00, y sábados de 10:00 a 20:00.",
   },
   {
     pregunta: "¿En cuánto tiempo responden una consulta?",

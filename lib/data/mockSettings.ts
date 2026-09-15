@@ -10,7 +10,7 @@ export const siteSettings: SiteSettings = {
   email: "",
   direccion: "Carrer de Moscou 22, Barcelona — Con cita previa",
   ciudad: "Barcelona",
-  horario: "Lun–Vie 10:00–20:00 · Sáb 10:00–19:00",
+  horario: "Lun–Vie 10:00–20:00 · Sáb 10:00–20:00",
   redes: {
     instagram: "",
     facebook: "",
