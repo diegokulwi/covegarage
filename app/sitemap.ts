@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { mockCars } from "@/lib/data/mockCars";
+import { ciudades } from "@/lib/data/ciudades";
 
 const BASE_URL = "https://covegarage.com";
 
@@ -44,5 +45,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: car.estado === "disponible" ? 0.8 : 0.4,
   }));
 
-  return [...staticRoutes, ...carRoutes];
+  const ciudadRoutes: MetadataRoute.Sitemap = ciudades.map((c) => ({
+    url: `${BASE_URL}/coches-segunda-mano/${c.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...carRoutes, ...ciudadRoutes];
 }

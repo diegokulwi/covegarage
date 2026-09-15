@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Phone, MapPin, Clock } from "lucide-react";
 import { siteSettings } from "@/lib/data/mockSettings";
 import { generateWhatsAppUrl } from "@/lib/utils/whatsapp";
+import { ciudades } from "@/lib/data/ciudades";
 
 export default function Footer() {
   return (
@@ -83,6 +84,25 @@ export default function Footer() {
                   {siteSettings.horario}
                 </span>
               </li>
+            </ul>
+          </div>
+
+          {/* Cities */}
+          <div>
+            <h3 className="font-heading text-sm font-bold uppercase tracking-widest mb-5" style={{ color: "#7DC832" }}>
+              Coches por ciudad
+            </h3>
+            <ul className="space-y-3">
+              {ciudades.map((c) => (
+                <li key={c.slug}>
+                  <Link
+                    href={`/coches-segunda-mano/${c.slug}`}
+                    className="text-sm text-slate-400 hover:text-white transition-colors"
+                  >
+                    Coches de segunda mano en {c.nombre}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
