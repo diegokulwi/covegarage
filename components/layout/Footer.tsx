@@ -34,6 +34,7 @@ export default function Footer() {
                 { href: "/coches", label: "Coches en venta" },
                 { href: "/vender-coche", label: "Vender mi coche" },
                 { href: "/sobre-nosotros", label: "Sobre nosotros" },
+                { href: "#faqs", label: "FAQs" },
                 { href: "/contacto", label: "Contacto" },
               ].map((link) => (
                 <li key={link.href}>

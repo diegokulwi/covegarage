@@ -16,7 +16,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="py-20 bg-white border-t border-slate-100">
+    <section id="faqs" className="py-20 bg-white border-t border-slate-100 scroll-mt-24">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
