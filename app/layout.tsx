@@ -44,12 +44,43 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+// Ficha de negocio (Schema.org AutoDealer) — le dice a Google qué es,
+// dónde está y cuándo abre Cove Garage BCN, para Maps y búsqueda local.
+const businessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AutoDealer",
+  name: siteSettings.nombreEmpresa,
+  description: siteSettings.descripcion,
+  image: "https://covegarage.com/logo1.png",
+  url: "https://covegarage.com",
+  telephone: siteSettings.telefono,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Carrer de Moscou, 22",
+    addressLocality: siteSettings.ciudad,
+    postalCode: "08005",
+    addressCountry: "ES",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "10:00",
+      closes: "20:00",
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" className={`${inter.variable} ${barlowCondensed.variable}`}>
       <body className="min-h-screen flex flex-col bg-dark-900">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }}
+        />
         <Header />
         <main className="flex-1">{children}</main>
         <FAQSection />

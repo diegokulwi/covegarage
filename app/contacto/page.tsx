@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
 import ContactForm from "@/components/forms/ContactForm";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import { siteSettings } from "@/lib/data/mockSettings";
 import { generateWhatsAppUrl } from "@/lib/utils/whatsapp";
 
@@ -43,6 +44,7 @@ const contactItems = [
 export default function ContactoPage() {
   return (
     <div className="min-h-screen bg-slate-50">
+      <Breadcrumb items={[{ label: "Inicio", href: "/" }, { label: "Contacto", href: "/contacto" }]} />
       {/* Header */}
       <div className="bg-dark-900 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CheckCircle, Clock, TrendingUp, Phone, Banknote, FileCheck, ShieldCheck } from "lucide-react";
 import SellCarForm from "@/components/forms/SellCarForm";
 import FinalCTA from "@/components/sections/FinalCTA";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import { siteSettings } from "@/lib/data/mockSettings";
 
 export const metadata: Metadata = {
@@ -34,6 +35,7 @@ const steps = [
 export default function VenderCochePage() {
   return (
     <>
+      <Breadcrumb items={[{ label: "Inicio", href: "/" }, { label: "Vender mi coche", href: "/vender-coche" }]} />
       {/* Hero */}
       <section className="bg-dark-900 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

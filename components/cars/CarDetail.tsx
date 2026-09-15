@@ -5,6 +5,7 @@ import { Car } from "@/types/car";
 import { Phone, ChevronDown, ChevronUp } from "lucide-react";
 import { StatusBadge } from "@/components/ui/Badge";
 import EtiquetaBadge from "@/components/ui/EtiquetaBadge";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import Button from "@/components/ui/Button";
 import CarGallery from "./CarGallery";
 import CarInterestForm from "@/components/forms/CarInterestForm";
@@ -201,16 +202,14 @@ export default function CarDetail({ car }: CarDetailProps) {
 
   return (
     <div className="bg-white min-h-screen">
+      <Breadcrumb
+        items={[
+          { label: "Inicio", href: "/" },
+          { label: "Coches en venta", href: "/coches" },
+          { label: formatCarTitle(car.marca, car.modelo, car.año), href: `/coches/${car.slug}` },
+        ]}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
-
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-sm text-slate-400 mb-6">
-          <a href="/" className="hover:text-[#7DC832] transition-colors">Inicio</a>
-          <span>/</span>
-          <a href="/coches" className="hover:text-[#7DC832] transition-colors">Coches</a>
-          <span>/</span>
-          <span className="text-slate-700 font-medium truncate">{formatCarTitle(car.marca, car.modelo, car.año)}</span>
-        </nav>
 
         {/* Title row */}
         <div className="flex flex-wrap items-start justify-between gap-4 mb-6">

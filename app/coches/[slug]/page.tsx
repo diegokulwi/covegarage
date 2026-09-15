@@ -5,6 +5,45 @@ import CarGrid from "@/components/cars/CarGrid";
 import { getCarBySlug, getSimilarCars, getCars } from "@/lib/services/cars";
 // getCars is used only for generateStaticParams
 import { formatCarTitle, formatPrice } from "@/lib/utils/formatters";
+import { Car } from "@/types/car";
+
+const AVAILABILITY: Record<Car["estado"], string> = {
+  disponible: "https://schema.org/InStock",
+  reservado: "https://schema.org/Reserved",
+  vendido: "https://schema.org/OutOfStock",
+};
+
+// Ficha de vehículo (Schema.org Car + Offer) — precio, km y disponibilidad
+// legibles directamente por Google y por las IA, sin tener que leer la página.
+function buildCarJsonLd(car: Car) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Car",
+    name: formatCarTitle(car.marca, car.modelo, car.año),
+    brand: { "@type": "Brand", name: car.marca },
+    model: car.modelo,
+    vehicleModelDate: car.año.toString(),
+    mileageFromOdometer: {
+      "@type": "QuantitativeValue",
+      value: car.kilometraje,
+      unitCode: "KMT",
+    },
+    fuelType: car.combustible.charAt(0).toUpperCase() + car.combustible.slice(1),
+    vehicleTransmission: car.transmision.charAt(0).toUpperCase() + car.transmision.slice(1),
+    ...(car.color ? { color: car.color } : {}),
+    ...(car.puertas ? { numberOfDoors: car.puertas } : {}),
+    image: car.imagenes[0] ? `https://covegarage.com${encodeURI(car.imagenes[0])}` : undefined,
+    url: `https://covegarage.com/coches/${car.slug}`,
+    itemCondition: "https://schema.org/UsedCondition",
+    offers: {
+      "@type": "Offer",
+      url: `https://covegarage.com/coches/${car.slug}`,
+      availability: AVAILABILITY[car.estado],
+      itemCondition: "https://schema.org/UsedCondition",
+      ...(car.estado !== "vendido" ? { price: car.precio, priceCurrency: "EUR" } : {}),
+    },
+  };
+}
 
 interface Props {
   params: { slug: string };
@@ -44,6 +83,10 @@ export default async function CarDetailPage({ params }: Props) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildCarJsonLd(car)) }}
+      />
       <CarDetail car={car} />
 
       {similar.length > 0 && (

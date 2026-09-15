@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Award, Users, ThumbsUp, ShieldCheck } from "lucide-react";
 import FinalCTA from "@/components/sections/FinalCTA";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import { siteSettings } from "@/lib/data/mockSettings";
 
 export const metadata: Metadata = {
@@ -43,6 +44,7 @@ const values = [
 export default function SobreNosotrosPage() {
   return (
     <>
+      <Breadcrumb items={[{ label: "Inicio", href: "/" }, { label: "Sobre nosotros", href: "/sobre-nosotros" }]} />
       {/* Hero */}
       <section className="relative py-24 bg-dark-900 overflow-hidden">
         <div

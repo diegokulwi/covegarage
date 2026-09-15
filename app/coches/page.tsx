@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import CarGrid from "@/components/cars/CarGrid";
 import CarFilters from "@/components/cars/CarFilters";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import { getCars } from "@/lib/services/cars";
 import { Car, CarFilters as FiltersType } from "@/types/car";
 
@@ -86,6 +87,7 @@ function CochesContent() {
 
   return (
     <div className="min-h-screen bg-slate-50">
+      <Breadcrumb items={[{ label: "Inicio", href: "/" }, { label: "Coches en venta", href: "/coches" }]} />
       <div className="bg-white border-b border-slate-100">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <h1 className="text-3xl sm:text-4xl font-black text-dark-900 mb-1">
