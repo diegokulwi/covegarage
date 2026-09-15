@@ -64,10 +64,10 @@ export default function Hero() {
           {/* Quick search */}
           <div className="flex flex-wrap gap-2 mt-10">
             {[
-              { label: "SUVs", href: "/coches" },
-              { label: "Hasta 10.000€", href: "/coches" },
-              { label: "Automáticos", href: "/coches" },
-              { label: "Cabrio", href: "/coches" },
+              { label: "SUVs", href: "/coches-por-tipo/suv" },
+              { label: "Hasta 10.000€", href: "/coches-por-tipo/hasta-10000" },
+              { label: "Automáticos", href: "/coches-por-tipo/automaticos" },
+              { label: "Cabrio", href: "/coches-por-tipo/cabrio" },
               { label: "Ver todos →", href: "/coches" },
             ].map((item) => (
               <Link

@@ -278,6 +278,16 @@ export default function CarDetail({ car }: CarDetailProps) {
               )}
             </div>
 
+            {/* Descripción */}
+            {car.descripcion && (
+              <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100">
+                <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">Descripción</h2>
+                <p className="text-slate-600 text-sm leading-relaxed font-sans normal-case tracking-normal">
+                  {car.descripcion}
+                </p>
+              </div>
+            )}
+
             {/* Specs grid */}
             <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100">
               <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">Características</h2>
