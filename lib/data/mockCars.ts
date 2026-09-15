@@ -191,7 +191,7 @@ export const mockCars: Car[] = [
     kilometraje: 87000,
     combustible: "gasolina",
     transmision: "manual",
-    precio: 13250,
+    precio: 13500,
     ubicacion: "Barcelona",
     descripcion:
       "Seat Ibiza FR Plus en excelente estado, muy cuidado y con mantenimiento al día. Unidad nacional equipada con Full LED, cámara trasera, modos de conducción y Apple CarPlay / Android Auto. Sensores de aparcamiento, control de crucero, climatizador automático, volante multifunción deportivo y elevalunas eléctricos. Visitas con cita previa en Barcelona.",
