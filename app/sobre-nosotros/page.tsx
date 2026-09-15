@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Sobre nosotros — Quiénes somos",
   description:
     "Somos especialistas en compra y venta de vehículos de segunda mano en Barcelona. Conoce nuestra historia y nuestros valores.",
+  alternates: {
+    canonical: "/sobre-nosotros",
+  },
 };
 
 const values = [

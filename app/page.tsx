@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: `${siteSettings.nombreEmpresa} — Compra y venta de coches premium en Barcelona`,
   description:
     "Especialistas en compra y venta de vehículos de segunda mano en Barcelona. Más de 5 años de experiencia, trato directo y precios competitivos.",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default async function HomePage() {

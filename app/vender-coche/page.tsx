@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Vender mi coche — Tasación gratuita y pago al firmar",
   description:
     "Compramos tu coche al mejor precio. Tasación gratuita, sin trámites y con pago al firmar. Si no llegamos a un acuerdo, te ofrecemos gestión de venta sin coste.",
+  alternates: {
+    canonical: "/vender-coche",
+  },
 };
 
 const steps = [

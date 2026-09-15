@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Contacto — Hablemos",
   description:
     "Contáctanos por WhatsApp, teléfono o formulario. Te respondemos en menos de 2 horas. Estamos en Barcelona.",
+  alternates: {
+    canonical: "/contacto",
+  },
 };
 
 const contactItems = [

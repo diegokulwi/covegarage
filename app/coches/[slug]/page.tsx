@@ -20,9 +20,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!car) return {};
 
   const title = formatCarTitle(car.marca, car.modelo, car.año);
+  const priceTag = car.estado === "vendido" ? "Vendido" : formatPrice(car.precio);
   return {
-    title: `${title} — ${formatPrice(car.precio)}`,
+    title: `${title} — ${priceTag}`,
     description: `${title} con ${car.kilometraje.toLocaleString("es-ES")} km, ${car.combustible} y ${car.transmision}. ${car.descripcion.substring(0, 120)}...`,
+    alternates: {
+      canonical: `/coches/${car.slug}`,
+    },
     openGraph: {
       title,
       description: car.descripcion.substring(0, 160),
