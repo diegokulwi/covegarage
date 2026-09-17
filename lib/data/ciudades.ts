@@ -42,7 +42,7 @@ export const ciudades: Ciudad[] = [
     heroEyebrow: "Madrid",
     heroTitulo: "Coches de segunda mano en Madrid",
     heroTexto:
-      "Somos un concesionario en Barcelona: elegís el coche a distancia (fotos, vídeo-llamada y toda la documentación) y te lo entregamos en tu domicilio en Madrid.",
+      "Somos un concesionario en Barcelona: elegís el coche a distancia (fotos, vídeo del estado del coche y toda la documentación) y te lo entregamos en tu domicilio en Madrid.",
     entregaTitulo: "Cómo funciona la entrega en Madrid",
     entregaTexto:
       "Elegís el coche en la web, resolvemos tus dudas por WhatsApp o llamada y coordinamos la entrega en tu domicilio en Madrid. El coste de envío varía según la zona — te lo confirmamos antes de cerrar la compra.",
@@ -57,7 +57,7 @@ export const ciudades: Ciudad[] = [
     heroEyebrow: "Valencia",
     heroTitulo: "Coches de segunda mano en Valencia",
     heroTexto:
-      "Somos un concesionario en Barcelona: elegís el coche a distancia (fotos, vídeo-llamada y toda la documentación) y te lo entregamos en tu domicilio en Valencia.",
+      "Somos un concesionario en Barcelona: elegís el coche a distancia (fotos, vídeo del estado del coche y toda la documentación) y te lo entregamos en tu domicilio en Valencia.",
     entregaTitulo: "Cómo funciona la entrega en Valencia",
     entregaTexto:
       "Elegís el coche en la web, resolvemos tus dudas por WhatsApp o llamada y coordinamos la entrega en tu domicilio en Valencia. El coste de envío varía según la zona — te lo confirmamos antes de cerrar la compra.",
