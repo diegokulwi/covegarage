@@ -39,7 +39,14 @@ export default function TrustSection() {
               ))}
             </div>
             <span className="font-bold text-white">5.0</span>
-            <span className="text-slate-500 text-sm font-sans normal-case tracking-normal">— +100 reseñas verificadas</span>
+            <a
+              href="https://www.google.com/maps/place/Carrer+de+Moscou,+22,+Sant+Mart%C3%AD,+08005+Barcelona/@41.3881943,2.191939,17z/data=!3m1!4b1!4m6!3m5!1s0x12a4a30555ee0b77:0xd8a3108b2ee7e703!8m2!3d41.3881903!4d2.1945139!16s%2Fg%2F11c5dkdr0p"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-500 text-sm font-sans normal-case tracking-normal hover:text-[#7DC832] transition-colors underline decoration-slate-600 underline-offset-2"
+            >
+              — Reseñas verificadas en Google
+            </a>
           </div>
         </div>
 
