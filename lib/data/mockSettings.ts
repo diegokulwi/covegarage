@@ -4,7 +4,7 @@ export const siteSettings: SiteSettings = {
   nombreEmpresa: "Cove Garage BCN",
   slogan: "Encontramos tu próximo coche",
   descripcion:
-    "Especialistas en compra y venta de vehículos de segunda mano en Barcelona. Coches nacionales e importación bajo pedido de toda Europa. Garantía 12 meses, trato personalizado y total transparencia.",
+    "Especialistas en compra y venta de vehículos de segunda mano en Barcelona. Coches nacionales o de importación bajo pedido de Europa. Revisados. Garantía de 12 meses. Trato directo, sin vueltas.",
   telefono: "+34 647 138 383",
   whatsapp: "34647138383",
   email: "",

@@ -37,7 +37,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-lg text-slate-300 leading-relaxed mb-10 max-w-xl font-sans normal-case tracking-normal">
-            Coches nacionales e importación bajo pedido de toda Europa. Garantía 12 meses, trato personalizado y total transparencia.
+            Coches nacionales o de importación bajo pedido de Europa. Revisados. Garantía de 12 meses. Trato directo, sin vueltas.
           </p>
 
           {/* CTAs */}
