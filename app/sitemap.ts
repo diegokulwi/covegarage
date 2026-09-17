@@ -3,7 +3,7 @@ import { mockCars } from "@/lib/data/mockCars";
 import { ciudades } from "@/lib/data/ciudades";
 import { categorias } from "@/lib/data/categorias";
 
-const BASE_URL = "https://covegarage.com";
+const BASE_URL = "https://www.covegarage.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [

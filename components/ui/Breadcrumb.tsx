@@ -15,7 +15,7 @@ export default function Breadcrumb({ items }: { items: Crumb[] }) {
       "@type": "ListItem",
       position: i + 1,
       name: item.label,
-      item: `https://covegarage.com${item.href}`,
+      item: `https://www.covegarage.com${item.href}`,
     })),
   };
 
