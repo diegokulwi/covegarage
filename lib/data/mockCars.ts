@@ -69,7 +69,7 @@ export const mockCars: Car[] = [
     kilometraje: 183000,
     combustible: "diésel",
     transmision: "manual",
-    precio: 8900,
+    precio: 9000,
     ubicacion: "Barcelona",
     descripcion:
       "BMW 120d Cabrio en muy buen estado general, con mantenimiento al día y listo para disfrutar el verano. Motor diésel de 177 CV, potente, fiable y con muy buenos consumos. Unidad NACIONAL, segundo propietario y cambio manual de 6 velocidades. Capota eléctrica funcionando perfecto, asientos deportivos, climatizador automático, control de crucero y arranque por botón. Visitas con cita previa en Barcelona.",
