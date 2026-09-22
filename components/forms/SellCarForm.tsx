@@ -71,6 +71,8 @@ export default function SellCarForm() {
   const [emailError, setEmailError] = useState("");
   const [fotos, setFotos] = useState<File[]>([]);
   const [fotoError, setFotoError] = useState("");
+  const [submitError, setSubmitError] = useState("");
+  const [fotosNoEnviadas, setFotosNoEnviadas] = useState(false);
   const [form, setForm] = useState({
     nombre: "",
     email: "",
@@ -114,11 +116,7 @@ export default function SellCarForm() {
     setFotoError("");
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
-    if (!valid) { setEmailError("Introduce un email válido (ejemplo@dominio.com)"); return; }
-    setLoading(true);
+  const buildFormData = (incluirFotos: boolean) => {
     const data = new FormData();
     data.append("Nombre", form.nombre);
     data.append("Email", form.email);
@@ -131,15 +129,45 @@ export default function SellCarForm() {
     data.append("Combustible", form.combustibleCoche);
     data.append("Transmisión", form.transmisionCoche);
     data.append("Información adicional", form.mensaje);
-    fotos.forEach((foto, i) => data.append(`Foto ${i + 1}`, foto, foto.name));
+    if (incluirFotos) {
+      fotos.forEach((foto, i) => data.append(`Foto ${i + 1}`, foto, foto.name));
+    }
+    return data;
+  };
 
-    await fetch("https://formspree.io/f/xkodyrjv", {
+  const enviarFormspree = (data: FormData) =>
+    fetch("https://formspree.io/f/xkodyrjv", {
       method: "POST",
       headers: { Accept: "application/json" },
       body: data,
     });
-    setLoading(false);
-    setSuccess(true);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
+    if (!valid) { setEmailError("Introduce un email válido (ejemplo@dominio.com)"); return; }
+    setLoading(true);
+    setSubmitError("");
+
+    try {
+      let res = await enviarFormspree(buildFormData(true));
+      let sinFotos = false;
+
+      // si falla y había fotos, reintenta sin ellas para no perder el lead igual
+      if (!res.ok && fotos.length > 0) {
+        res = await enviarFormspree(buildFormData(false));
+        sinFotos = res.ok;
+      }
+
+      if (!res.ok) throw new Error("submit failed");
+
+      setFotosNoEnviadas(sinFotos);
+      setSuccess(true);
+    } catch {
+      setSubmitError("No se pudo enviar el formulario. Probá de nuevo en un momento, o escribinos directo por WhatsApp.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (success) {
@@ -150,6 +178,11 @@ export default function SellCarForm() {
         <p className="text-slate-500 max-w-md mx-auto">
           Revisaremos los datos de tu coche y te contactaremos con una oferta de compra. Pago al firmar, sin sorpresas.
         </p>
+        {fotosNoEnviadas && (
+          <p className="text-amber-600 text-sm mt-4 max-w-md mx-auto bg-amber-50 rounded-lg p-3">
+            Tus datos llegaron bien, pero las fotos no se pudieron adjuntar esta vez — no hace falta que las reenvíes acá, nos las podés pasar directo por WhatsApp.
+          </p>
+        )}
       </div>
     );
   }
@@ -342,6 +375,10 @@ export default function SellCarForm() {
           />
         </div>
       </div>
+
+      {submitError && (
+        <p className="text-sm text-red-600 bg-red-50 rounded-lg p-3 text-center">{submitError}</p>
+      )}
 
       <Button type="submit" variant="primary" size="lg" fullWidth disabled={loading}>
         {loading ? "Enviando..." : "Solicitar tasación gratuita"}
