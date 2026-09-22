@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, ImagePlus, X } from "lucide-react";
 import { Input, Textarea, Select } from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 
@@ -62,10 +62,15 @@ const onlyPhone = (e: React.ChangeEvent<HTMLInputElement>, setForm: (f: any) => 
   setForm({ ...form, telefono: val });
 };
 
+const MAX_FOTOS = 5;
+const MAX_FOTO_MB = 10;
+
 export default function SellCarForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [emailError, setEmailError] = useState("");
+  const [fotos, setFotos] = useState<File[]>([]);
+  const [fotoError, setFotoError] = useState("");
   const [form, setForm] = useState({
     nombre: "",
     email: "",
@@ -88,27 +93,50 @@ export default function SellCarForm() {
     setEmailError(valid ? "" : "Introduce un email válido (ejemplo@dominio.com)");
   };
 
+  const handleFotosChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const seleccionadas = Array.from(e.target.files ?? []);
+    e.target.value = ""; // permite volver a elegir el mismo archivo si lo saca y lo agrega de nuevo
+
+    const noImagen = seleccionadas.some((f) => !f.type.startsWith("image/"));
+    const muyPesada = seleccionadas.some((f) => f.size > MAX_FOTO_MB * 1024 * 1024);
+    if (noImagen) { setFotoError("Solo se permiten archivos de imagen."); return; }
+    if (muyPesada) { setFotoError(`Cada foto debe pesar menos de ${MAX_FOTO_MB}MB.`); return; }
+
+    const combinadas = [...fotos, ...seleccionadas].slice(0, MAX_FOTOS);
+    setFotos(combinadas);
+    setFotoError(combinadas.length >= MAX_FOTOS && fotos.length + seleccionadas.length > MAX_FOTOS
+      ? `Máximo ${MAX_FOTOS} fotos.`
+      : "");
+  };
+
+  const removeFoto = (index: number) => {
+    setFotos(fotos.filter((_, i) => i !== index));
+    setFotoError("");
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
     if (!valid) { setEmailError("Introduce un email válido (ejemplo@dominio.com)"); return; }
     setLoading(true);
+    const data = new FormData();
+    data.append("Nombre", form.nombre);
+    data.append("Email", form.email);
+    data.append("Teléfono", form.telefono);
+    data.append("Marca", form.marcaCoche);
+    data.append("Modelo", form.modeloCoche);
+    data.append("Año", form.añoCoche);
+    data.append("Kilometraje", form.kilometrajeCoche);
+    data.append("Potencia (kW)", form.potenciaKw);
+    data.append("Combustible", form.combustibleCoche);
+    data.append("Transmisión", form.transmisionCoche);
+    data.append("Información adicional", form.mensaje);
+    fotos.forEach((foto, i) => data.append(`Foto ${i + 1}`, foto, foto.name));
+
     await fetch("https://formspree.io/f/xkodyrjv", {
       method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({
-        Nombre: form.nombre,
-        Email: form.email,
-        Teléfono: form.telefono,
-        Marca: form.marcaCoche,
-        Modelo: form.modeloCoche,
-        Año: form.añoCoche,
-        Kilometraje: form.kilometrajeCoche,
-        "Potencia (kW)": form.potenciaKw,
-        Combustible: form.combustibleCoche,
-        Transmisión: form.transmisionCoche,
-        "Información adicional": form.mensaje,
-      }),
+      headers: { Accept: "application/json" },
+      body: data,
     });
     setLoading(false);
     setSuccess(true);
@@ -219,6 +247,51 @@ export default function SellCarForm() {
             <option value="Semiautomático">Semiautomático</option>
           </Select>
         </div>
+      </div>
+
+      {/* Fotos */}
+      <div>
+        <div className="flex items-baseline justify-between mb-4">
+          <h3 className="font-bold text-dark-900 text-lg">Fotos del coche (opcional)</h3>
+          <span className="text-xs text-slate-400">{fotos.length}/{MAX_FOTOS}</span>
+        </div>
+        <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
+          {fotos.map((foto, i) => (
+            <div key={i} className="relative aspect-square rounded-lg overflow-hidden border border-slate-200 group">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={URL.createObjectURL(foto)} alt={`Foto ${i + 1}`} className="w-full h-full object-cover" />
+              <button
+                type="button"
+                onClick={() => removeFoto(i)}
+                className="absolute top-1 right-1 bg-black/60 hover:bg-black/80 text-white rounded-full p-1 transition-colors"
+                aria-label={`Quitar foto ${i + 1}`}
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          ))}
+          {fotos.length < MAX_FOTOS && (
+            <label
+              htmlFor="fotos"
+              className="aspect-square flex flex-col items-center justify-center gap-1.5 rounded-lg border-2 border-dashed border-slate-200 text-slate-400 hover:border-brand-500 hover:text-brand-600 cursor-pointer transition-colors"
+            >
+              <ImagePlus className="w-6 h-6" />
+              <span className="text-xs font-medium">Añadir</span>
+              <input
+                id="fotos"
+                type="file"
+                accept="image/*"
+                multiple
+                className="hidden"
+                onChange={handleFotosChange}
+              />
+            </label>
+          )}
+        </div>
+        {fotoError && <p className="text-xs text-red-500 mt-2">{fotoError}</p>}
+        <p className="text-xs text-slate-400 mt-2">
+          Nos ayuda a darte una tasación más precisa. Máximo {MAX_FOTOS} fotos, {MAX_FOTO_MB}MB cada una.
+        </p>
       </div>
 
       {/* Datos de contacto */}
