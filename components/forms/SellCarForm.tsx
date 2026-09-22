@@ -74,6 +74,7 @@ export default function SellCarForm() {
     modeloCoche: "",
     añoCoche: "",
     kilometrajeCoche: "",
+    potenciaKw: "",
     combustibleCoche: "",
     transmisionCoche: "",
     mensaje: "",
@@ -103,6 +104,7 @@ export default function SellCarForm() {
         Modelo: form.modeloCoche,
         Año: form.añoCoche,
         Kilometraje: form.kilometrajeCoche,
+        "Potencia (kW)": form.potenciaKw,
         Combustible: form.combustibleCoche,
         Transmisión: form.transmisionCoche,
         "Información adicional": form.mensaje,
@@ -175,6 +177,18 @@ export default function SellCarForm() {
             required
             value={form.kilometrajeCoche}
             onChange={(e) => setForm({ ...form, kilometrajeCoche: e.target.value })}
+          />
+
+          <Input
+            id="potencia"
+            label="Potencia (kW)"
+            type="number"
+            inputMode="numeric"
+            placeholder="85"
+            min={1}
+            max={800}
+            value={form.potenciaKw}
+            onChange={(e) => setForm({ ...form, potenciaKw: e.target.value })}
           />
 
           <Select
