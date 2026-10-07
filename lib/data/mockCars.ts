@@ -85,7 +85,7 @@ export const mockCars: Car[] = [
       "/coches/bmw serie 1 cabrio/cabrio9.jpg",
       "/coches/bmw serie 1 cabrio/cabrio10.jpg",
     ],
-    estado: "disponible",
+    estado: "vendido",
     destacado: true,
     fechaPublicacion: "2024-03-05",
     potencia: 177,
