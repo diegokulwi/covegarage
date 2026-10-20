@@ -641,7 +641,7 @@ export const mockCars: Car[] = [
     precio: 10900,
     ubicacion: "Barcelona",
     descripcion:
-      "Volkswagen Polo 1.0 TSI de 95 CV en color naranja, con cambio manual y etiqueta medioambiental C. Año 2018 con 139.500 km. Equipado con App-Connect (Apple CarPlay / Android Auto), aire acondicionado, control de crucero, volante multifunción, luces automáticas, faros antiniebla y llantas de aleación. Visitas con cita previa en Barcelona.",
+      "Volkswagen Polo 1.0 TSI de 95 CV en color naranja, con cambio manual y etiqueta medioambiental C. Año 2018 con 139.500 km. Bien mantenido, ITV en vigor hasta 2028. Equipado con App-Connect (Apple CarPlay / Android Auto), aire acondicionado, control de crucero, volante multifunción, luces automáticas, faros antiniebla y llantas de aleación. Visitas con cita previa en Barcelona.",
     imagenes: [
       "/coches/vw polo naranja/polo1.jpg",
       "/coches/vw polo naranja/polo2.jpeg",
