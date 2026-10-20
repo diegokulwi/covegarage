@@ -586,7 +586,7 @@ export const mockCars: Car[] = [
     kilometraje: 196500,
     combustible: "híbrido",
     transmision: "automático",
-    precio: 10499,
+    precio: 10290,
     ubicacion: "Barcelona",
     descripcion:
       "Toyota Yaris 1.5 Hybrid Active de 100 CV con cambio automático y etiqueta medioambiental ECO. Segundo propietario y libro de revisiones completo, con todas las revisiones realizadas en Toyota. Batería híbrida sustituida a los 180.000 km. Equipado con Toyota Safety Sense (sistema de precolisión, aviso de cambio de carril y luces de carretera automáticas), control de crucero, cámara de marcha atrás y climatizador. Económico y muy cómodo para la ciudad. Visitas con cita previa en Barcelona.",
@@ -638,7 +638,7 @@ export const mockCars: Car[] = [
     kilometraje: 139500,
     combustible: "gasolina",
     transmision: "manual",
-    precio: 10999,
+    precio: 10490,
     ubicacion: "Barcelona",
     descripcion:
       "Volkswagen Polo 1.0 TSI de 95 CV en color naranja, con cambio manual y etiqueta medioambiental C. Año 2018 con 139.500 km. Bien mantenido, ITV en vigor hasta 2028. Equipado con App-Connect (Apple CarPlay / Android Auto), aire acondicionado, control de crucero, volante multifunción, luces automáticas, faros antiniebla y llantas de aleación. Visitas con cita previa en Barcelona.",
