@@ -581,7 +581,7 @@ export const mockCars: Car[] = [
     slug: "toyota-yaris-15-hybrid-100cv-2016",
     marca: "Toyota",
     modelo: "Yaris",
-    version: "1.5 Hybrid (100 CV)",
+    version: "1.5 Hybrid Active (100 CV)",
     año: 2016,
     kilometraje: 196500,
     combustible: "híbrido",
@@ -589,7 +589,7 @@ export const mockCars: Car[] = [
     precio: 10499,
     ubicacion: "Barcelona",
     descripcion:
-      "Toyota Yaris 1.5 Hybrid de 100 CV con cambio automático y etiqueta medioambiental ECO. Segundo propietario y libro de revisiones completo, con todas las revisiones realizadas en Toyota. Batería híbrida sustituida a los 180.000 km. Equipado con Toyota Safety Sense (sistema de precolisión, aviso de cambio de carril y luces de carretera automáticas), control de crucero, cámara de marcha atrás y climatizador. Económico y muy cómodo para la ciudad. Visitas con cita previa en Barcelona.",
+      "Toyota Yaris 1.5 Hybrid Active de 100 CV con cambio automático y etiqueta medioambiental ECO. Segundo propietario y libro de revisiones completo, con todas las revisiones realizadas en Toyota. Batería híbrida sustituida a los 180.000 km. Equipado con Toyota Safety Sense (sistema de precolisión, aviso de cambio de carril y luces de carretera automáticas), control de crucero, cámara de marcha atrás y climatizador. Económico y muy cómodo para la ciudad. Visitas con cita previa en Barcelona.",
     imagenes: [
       "/coches/toyota yaris/yaris1.jpg",
       "/coches/toyota yaris/yaris2.jpeg",
