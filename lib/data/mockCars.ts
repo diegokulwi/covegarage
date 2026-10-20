@@ -589,7 +589,7 @@ export const mockCars: Car[] = [
     precio: 10300,
     ubicacion: "Barcelona",
     descripcion:
-      "Toyota Yaris 1.5 Hybrid de 100 CV con cambio automático y etiqueta medioambiental ECO. Segundo propietario y libro de revisiones completo, con todas las revisiones realizadas en Toyota. Batería híbrida sustituida a los 180.000 km. Equipado con cámara de marcha atrás y climatizador. Económico y muy cómodo para la ciudad. Visitas con cita previa en Barcelona.",
+      "Toyota Yaris 1.5 Hybrid de 100 CV con cambio automático y etiqueta medioambiental ECO. Segundo propietario y libro de revisiones completo, con todas las revisiones realizadas en Toyota. Batería híbrida sustituida a los 180.000 km. Equipado con Toyota Safety Sense (sistema de precolisión, aviso de cambio de carril y luces de carretera automáticas), control de crucero, cámara de marcha atrás y climatizador. Económico y muy cómodo para la ciudad. Visitas con cita previa en Barcelona.",
     imagenes: [
       "/coches/toyota yaris/yaris1.jpg",
       "/coches/toyota yaris/yaris2.jpeg",
@@ -616,6 +616,12 @@ export const mockCars: Car[] = [
     equipamiento: [
       "Cámara de marcha atrás",
       "Climatizador",
+      "Control de crucero",
+      "Toyota Safety Sense (precolisión y aviso de cambio de carril)",
+      "Luces de carretera automáticas",
+      "Volante multifunción de cuero",
+      "Bluetooth / manos libres",
+      "Arranque por botón",
       "Llantas de aleación",
       "Faros antiniebla",
       "Modos EV y ECO",
