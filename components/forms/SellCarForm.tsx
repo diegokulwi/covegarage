@@ -12,7 +12,7 @@ const MARCAS_MODELOS: Record<string, string[]> = {
   "Bentley": ["Bentayga", "Continental GT", "Flying Spur"],
   "BMW": ["Serie 1", "Serie 2", "Serie 3", "Serie 4", "Serie 5", "Serie 6", "Serie 7", "Serie 8", "X1", "X2", "X3", "X4", "X5", "X6", "X7", "Z4", "M2", "M3", "M4", "M5", "i3", "i4", "iX"],
   "BYD": ["Atto 3", "Han", "Seal", "Tang"],
-  "Citroën": ["Berlingo", "C1", "C3", "C3 Aircross", "C4", "C5 Aircross", "C5 X", "Spacetourer"],
+  "Citroen": ["Berlingo", "C1", "C3", "C3 Aircross", "C4", "C5 Aircross", "C5 X", "Spacetourer"],
   "CUPRA": ["Ateca", "Born", "Formentor", "León", "Terramar"],
   "Dacia": ["Duster", "Jogger", "Logan", "Sandero", "Spring"],
   "DS": ["DS3", "DS4", "DS7", "DS9"],

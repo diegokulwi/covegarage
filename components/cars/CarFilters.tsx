@@ -15,7 +15,7 @@ interface CarFiltersProps {
 
 const TODAS_LAS_MARCAS = [
   "Abarth", "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW", "Bugatti",
-  "Cadillac", "Chevrolet", "Chrysler", "Citroën", "Cupra", "Dacia", "Ferrari",
+  "Cadillac", "Chevrolet", "Chrysler", "Citroen", "Cupra", "Dacia", "Ferrari",
   "Fiat", "Ford", "Honda", "Hyundai", "Infiniti", "Jaguar", "Jeep", "Kia",
   "Lamborghini", "Land Rover", "Lexus", "Maserati", "Mazda", "Mercedes-Benz",
   "MG", "Mini", "Mitsubishi", "Nissan", "Opel", "Peugeot", "Porsche",
