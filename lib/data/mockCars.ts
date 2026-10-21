@@ -683,13 +683,13 @@ export const mockCars: Car[] = [
     modelo: "Grand C4 Picasso",
     version: "1.6 HDi Exclusive (110 CV)",
     año: 2010,
-    kilometraje: 271000,
+    kilometraje: 272000,
     combustible: "diésel",
     transmision: "manual",
     precio: 4490,
     ubicacion: "Barcelona",
     descripcion:
-      "Citroen Grand C4 Picasso 1.6 HDi de 110 CV, acabado Exclusive, con cambio manual y etiqueta medioambiental B. Monovolumen familiar de 7 plazas reales, 5 puertas y maletero amplio. Año 2010 con 271.000 km. Lleva motor, turbo y distribución nuevos, cambiados en julio: lo que más preocupa en un diésel con muchos kilómetros ya está resuelto. Neumáticos con mucha vida útil. Equipado con climatizador automático, control de crucero y limitador de velocidad, sensores de aparcamiento traseros y elevalunas eléctricos. Ideal para familias grandes o para quien necesite espacio de verdad. Visitas con cita previa en Barcelona.",
+      "Citroen Grand C4 Picasso 1.6 HDi de 110 CV, acabado Exclusive, con cambio manual y etiqueta medioambiental B. Monovolumen familiar de 7 plazas reales, 5 puertas y maletero amplio. Año 2010 con 272.000 km. Lleva motor, turbo y distribución nuevos, cambiados en julio: lo que más preocupa en un diésel con muchos kilómetros ya está resuelto. Neumáticos con mucha vida útil. Equipado con climatizador automático, control de crucero y limitador de velocidad, sensores de aparcamiento traseros y elevalunas eléctricos. Ideal para familias grandes o para quien necesite espacio de verdad. Visitas con cita previa en Barcelona.",
     imagenes: [
       "/coches/citroen c4 gran picasso/picasso1.jpg",
       "/coches/citroen c4 gran picasso/picasso2.jpeg",
