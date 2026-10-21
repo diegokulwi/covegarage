@@ -61,7 +61,7 @@ export const faqs: FAQ[] = [
   {
     pregunta: "¿Los coches son nacionales o de importación?",
     respuesta:
-      "Trabajamos con stock nacional permanente, y también gestionamos importación bajo pedido desde toda Europa.",
+      "Trabajamos con stock permanente y también gestionamos importación bajo pedido desde toda Europa.",
   },
   {
     pregunta: "¿Ofrecen financiación?",
