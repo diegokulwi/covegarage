@@ -1,0 +1,166 @@
+"use client";
+
+import { useState, useEffect, useMemo, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import CarGrid from "@/components/cars/CarGrid";
+import CarFilters from "@/components/cars/CarFilters";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+import CarRequestSection from "@/components/sections/CarRequestSection";
+import { getCars } from "@/lib/services/cars";
+import { Car, CarFilters as FiltersType } from "@/types/car";
+
+type SortOption = "relevantes" | "precio_asc" | "precio_desc" | "km_asc" | "km_desc" | "nuevos" | "antiguos" | "potencia";
+
+const SORT_OPTIONS: { value: SortOption; label: string }[] = [
+  { value: "relevantes",  label: "Más relevantes" },
+  { value: "precio_asc",  label: "Menor precio" },
+  { value: "precio_desc", label: "Mayor precio" },
+  { value: "km_asc",      label: "Menos kilómetros" },
+  { value: "km_desc",     label: "Más kilómetros" },
+  { value: "nuevos",      label: "Más nuevos" },
+  { value: "antiguos",    label: "Últimos coches" },
+  { value: "potencia",    label: "Más potente" },
+];
+
+function sortCars(cars: Car[], sort: SortOption): Car[] {
+  const estadoOrder = (e: string) => e === "disponible" ? 0 : e === "reservado" ? 1 : 2;
+  const vendidos = (a: Car, b: Car) => estadoOrder(a.estado) - estadoOrder(b.estado);
+  const c = [...cars];
+  switch (sort) {
+    case "precio_asc":  return c.sort((a, b) => vendidos(a, b) || a.precio - b.precio);
+    case "precio_desc": return c.sort((a, b) => vendidos(a, b) || b.precio - a.precio);
+    case "km_asc":      return c.sort((a, b) => vendidos(a, b) || a.kilometraje - b.kilometraje);
+    case "km_desc":     return c.sort((a, b) => vendidos(a, b) || b.kilometraje - a.kilometraje);
+    case "nuevos":      return c.sort((a, b) => vendidos(a, b) || b.año - a.año);
+    case "antiguos":    return c.sort((a, b) => vendidos(a, b) || new Date(b.fechaPublicacion).getTime() - new Date(a.fechaPublicacion).getTime());
+    case "potencia":    return c.sort((a, b) => vendidos(a, b) || (b.potencia ?? 0) - (a.potencia ?? 0));
+    default:            return c.sort((a, b) => vendidos(a, b) || b.año - a.año);
+  }
+}
+
+// Lee los filtros de la URL (/coches?carroceria=SUV…). Va en una pieza aparte, dentro de Suspense, para que
+// solo esta parte se pinte en el navegador y el resto del listado salga ya montado en el HTML (con todos
+// los coches y sus enlaces), que es lo que leen Google y las IA.
+function UrlFilters({ onChange }: { onChange: (filters: FiltersType) => void }) {
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const filters: FiltersType = {};
+
+    const precioMax = searchParams.get("precioMax");
+    if (precioMax) filters.precioMax = Number(precioMax);
+
+    const carroceria = searchParams.get("carroceria");
+    if (carroceria) filters.carroceria = carroceria as FiltersType["carroceria"];
+
+    const transmision = searchParams.get("transmision");
+    if (transmision) filters.transmision = transmision as FiltersType["transmision"];
+
+    const combustible = searchParams.get("combustible");
+    if (combustible) filters.combustible = combustible as FiltersType["combustible"];
+
+    const marca = searchParams.get("marca");
+    if (marca) filters.marca = marca;
+
+    onChange(filters);
+  }, [searchParams]);
+
+  return null;
+}
+
+export default function CochesExplorer({ initialCars }: { initialCars: Car[] }) {
+  const [allFiltered, setAllFiltered] = useState<Car[]>(initialCars);
+  const [initialFilters, setInitialFilters] = useState<FiltersType>({});
+  const [sortBy, setSortBy] = useState<SortOption>("relevantes");
+  const sorted = useMemo(() => sortCars(allFiltered, sortBy), [allFiltered, sortBy]);
+
+  const handleUrlFilters = async (filters: FiltersType) => {
+    setInitialFilters(filters);
+    setAllFiltered(Object.keys(filters).length > 0 ? await getCars(filters) : initialCars);
+  };
+
+  const handleFilter = async (filters: FiltersType) => {
+    setAllFiltered(await getCars(filters));
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-50">
+      <Suspense fallback={null}>
+        <UrlFilters onChange={handleUrlFilters} />
+      </Suspense>
+
+      <Breadcrumb items={[{ label: "Inicio", href: "/" }, { label: "Coches en venta", href: "/coches" }]} />
+      <div className="bg-white border-b border-slate-100">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <h1 className="text-3xl sm:text-4xl font-black text-dark-900 mb-1">
+            Coches en venta
+          </h1>
+          <p className="text-slate-500 text-sm">
+            Selección de vehículos verificados en Barcelona.
+          </p>
+          <a
+            href="#busco-mi-coche"
+            className="inline-block mt-3 text-sm font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+          >
+            ¿No encuentras tu coche? Dinos qué coche quieres y te lo buscamos →
+          </a>
+        </div>
+      </div>
+
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex gap-8 items-start">
+
+          <aside className="hidden lg:block w-72 shrink-0 sticky top-24">
+            <CarFilters
+              onFilter={handleFilter}
+              totalResults={sorted.length}
+              initialFilters={initialFilters}
+            />
+          </aside>
+
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center justify-between mb-5">
+              <p className="text-sm text-slate-500">
+                <span className="font-bold text-slate-800">{sorted.length}</span> coches encontrados
+              </p>
+              <div className="flex items-center gap-2">
+                <label className="text-xs text-slate-400 font-medium hidden sm:block">Ordenar por</label>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as SortOption)}
+                  className="text-sm border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-700 font-medium focus:outline-none focus:ring-2 focus:border-transparent cursor-pointer"
+                  style={{ focusRingColor: "#7DC832" } as React.CSSProperties}
+                >
+                  {SORT_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div className="lg:hidden mb-6">
+              <CarFilters
+                onFilter={handleFilter}
+                totalResults={sorted.length}
+                initialFilters={initialFilters}
+              />
+            </div>
+
+            {sorted.length === 0 ? (
+              <div className="text-center py-20 text-slate-400">
+                <p className="text-5xl mb-4">🔍</p>
+                <p className="font-semibold text-lg text-slate-600">No hay coches con esos filtros</p>
+                <p className="text-sm mt-1">Prueba a ajustar los criterios de búsqueda.</p>
+              </div>
+            ) : (
+              <CarGrid cars={sorted} />
+            )}
+          </div>
+
+        </div>
+      </div>
+
+      <CarRequestSection />
+    </div>
+  );
+}
