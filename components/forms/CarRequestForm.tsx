@@ -7,6 +7,7 @@ import Button from "@/components/ui/Button";
 import { siteSettings } from "@/lib/data/mockSettings";
 import { generateWhatsAppUrl } from "@/lib/utils/whatsapp";
 import { trackLead } from "@/lib/utils/analytics";
+import ContactPreference, { ContactPref } from "@/components/forms/ContactPreference";
 
 const PRESUPUESTOS = [
   "Hasta 5.000 €",
@@ -24,6 +25,7 @@ export default function CarRequestForm() {
   const [success, setSuccess] = useState(false);
   const [submitError, setSubmitError] = useState(false);
   const [form, setForm] = useState({ busqueda: "", presupuesto: "", nombre: "", telefono: "" });
+  const [pref, setPref] = useState<ContactPref>("WhatsApp");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,11 +43,12 @@ export default function CarRequestForm() {
           Presupuesto: form.presupuesto,
           Nombre: form.nombre,
           Teléfono: form.telefono,
+          "Prefiere contacto por": pref,
         }),
       });
 
       if (!res.ok) throw new Error("submit failed");
-      trackLead("busqueda_coche", { presupuesto: form.presupuesto });
+      trackLead("busqueda_coche", { presupuesto: form.presupuesto, contacto: pref });
       setSuccess(true);
     } catch {
       setSubmitError(true);
@@ -111,6 +114,8 @@ export default function CarRequestForm() {
           onChange={(e) => setForm({ ...form, telefono: e.target.value.replace(/[^\d+\s]/g, "") })}
         />
       </div>
+
+      <ContactPreference value={pref} onChange={setPref} />
 
       {submitError && (
         <p className="text-sm text-red-600 bg-red-50 rounded-lg p-3 text-center">

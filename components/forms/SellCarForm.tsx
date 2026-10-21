@@ -6,6 +6,7 @@ import { Input, Textarea, Select } from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import { generateWhatsAppUrl } from "@/lib/utils/whatsapp";
 import { trackLead } from "@/lib/utils/analytics";
+import ContactPreference, { ContactPref } from "@/components/forms/ContactPreference";
 
 const MARCAS_MODELOS: Record<string, string[]> = {
   "Alfa Romeo": ["Giulia", "Giulietta", "Stelvio", "Tonale", "MiTo"],
@@ -69,6 +70,7 @@ export default function SellCarForm() {
   const [success, setSuccess] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [submitError, setSubmitError] = useState("");
+  const [pref, setPref] = useState<ContactPref>("WhatsApp");
   const [form, setForm] = useState({
     nombre: "",
     email: "",
@@ -106,6 +108,7 @@ export default function SellCarForm() {
           Nombre: form.nombre,
           Email: form.email,
           Teléfono: form.telefono,
+          "Prefiere contacto por": pref,
           Marca: form.marcaCoche,
           Modelo: form.modeloCoche,
           Año: form.añoCoche,
@@ -118,7 +121,7 @@ export default function SellCarForm() {
       });
 
       if (!res.ok) throw new Error("submit failed");
-      trackLead("vender_coche", { marca: form.marcaCoche, modelo: form.modeloCoche });
+      trackLead("vender_coche", { marca: form.marcaCoche, modelo: form.modeloCoche, contacto: pref });
       setSuccess(true);
     } catch {
       setSubmitError("No hemos podido enviar el formulario. Inténtalo de nuevo en un momento o escríbenos por WhatsApp.");
@@ -270,6 +273,9 @@ export default function SellCarForm() {
             />
             {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
           </div>
+        </div>
+        <div className="mt-4">
+          <ContactPreference value={pref} onChange={setPref} />
         </div>
         <div className="mt-4">
           <Textarea

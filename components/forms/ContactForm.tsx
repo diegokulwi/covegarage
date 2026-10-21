@@ -7,12 +7,14 @@ import Button from "@/components/ui/Button";
 import { siteSettings } from "@/lib/data/mockSettings";
 import { generateWhatsAppUrl } from "@/lib/utils/whatsapp";
 import { trackLead } from "@/lib/utils/analytics";
+import ContactPreference, { ContactPref } from "@/components/forms/ContactPreference";
 
 export default function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [submitError, setSubmitError] = useState(false);
   const [form, setForm] = useState({ nombre: "", email: "", telefono: "", mensaje: "" });
+  const [pref, setPref] = useState<ContactPref>("WhatsApp");
   const [emailError, setEmailError] = useState("");
 
   const validateEmail = (val: string) => {
@@ -32,11 +34,17 @@ export default function ContactForm() {
       const res = await fetch("https://formspree.io/f/xgogdkay", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ Nombre: form.nombre, Email: form.email, Teléfono: form.telefono, Mensaje: form.mensaje }),
+        body: JSON.stringify({
+          Nombre: form.nombre,
+          Email: form.email,
+          Teléfono: form.telefono,
+          "Prefiere contacto por": pref,
+          Mensaje: form.mensaje,
+        }),
       });
 
       if (!res.ok) throw new Error("submit failed");
-      trackLead("contacto");
+      trackLead("contacto", { contacto: pref });
       setSuccess(true);
     } catch {
       setSubmitError(true);
@@ -96,6 +104,7 @@ export default function ContactForm() {
         />
         {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
       </div>
+      <ContactPreference value={pref} onChange={setPref} />
       <Textarea
         id="mensaje"
         label="Mensaje"

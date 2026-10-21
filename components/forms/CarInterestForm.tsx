@@ -9,6 +9,7 @@ import { siteSettings } from "@/lib/data/mockSettings";
 import { formatCarTitle } from "@/lib/utils/formatters";
 import { generateCarWhatsAppUrl } from "@/lib/utils/whatsapp";
 import { trackLead } from "@/lib/utils/analytics";
+import ContactPreference, { ContactPref } from "@/components/forms/ContactPreference";
 
 interface CarInterestFormProps {
   car: Car;
@@ -21,6 +22,7 @@ export default function CarInterestForm({ car }: CarInterestFormProps) {
   const [success, setSuccess] = useState(false);
   const [submitError, setSubmitError] = useState(false);
   const [form, setForm] = useState({ nombre: "", email: "", telefono: "", mensaje: "" });
+  const [pref, setPref] = useState<ContactPref>("WhatsApp");
   const carName = formatCarTitle(car.marca, car.modelo, car.año);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -38,12 +40,13 @@ export default function CarInterestForm({ car }: CarInterestFormProps) {
           Nombre: form.nombre,
           Email: form.email,
           Teléfono: form.telefono,
+          "Prefiere contacto por": pref,
           Mensaje: form.mensaje,
         }),
       });
 
       if (!res.ok) throw new Error("submit failed");
-      trackLead("interes_coche", { car: carName, value: car.precio, currency: "EUR" });
+      trackLead("interes_coche", { car: carName, value: car.precio, currency: "EUR", contacto: pref });
       setSuccess(true);
     } catch {
       setSubmitError(true);
@@ -97,6 +100,7 @@ export default function CarInterestForm({ car }: CarInterestFormProps) {
         value={form.telefono}
         onChange={(e) => setForm({ ...form, telefono: e.target.value.replace(/[^\d+\s]/g, "") })}
       />
+      <ContactPreference value={pref} onChange={setPref} />
       <Textarea
         id={`${uid}-mensaje`}
         label="Mensaje (opcional)"
