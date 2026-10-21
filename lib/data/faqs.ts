@@ -14,12 +14,12 @@ export const faqs: FAQ[] = [
   {
     pregunta: "¿El precio publicado incluye todo, sin sorpresas?",
     respuesta:
-      "El precio incluye la garantía básica legal. El cambio de nombre no está incluido y se suma aparte. Si querés una garantía más completa (premium), también tiene un coste adicional — consultanos.",
+      "El precio incluye la garantía básica legal. El cambio de nombre no está incluido y se suma aparte. Si quieres una garantía más completa (premium), también tiene un coste adicional — consúltanos.",
   },
   {
     pregunta: "¿Puedo probar el coche antes de comprarlo?",
     respuesta:
-      "Sí. Podés visitar nuestras instalaciones en Barcelona, probar el coche y tomarte tu tiempo, sin presiones.",
+      "Sí. Puedes visitar nuestras instalaciones en Barcelona, probar el coche y tomarte tu tiempo, sin presiones.",
   },
   {
     pregunta: "¿Cómo verifican el historial y el kilometraje de los coches?",
@@ -44,7 +44,7 @@ export const faqs: FAQ[] = [
   {
     pregunta: "¿Hacen envíos fuera de Barcelona?",
     respuesta:
-      "Sí. Podés recoger el coche en Barcelona o pedir envío a domicilio en cualquier punto de España; el coste varía según el destino.",
+      "Sí. Puedes recoger el coche en Barcelona o pedir envío a domicilio en cualquier punto de España; el coste varía según el destino.",
   },
   {
     pregunta: "¿Necesito cita previa para ver un coche?",
@@ -65,6 +65,6 @@ export const faqs: FAQ[] = [
   },
   {
     pregunta: "¿Ofrecen financiación?",
-    respuesta: "No, por ahora no ofrecemos financiación. Consultanos las formas de pago disponibles.",
+    respuesta: "No, por ahora no ofrecemos financiación. Consúltanos las formas de pago disponibles.",
   },
 ];

@@ -14,7 +14,7 @@ export default function FeaturedCars({ cars }: FeaturedCarsProps) {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
             <p className="text-sm font-semibold text-brand-600 uppercase tracking-wider mb-3">
-              Selección premium
+              Nuestra selección
             </p>
             <h2 className="text-3xl sm:text-4xl font-black text-dark-900">
               Coches destacados

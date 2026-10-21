@@ -24,7 +24,7 @@ export const categorias: Categoria[] = [
     heroTitulo: "Coches SUV en Barcelona",
     heroTexto:
       "Más espacio, mayor altura al volante y versatilidad para ciudad o carretera. Los mismos coches de siempre, revisados y con garantía de 12 meses.",
-    emptyMessage: "Ahora mismo no tenemos SUV en stock — escribinos por WhatsApp y te avisamos apenas entre uno.",
+    emptyMessage: "Ahora mismo no tenemos SUV en stock — escríbenos por WhatsApp y te avisamos en cuanto entre uno.",
     filtro: (car) => car.carroceria === "SUV",
   },
   {
@@ -36,7 +36,7 @@ export const categorias: Categoria[] = [
     heroTitulo: "Coches automáticos en Barcelona",
     heroTexto:
       "Conducción más cómoda, sin embrague, ideal para el día a día en ciudad. Los mismos coches de siempre, revisados y con garantía de 12 meses.",
-    emptyMessage: "Ahora mismo no tenemos automáticos en stock — escribinos por WhatsApp y te avisamos apenas entre uno.",
+    emptyMessage: "Ahora mismo no tenemos automáticos en stock — escríbenos por WhatsApp y te avisamos en cuanto entre uno.",
     filtro: (car) => car.transmision === "automático",
   },
   {
@@ -48,7 +48,7 @@ export const categorias: Categoria[] = [
     heroTitulo: "Coches hasta 10.000€ en Barcelona",
     heroTexto:
       "Opciones económicas sin renunciar a la confianza: mismo proceso de revisión de 80 puntos y garantía de 12 meses que en el resto del stock.",
-    emptyMessage: "Ahora mismo no tenemos coches en este rango de precio — escribinos por WhatsApp y te avisamos apenas entre uno.",
+    emptyMessage: "Ahora mismo no tenemos coches en este rango de precio — escríbenos por WhatsApp y te avisamos en cuanto entre uno.",
     filtro: (car) => car.precio > 0 && car.precio <= 10000,
   },
   {
@@ -60,7 +60,7 @@ export const categorias: Categoria[] = [
     heroTitulo: "Coches cabrio en Barcelona",
     heroTexto:
       "Para los días de sol. Los mismos coches de siempre, revisados y con garantía de 12 meses.",
-    emptyMessage: "Ahora mismo no tenemos cabrios en stock — escribinos por WhatsApp y te avisamos apenas entre uno.",
+    emptyMessage: "Ahora mismo no tenemos cabrios en stock — escríbenos por WhatsApp y te avisamos en cuanto entre uno.",
     filtro: (car) => car.carroceria === "Cabrio",
   },
 ];
