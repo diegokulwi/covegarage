@@ -18,12 +18,13 @@ const navLinks: NavItem[] = [
   { href: "/contacto", label: "Contacto" },
 ];
 
-// Texto de cada opción del menú; si lleva "kicker", la pregunta va pequeña encima.
-function NavLabel({ link }: { link: NavItem }) {
+// Texto de cada opción del menú; si lleva "kicker", va una pregunta encima del texto, del mismo tamaño.
+// En la barra de escritorio las dos líneas van centradas (y algo más pequeñas en pantallas medianas para que quepan).
+function NavLabel({ link, centered = false }: { link: NavItem; centered?: boolean }) {
   if (!link.kicker) return <>{link.label}</>;
   return (
-    <span className="flex flex-col leading-tight">
-      <span className="text-[10px] font-medium tracking-wide opacity-70">{link.kicker}</span>
+    <span className={cn("flex flex-col leading-tight", centered && "items-center text-center text-xs xl:text-sm")}>
+      <span>{link.kicker}</span>
       <span>{link.label}</span>
     </span>
   );
@@ -62,9 +63,9 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="inline-flex items-center min-h-[2.75rem] px-1.5 xl:px-4 py-1.5 text-sm font-semibold uppercase tracking-wide xl:tracking-wider whitespace-nowrap text-slate-400 hover:text-white hover:bg-dark-700 rounded-lg transition-all"
+                className="inline-flex items-center min-h-[2.75rem] px-1.5 xl:px-4 py-1 text-[13px] xl:text-sm font-semibold uppercase tracking-wide xl:tracking-wider whitespace-nowrap text-slate-400 hover:text-white hover:bg-dark-700 rounded-lg transition-all"
               >
-                <NavLabel link={link} />
+                <NavLabel link={link} centered />
               </Link>
             ))}
           </nav>
