@@ -9,12 +9,25 @@ import { siteSettings } from "@/lib/data/mockSettings";
 import { openWhatsApp } from "@/lib/utils/whatsapp";
 import { cn } from "@/lib/utils/cn";
 
-const navLinks = [
+type NavItem = { href: string; label: string; kicker?: string };
+
+const navLinks: NavItem[] = [
   { href: "/coches", label: "Comprar coche" },
-  { href: "/#busco-mi-coche", label: "Te lo buscamos" },
+  { href: "/#busco-mi-coche", label: "Te lo buscamos", kicker: "¿No encuentras tu coche?" },
   { href: "/vender-coche", label: "Vender mi coche" },
   { href: "/contacto", label: "Contacto" },
 ];
+
+// Texto de cada opción del menú; si lleva "kicker", la pregunta va pequeña encima.
+function NavLabel({ link }: { link: NavItem }) {
+  if (!link.kicker) return <>{link.label}</>;
+  return (
+    <span className="flex flex-col leading-tight">
+      <span className="text-[10px] font-medium tracking-wide opacity-70">{link.kicker}</span>
+      <span>{link.label}</span>
+    </span>
+  );
+}
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,9 +62,9 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-2 xl:px-4 py-2 text-sm font-semibold uppercase tracking-wider whitespace-nowrap text-slate-400 hover:text-white hover:bg-dark-700 rounded-lg transition-all"
+                className="inline-flex items-center min-h-[2.75rem] px-1.5 xl:px-4 py-1.5 text-sm font-semibold uppercase tracking-wide xl:tracking-wider whitespace-nowrap text-slate-400 hover:text-white hover:bg-dark-700 rounded-lg transition-all"
               >
-                {link.label}
+                <NavLabel link={link} />
               </Link>
             ))}
           </nav>
@@ -103,7 +116,7 @@ export default function Header() {
               onClick={() => setIsOpen(false)}
               className="block px-4 py-3 text-sm font-bold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-dark-700 rounded-lg transition-colors"
             >
-              {link.label}
+              <NavLabel link={link} />
             </Link>
           ))}
           <div className="pt-3 pb-2 flex flex-col gap-2 border-t border-dark-700 mt-2">
