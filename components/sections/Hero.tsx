@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Phone } from "lucide-react";
 import { siteSettings } from "@/lib/data/mockSettings";
 import { openWhatsApp } from "@/lib/utils/whatsapp";
@@ -8,13 +9,16 @@ import { openWhatsApp } from "@/lib/utils/whatsapp";
 export default function Hero() {
   return (
     <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-dark-950">
-      {/* Background image oscura */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=80')",
-        }}
+      {/* Foto de fondo oscura. next/image la sirve en el tamaño justo de cada pantalla y con prioridad
+          (antes se descargaban 302 KB a 1920 px también en el móvil). */}
+      <Image
+        src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=80"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        quality={65}
+        className="object-cover object-center"
       />
       {/* Overlay muy oscuro para legibilidad */}
       <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(5,5,5,0.97) 0%, rgba(5,5,5,0.85) 55%, rgba(5,5,5,0.4) 100%)" }} />
@@ -23,7 +27,7 @@ export default function Hero() {
       <div className="absolute left-0 top-0 bottom-0 w-1" style={{ background: "linear-gradient(180deg, transparent, #7DC832, transparent)" }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
-        <div className="max-w-3xl">
+        <div className="max-w-4xl">
 
           {/* Título principal estilo COVE */}
           <h1 className="font-heading font-extrabold leading-none mb-2 text-white" style={{ fontSize: "clamp(3rem, 8vw, 7rem)" }}>
@@ -41,13 +45,20 @@ export default function Hero() {
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4">
             <Link
               href="/coches"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-heading font-bold text-lg uppercase tracking-wider text-dark-900 hover:opacity-90 hover:scale-105 transition-all"
               style={{ backgroundColor: "#7DC832" }}
             >
               Ver coches disponibles
+            </Link>
+            <Link
+              href="#busco-mi-coche"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-heading font-bold text-lg uppercase tracking-wider border hover:bg-[#7DC832]/10 transition-all"
+              style={{ color: "#7DC832", borderColor: "rgba(125,200,50,0.7)" }}
+            >
+              Dinos qué coche quieres
             </Link>
             <button
               onClick={() => openWhatsApp({ placement: "inicio" })}
@@ -68,7 +79,6 @@ export default function Hero() {
               { label: "Hasta 10.000€", href: "/coches-por-tipo/hasta-10000" },
               { label: "Automáticos", href: "/coches-por-tipo/automaticos" },
               { label: "Cabrio", href: "/coches-por-tipo/cabrio" },
-              { label: "Te lo buscamos →", href: "#busco-mi-coche" },
               { label: "Ver todos →", href: "/coches" },
             ].map((item) => (
               <Link
