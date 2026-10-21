@@ -68,6 +68,7 @@ export default function Hero() {
               { label: "Hasta 10.000€", href: "/coches-por-tipo/hasta-10000" },
               { label: "Automáticos", href: "/coches-por-tipo/automaticos" },
               { label: "Cabrio", href: "/coches-por-tipo/cabrio" },
+              { label: "Te lo buscamos →", href: "#busco-mi-coche" },
               { label: "Ver todos →", href: "/coches" },
             ].map((item) => (
               <Link

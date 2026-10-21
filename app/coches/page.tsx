@@ -97,6 +97,12 @@ function CochesContent() {
           <p className="text-slate-500 text-sm">
             Selección de vehículos verificados en Barcelona.
           </p>
+          <a
+            href="#busco-mi-coche"
+            className="inline-block mt-3 text-sm font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+          >
+            ¿No encuentras tu coche? Dinos qué coche quieres y te lo buscamos →
+          </a>
         </div>
       </div>
 

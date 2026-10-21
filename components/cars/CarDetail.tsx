@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Car } from "@/types/car";
 import { Phone, Video, ChevronDown, ChevronUp } from "lucide-react";
 import { StatusBadge } from "@/components/ui/Badge";
@@ -189,6 +190,18 @@ function TechSpecs({ car }: { car: Car }) {
   );
 }
 
+// Salida para quien no ha encontrado su coche: lleva al formulario de la portada.
+function RequestLink() {
+  return (
+    <Link
+      href="/#busco-mi-coche"
+      className="block mt-4 text-center text-xs font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+    >
+      ¿No es el que buscas? Dinos qué coche quieres y te lo buscamos →
+    </Link>
+  );
+}
+
 // ──────────────────────────────────────────────
 // Componente principal
 // ──────────────────────────────────────────────
@@ -250,6 +263,16 @@ export default function CarDetail({ car }: CarDetailProps) {
               {car.etiqueta && <EtiquetaBadge etiqueta={car.etiqueta} size="md" />}
             </div>
             {isAvailable && <TrustRow className="mt-3 lg:hidden" />}
+            {isAvailable && (
+              <button
+                type="button"
+                onClick={() => openWhatsApp({ url: videoUrl, placement: "ficha_video_movil", car: carName })}
+                className="lg:hidden mt-3 inline-flex items-center gap-2 text-sm font-semibold text-slate-700 border border-slate-200 rounded-lg px-3 py-2 hover:bg-slate-50 transition-colors"
+              >
+                <Video className="w-4 h-4" style={{ color: "#7DC832" }} />
+                Pídenos un vídeo del coche
+              </button>
+            )}
           </div>
           <div className="text-right">
             {car.estado !== "vendido" && (
@@ -330,6 +353,7 @@ export default function CarDetail({ car }: CarDetailProps) {
             <div className="lg:hidden bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
               <h3 className="font-bold text-slate-900 text-lg mb-4">¿Te interesa este coche?</h3>
               <CarInterestForm car={car} />
+              <RequestLink />
             </div>
           </div>
 
@@ -362,16 +386,18 @@ export default function CarDetail({ car }: CarDetailProps) {
                   <Phone className="w-5 h-5" />
                   {siteSettings.telefono}
                 </Button>
-                <Button
-                  variant="ghost"
-                  size="md"
-                  fullWidth
-                  onClick={() => openWhatsApp({ url: videoUrl, placement: "ficha_video", car: carName })}
-                  disabled={!isAvailable}
-                >
-                  <Video className="w-4 h-4" />
-                  Pídenos un vídeo del coche
-                </Button>
+                <div className="hidden lg:block">
+                  <Button
+                    variant="ghost"
+                    size="md"
+                    fullWidth
+                    onClick={() => openWhatsApp({ url: videoUrl, placement: "ficha_video", car: carName })}
+                    disabled={!isAvailable}
+                  >
+                    <Video className="w-4 h-4" />
+                    Pídenos un vídeo del coche
+                  </Button>
+                </div>
               </div>
 
               {isAvailable && <TrustRow className="mb-4" />}
@@ -400,6 +426,7 @@ export default function CarDetail({ car }: CarDetailProps) {
             <div className="hidden lg:block bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
               <h3 className="font-bold text-slate-900 text-base mb-4">¿Te interesa?</h3>
               <CarInterestForm car={car} />
+              <RequestLink />
             </div>
           </div>
         </div>
