@@ -62,8 +62,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = formatCarTitle(car.marca, car.modelo, car.año);
   const priceTag = car.estado === "vendido" ? "Vendido" : formatPrice(car.precio);
   return {
-    title: `${title} — ${priceTag}`,
-    description: `${title} con ${car.kilometraje.toLocaleString("es-ES")} km, ${car.combustible} y ${car.transmision}. ${car.descripcion.substring(0, 120)}...`,
+    title: `${title} en Barcelona — ${priceTag}`,
+    description: `${title} en venta en Barcelona con ${car.kilometraje.toLocaleString("es-ES")} km, ${car.combustible} y ${car.transmision}. ${car.descripcion.substring(0, 120)}...`,
     alternates: {
       canonical: `/coches/${car.slug}`,
     },
