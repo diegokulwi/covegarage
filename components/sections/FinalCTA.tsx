@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Phone, ArrowRight } from "lucide-react";
 import { siteSettings } from "@/lib/data/mockSettings";
-import { generateWhatsAppUrl } from "@/lib/utils/whatsapp";
+import { openWhatsApp } from "@/lib/utils/whatsapp";
 
 export default function FinalCTA() {
   return (
@@ -24,7 +24,7 @@ export default function FinalCTA() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            onClick={() => window.open(generateWhatsAppUrl(), "_blank")}
+            onClick={() => openWhatsApp({ placement: "cta_final" })}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-heading font-bold text-lg uppercase tracking-wider text-dark-900 hover:opacity-90 transition-all"
             style={{ backgroundColor: "#7DC832" }}
           >

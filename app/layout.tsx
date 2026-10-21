@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FAQSection from "@/components/sections/FAQSection";
+import ContactTracker from "@/components/layout/ContactTracker";
 import { siteSettings } from "@/lib/data/mockSettings";
 
 const inter = Inter({
@@ -93,6 +94,7 @@ export default function RootLayout({
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
+        <ContactTracker />
         <Header />
         <main className="flex-1">{children}</main>
         <FAQSection />

@@ -4,6 +4,8 @@ import { useState } from "react";
 import { CheckCircle } from "lucide-react";
 import { Input, Textarea, Select } from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
+import { generateWhatsAppUrl } from "@/lib/utils/whatsapp";
+import { trackLead } from "@/lib/utils/analytics";
 
 const MARCAS_MODELOS: Record<string, string[]> = {
   "Alfa Romeo": ["Giulia", "Giulietta", "Stelvio", "Tonale", "MiTo"],
@@ -116,9 +118,10 @@ export default function SellCarForm() {
       });
 
       if (!res.ok) throw new Error("submit failed");
+      trackLead("vender_coche", { marca: form.marcaCoche, modelo: form.modeloCoche });
       setSuccess(true);
     } catch {
-      setSubmitError("No se pudo enviar el formulario. Probá de nuevo en un momento, o escribinos directo por WhatsApp.");
+      setSubmitError("No hemos podido enviar el formulario. Inténtalo de nuevo en un momento o escríbenos por WhatsApp.");
     } finally {
       setLoading(false);
     }
@@ -281,7 +284,18 @@ export default function SellCarForm() {
       </div>
 
       {submitError && (
-        <p className="text-sm text-red-600 bg-red-50 rounded-lg p-3 text-center">{submitError}</p>
+        <p className="text-sm text-red-600 bg-red-50 rounded-lg p-3 text-center">
+          {submitError}{" "}
+          <a
+            href={generateWhatsAppUrl("Hola, quiero vender mi coche.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track-placement="formulario_error"
+            className="font-semibold underline"
+          >
+            Abrir WhatsApp
+          </a>
+        </p>
       )}
 
       <Button type="submit" variant="primary" size="lg" fullWidth disabled={loading}>

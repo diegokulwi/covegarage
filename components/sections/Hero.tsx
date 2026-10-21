@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Phone } from "lucide-react";
 import { siteSettings } from "@/lib/data/mockSettings";
-import { generateWhatsAppUrl } from "@/lib/utils/whatsapp";
+import { openWhatsApp } from "@/lib/utils/whatsapp";
 
 export default function Hero() {
   return (
@@ -50,7 +50,7 @@ export default function Hero() {
               Ver coches disponibles
             </Link>
             <button
-              onClick={() => window.open(generateWhatsAppUrl(), "_blank")}
+              onClick={() => openWhatsApp({ placement: "inicio" })}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-heading font-bold text-lg uppercase tracking-wider text-white border border-white/20 hover:bg-white/10 transition-all"
             >
               <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">

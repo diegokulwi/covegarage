@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { siteSettings } from "@/lib/data/mockSettings";
-import { generateWhatsAppUrl } from "@/lib/utils/whatsapp";
+import { openWhatsApp } from "@/lib/utils/whatsapp";
 import { cn } from "@/lib/utils/cn";
 
 const navLinks = [
@@ -57,7 +57,7 @@ export default function Header() {
               {siteSettings.telefono}
             </a>
             <button
-              onClick={() => window.open(generateWhatsAppUrl(), "_blank")}
+              onClick={() => openWhatsApp({ placement: "cabecera" })}
               className="flex items-center gap-2 px-4 py-2 rounded-lg font-bold text-sm uppercase tracking-wider text-white transition-all hover:opacity-90 hover:scale-105"
               style={{ backgroundColor: "#25D366" }}
             >
@@ -106,7 +106,7 @@ export default function Header() {
               {siteSettings.telefono}
             </a>
             <button
-              onClick={() => window.open(generateWhatsAppUrl(), "_blank")}
+              onClick={() => openWhatsApp({ placement: "menu_movil" })}
               className="w-full py-3 rounded-lg font-bold text-sm uppercase tracking-wider text-dark-900"
               style={{ backgroundColor: "#7DC832" }}
             >

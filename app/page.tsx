@@ -5,6 +5,7 @@ import Marcas from "@/components/sections/Marcas";
 import Benefits from "@/components/sections/Benefits";
 import FeaturedCars from "@/components/sections/FeaturedCars";
 import BuySection from "@/components/sections/BuySection";
+import CarRequestSection from "@/components/sections/CarRequestSection";
 import SellSection from "@/components/sections/SellSection";
 import HowItWorks from "@/components/sections/HowItWorks";
 import TrustSection from "@/components/sections/TrustSection";
@@ -32,6 +33,7 @@ export default async function HomePage() {
       <Benefits />
       <FeaturedCars cars={featuredCars} />
       <BuySection />
+      <CarRequestSection />
       <SellSection />
       <HowItWorks />
       <TrustSection />

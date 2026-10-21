@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Car } from "@/types/car";
-import { Phone, ChevronDown, ChevronUp } from "lucide-react";
+import { Phone, Video, ChevronDown, ChevronUp } from "lucide-react";
 import { StatusBadge } from "@/components/ui/Badge";
 import EtiquetaBadge from "@/components/ui/EtiquetaBadge";
 import Breadcrumb from "@/components/ui/Breadcrumb";
@@ -10,7 +10,11 @@ import Button from "@/components/ui/Button";
 import CarGallery from "./CarGallery";
 import CarInterestForm from "@/components/forms/CarInterestForm";
 import { formatPrice, formatPrecioTachado, formatKm, formatCarTitle } from "@/lib/utils/formatters";
-import { generateCarWhatsAppUrl } from "@/lib/utils/whatsapp";
+import MobileContactBar from "./MobileContactBar";
+import TrustRow from "./TrustRow";
+import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
+import { generateCarWhatsAppUrl, generateCarVideoWhatsAppUrl, openWhatsApp } from "@/lib/utils/whatsapp";
+import { trackEvent } from "@/lib/utils/analytics";
 import { siteSettings } from "@/lib/data/mockSettings";
 
 interface CarDetailProps {
@@ -189,7 +193,9 @@ function TechSpecs({ car }: { car: Car }) {
 // Componente principal
 // ──────────────────────────────────────────────
 export default function CarDetail({ car }: CarDetailProps) {
-  const whatsappUrl = generateCarWhatsAppUrl(car.marca, car.modelo, car.año);
+  const carName = formatCarTitle(car.marca, car.modelo, car.año);
+  const whatsappUrl = generateCarWhatsAppUrl(car.marca, car.modelo, car.año, car.precio, car.slug);
+  const videoUrl = generateCarVideoWhatsAppUrl(car.marca, car.modelo, car.año, car.precio, car.slug);
   const isAvailable = car.estado === "disponible";
 
   const quickBar = [
@@ -243,6 +249,7 @@ export default function CarDetail({ car }: CarDetailProps) {
               <StatusBadge status={car.estado} />
               {car.etiqueta && <EtiquetaBadge etiqueta={car.etiqueta} size="md" />}
             </div>
+            {isAvailable && <TrustRow className="mt-3 lg:hidden" />}
           </div>
           <div className="text-right">
             {car.estado !== "vendido" && (
@@ -330,32 +337,44 @@ export default function CarDetail({ car }: CarDetailProps) {
           <div className="space-y-4">
             <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sticky top-24">
 
-              <div className="space-y-3 mb-6">
+              <div className="space-y-3 mb-4">
                 <Button
                   variant="whatsapp"
                   size="lg"
                   fullWidth
-                  onClick={() => window.open(whatsappUrl, "_blank")}
+                  onClick={() => openWhatsApp({ url: whatsappUrl, placement: "ficha_lateral", car: carName })}
                   disabled={!isAvailable}
                 >
-                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.554 4.1 1.524 5.823L0 24l6.338-1.503A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.034-1.378l-.361-.214-3.735.98.999-3.648-.235-.374A9.86 9.86 0 012.118 12C2.118 6.533 6.533 2.118 12 2.118c5.467 0 9.882 4.415 9.882 9.882 0 5.467-4.415 9.882-9.882 9.882z" />
-                  </svg>
+                  <WhatsAppIcon />
                   Consultar por WhatsApp
                 </Button>
                 <Button
                   variant="outline"
                   size="lg"
                   fullWidth
-                  onClick={() => window.location.href = `tel:${siteSettings.telefono}`}
+                  onClick={() => {
+                    trackEvent("phone_click", { placement: "ficha_lateral", car: carName });
+                    window.location.href = `tel:${siteSettings.telefono}`;
+                  }}
                   disabled={!isAvailable}
                   className="border-[#25D366] text-[#25D366] hover:bg-[#25D366]/10"
                 >
                   <Phone className="w-5 h-5" />
                   {siteSettings.telefono}
                 </Button>
+                <Button
+                  variant="ghost"
+                  size="md"
+                  fullWidth
+                  onClick={() => openWhatsApp({ url: videoUrl, placement: "ficha_video", car: carName })}
+                  disabled={!isAvailable}
+                >
+                  <Video className="w-4 h-4" />
+                  Pídenos un vídeo del coche
+                </Button>
               </div>
+
+              {isAvailable && <TrustRow className="mb-4" />}
 
               {!isAvailable && (
                 <p className="text-center text-sm text-slate-400 mb-4">
@@ -385,6 +404,7 @@ export default function CarDetail({ car }: CarDetailProps) {
           </div>
         </div>
       </div>
+      <MobileContactBar car={car} />
     </div>
   );
 }

@@ -4,9 +4,14 @@ import { useState } from "react";
 import { CheckCircle } from "lucide-react";
 import { Input, Textarea } from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
+import { siteSettings } from "@/lib/data/mockSettings";
+import { generateWhatsAppUrl } from "@/lib/utils/whatsapp";
+import { trackLead } from "@/lib/utils/analytics";
+
 export default function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
   const [form, setForm] = useState({ nombre: "", email: "", telefono: "", mensaje: "" });
   const [emailError, setEmailError] = useState("");
 
@@ -21,13 +26,23 @@ export default function ContactForm() {
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
     if (!valid) { setEmailError("Introduce un email válido (ejemplo@dominio.com)"); return; }
     setLoading(true);
-    await fetch("https://formspree.io/f/xgogdkay", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({ Nombre: form.nombre, Email: form.email, Teléfono: form.telefono, Mensaje: form.mensaje }),
-    });
-    setLoading(false);
-    setSuccess(true);
+    setSubmitError(false);
+
+    try {
+      const res = await fetch("https://formspree.io/f/xgogdkay", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ Nombre: form.nombre, Email: form.email, Teléfono: form.telefono, Mensaje: form.mensaje }),
+      });
+
+      if (!res.ok) throw new Error("submit failed");
+      trackLead("contacto");
+      setSuccess(true);
+    } catch {
+      setSubmitError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (success) {
@@ -49,6 +64,7 @@ export default function ContactForm() {
           id="nombre"
           label="Nombre completo"
           placeholder="Tu nombre"
+          autoComplete="name"
           required
           value={form.nombre}
           onChange={(e) => setForm({ ...form, nombre: e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s\-]/g, "") })}
@@ -59,6 +75,7 @@ export default function ContactForm() {
           type="tel"
           inputMode="tel"
           placeholder="+34 600 000 000"
+          autoComplete="tel"
           maxLength={13}
           required
           value={form.telefono}
@@ -71,6 +88,7 @@ export default function ContactForm() {
           label="Email"
           type="email"
           placeholder="tu@email.com"
+          autoComplete="email"
           required
           value={form.email}
           onChange={(e) => { setForm({ ...form, email: e.target.value }); setEmailError(""); }}
@@ -87,6 +105,23 @@ export default function ContactForm() {
         value={form.mensaje}
         onChange={(e) => setForm({ ...form, mensaje: e.target.value })}
       />
+
+      {submitError && (
+        <p className="text-sm text-red-600 bg-red-50 rounded-lg p-3 text-center">
+          No hemos podido enviar tu mensaje. Escríbenos por{" "}
+          <a
+            href={generateWhatsAppUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track-placement="formulario_error"
+            className="font-semibold underline"
+          >
+            WhatsApp
+          </a>{" "}
+          o llámanos al {siteSettings.telefono}.
+        </p>
+      )}
+
       <Button type="submit" variant="primary" size="lg" fullWidth disabled={loading}>
         {loading ? "Enviando..." : "Enviar mensaje"}
       </Button>

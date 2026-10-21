@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import CarGrid from "@/components/cars/CarGrid";
 import CarFilters from "@/components/cars/CarFilters";
 import Breadcrumb from "@/components/ui/Breadcrumb";
+import CarRequestSection from "@/components/sections/CarRequestSection";
 import { getCars } from "@/lib/services/cars";
 import { Car, CarFilters as FiltersType } from "@/types/car";
 
@@ -165,6 +166,8 @@ function CochesContent() {
 
         </div>
       </div>
+
+      <CarRequestSection />
     </div>
   );
 }
