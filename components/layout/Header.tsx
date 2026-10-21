@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { siteSettings } from "@/lib/data/mockSettings";
@@ -10,12 +11,20 @@ import { cn } from "@/lib/utils/cn";
 
 const navLinks = [
   { href: "/coches", label: "Comprar coche" },
+  { href: "/#busco-mi-coche", label: "Te lo buscamos" },
   { href: "/vender-coche", label: "Vender mi coche" },
   { href: "/contacto", label: "Contacto" },
 ];
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Las páginas que ya traen el formulario "Te lo buscamos" bajan hasta él; el resto va a la portada.
+  const hasRequestForm = pathname === "/" || pathname === "/coches" || pathname.startsWith("/coches/");
+  const links = navLinks.map((l) =>
+    l.href === "/#busco-mi-coche" && hasRequestForm ? { ...l, href: "#busco-mi-coche" } : l
+  );
 
   return (
     <header className="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-700">
@@ -36,11 +45,11 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
+            {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-4 py-2 text-sm font-semibold uppercase tracking-wider text-slate-400 hover:text-white hover:bg-dark-700 rounded-lg transition-all"
+                className="px-2 xl:px-4 py-2 text-sm font-semibold uppercase tracking-wider whitespace-nowrap text-slate-400 hover:text-white hover:bg-dark-700 rounded-lg transition-all"
               >
                 {link.label}
               </Link>
@@ -51,7 +60,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href={`tel:${siteSettings.telefono}`}
-              className="flex items-center gap-1.5 text-sm font-semibold text-slate-300 hover:text-white transition-colors"
+              className="flex items-center gap-1.5 text-sm font-semibold whitespace-nowrap text-slate-300 hover:text-white transition-colors"
             >
               <Phone className="w-4 h-4" style={{ color: "#7DC832" }} />
               {siteSettings.telefono}
@@ -87,7 +96,7 @@ export default function Header() {
         )}
       >
         <nav className="px-4 py-3 space-y-1">
-          {navLinks.map((link) => (
+          {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}

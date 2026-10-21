@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CarDetail from "@/components/cars/CarDetail";
 import CarGrid from "@/components/cars/CarGrid";
+import CarRequestSection from "@/components/sections/CarRequestSection";
 import { getCarBySlug, getSimilarCars, getCars } from "@/lib/services/cars";
 // getCars is used only for generateStaticParams
 import { formatCarTitle, formatPrice } from "@/lib/utils/formatters";
@@ -99,6 +100,8 @@ export default async function CarDetailPage({ params }: Props) {
           </div>
         </section>
       )}
+
+      <CarRequestSection />
     </>
   );
 }

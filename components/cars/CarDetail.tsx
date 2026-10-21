@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Car } from "@/types/car";
 import { Phone, Video, ChevronDown, ChevronUp } from "lucide-react";
 import { StatusBadge } from "@/components/ui/Badge";
@@ -190,18 +189,6 @@ function TechSpecs({ car }: { car: Car }) {
   );
 }
 
-// Salida para quien no ha encontrado su coche: lleva al formulario de la portada.
-function RequestLink() {
-  return (
-    <Link
-      href="/#busco-mi-coche"
-      className="block mt-4 text-center text-xs font-semibold text-brand-600 hover:text-brand-700 transition-colors"
-    >
-      ¿No es el que buscas? Dinos qué coche quieres y te lo buscamos →
-    </Link>
-  );
-}
-
 // ──────────────────────────────────────────────
 // Componente principal
 // ──────────────────────────────────────────────
@@ -353,7 +340,6 @@ export default function CarDetail({ car }: CarDetailProps) {
             <div className="lg:hidden bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
               <h3 className="font-bold text-slate-900 text-lg mb-4">¿Te interesa este coche?</h3>
               <CarInterestForm car={car} />
-              <RequestLink />
             </div>
           </div>
 
@@ -426,7 +412,6 @@ export default function CarDetail({ car }: CarDetailProps) {
             <div className="hidden lg:block bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
               <h3 className="font-bold text-slate-900 text-base mb-4">¿Te interesa?</h3>
               <CarInterestForm car={car} />
-              <RequestLink />
             </div>
           </div>
         </div>
