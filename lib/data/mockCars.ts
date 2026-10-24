@@ -129,7 +129,7 @@ export const mockCars: Car[] = [
     kilometraje: 127000,
     combustible: "gasolina",
     transmision: "manual",
-    precio: 15499,
+    precio: 15200,
     ubicacion: "Barcelona",
     descripcion:
       "Seat Ateca XCELLENCE Plus en excelente estado, muy cuidado y con mantenimiento al día. Unidad nacional equipada con Full LED, techo panorámico eléctrico, modos de conducción y Apple CarPlay / Android Auto. Cámara de marcha atrás, acceso y arranque sin llave, maletero eléctrico, asientos de alcántara, climatizador automático bizona. Visitas con cita previa en Barcelona.",
@@ -604,7 +604,7 @@ export const mockCars: Car[] = [
     kilometraje: 139500,
     combustible: "gasolina",
     transmision: "manual",
-    precio: 10490,
+    precio: 9999,
     ubicacion: "Barcelona",
     descripcion:
       "Volkswagen Polo 1.0 TSI de 95 CV en color naranja, con cambio manual y etiqueta medioambiental C. Año 2018 con 139.500 km. Bien mantenido, ITV en vigor hasta 2028. Equipado con App-Connect (Apple CarPlay / Android Auto), aire acondicionado, control de crucero, volante multifunción, luces automáticas, faros antiniebla y llantas de aleación. Visitas con cita previa en Barcelona.",
@@ -652,7 +652,7 @@ export const mockCars: Car[] = [
     kilometraje: 272000,
     combustible: "diésel",
     transmision: "manual",
-    precio: 4490,
+    precio: 4000,
     ubicacion: "Barcelona",
     descripcion:
       "Citroen Grand C4 Picasso 1.6 HDi de 110 CV, acabado Exclusive, con cambio manual y etiqueta medioambiental B. Monovolumen familiar de 7 plazas reales, 5 puertas y maletero amplio. Año 2010 con 272.000 km. Lleva motor, turbo y distribución nuevos, cambiados en julio: lo que más preocupa en un diésel con muchos kilómetros ya está resuelto. Neumáticos con mucha vida útil. Equipado con climatizador automático, control de crucero y limitador de velocidad, sensores de aparcamiento traseros y elevalunas eléctricos. Ideal para familias grandes o para quien necesite espacio de verdad. Visitas con cita previa en Barcelona.",
