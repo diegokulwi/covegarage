@@ -45,7 +45,7 @@ export default function TrustSection() {
               rel="noopener noreferrer"
               className="text-slate-500 text-sm font-sans normal-case tracking-normal hover:text-[#7DC832] transition-colors underline decoration-slate-600 underline-offset-2"
             >
-              — Reseñas verificadas en Google
+              — Reseñas verificadas en Google y Wallapop
             </a>
           </div>
         </div>
