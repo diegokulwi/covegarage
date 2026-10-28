@@ -129,7 +129,7 @@ export const mockCars: Car[] = [
     kilometraje: 127500,
     combustible: "gasolina",
     transmision: "manual",
-    precio: 15200,
+    precio: 14990,
     ubicacion: "Barcelona",
     descripcion:
       "Seat Ateca XCELLENCE Plus en excelente estado, muy cuidado y con mantenimiento al día. Unidad nacional equipada con Full LED, techo panorámico eléctrico, modos de conducción y Apple CarPlay / Android Auto. Cámara de marcha atrás, acceso y arranque sin llave, maletero eléctrico, asientos de alcántara, climatizador automático bizona. Visitas con cita previa en Barcelona.",
@@ -552,7 +552,7 @@ export const mockCars: Car[] = [
     kilometraje: 196500,
     combustible: "híbrido",
     transmision: "automático",
-    precio: 10290,
+    precio: 9990,
     ubicacion: "Barcelona",
     descripcion:
       "Toyota Yaris 1.5 Hybrid Active de 100 CV con cambio automático y etiqueta medioambiental ECO. Segundo propietario y libro de revisiones completo, con todas las revisiones realizadas en Toyota. Batería híbrida sustituida a los 180.000 km. Equipado con Toyota Safety Sense (sistema de precolisión, aviso de cambio de carril y luces de carretera automáticas), control de crucero, cámara de marcha atrás y climatizador. Económico y muy cómodo para la ciudad. Visitas con cita previa en Barcelona.",
