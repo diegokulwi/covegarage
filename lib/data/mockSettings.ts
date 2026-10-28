@@ -125,5 +125,11 @@ export const siteContent: SiteContent = {
       puntuacion: 5,
       fecha: "",
     },
+    {
+      nombre: "Alex P.",
+      texto: "Profesional, serio y buen trato. 100% recomendable.",
+      puntuacion: 5,
+      fecha: "",
+    },
   ],
 };
