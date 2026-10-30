@@ -748,7 +748,7 @@ export const mockCars: Car[] = [
     precio: 5300,
     ubicacion: "Barcelona",
     descripcion:
-      "SEAT Ibiza 1.2 TDI de 75 CV, 5 puertas, con cambio manual y etiqueta medioambiental B. Año 2011 con 178.000 km. En muy buen estado general y con el mantenimiento al día. Embrague cambiado y distribución hecha. Motor diésel muy económico y fiable. ITV en vigor hasta octubre de 2027. Equipado con aire acondicionado, control de crucero, elevalunas eléctricos en las 4 puertas, retrovisores eléctricos y ordenador de a bordo. Visitas con cita previa en Barcelona.",
+      "SEAT Ibiza 1.2 TDI de 75 CV, 5 puertas, con cambio manual y etiqueta medioambiental B. Año 2011 con 178.000 km. En muy buen estado general y con el mantenimiento al día. Embrague cambiado. Motor diésel muy económico y fiable. ITV en vigor hasta octubre de 2027. Equipado con aire acondicionado, control de crucero, elevalunas eléctricos en las 4 puertas, retrovisores eléctricos y ordenador de a bordo. Visitas con cita previa en Barcelona.",
     imagenes: [
       "/coches/seat ibiza negro/ibiza1.jpg",
       "/coches/seat ibiza negro/ibiza2.jpeg",
@@ -777,7 +777,7 @@ export const mockCars: Car[] = [
       "Retrovisores eléctricos",
       "Ordenador de a bordo",
       "Mantenimiento al día",
-      "Embrague cambiado y distribución hecha",
+      "Embrague cambiado",
       "ITV en vigor hasta octubre de 2027",
     ],
   },
