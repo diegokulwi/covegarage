@@ -187,7 +187,7 @@ export const mockCars: Car[] = [
     slug: "seat-ibiza-fr-plus-2020",
     marca: "SEAT",
     modelo: "Ibiza",
-    año: 2020,
+    año: 2018,
     kilometraje: 88000,
     combustible: "gasolina",
     transmision: "manual",
