@@ -188,7 +188,7 @@ export const mockCars: Car[] = [
     marca: "SEAT",
     modelo: "Ibiza",
     año: 2020,
-    kilometraje: 87000,
+    kilometraje: 88000,
     combustible: "gasolina",
     transmision: "manual",
     precio: 13000,
@@ -697,13 +697,13 @@ export const mockCars: Car[] = [
     modelo: "Polo",
     version: "1.2 TDI Advance 5p (75 CV)",
     año: 2011,
-    kilometraje: 168000,
+    kilometraje: 169000,
     combustible: "diésel",
     transmision: "manual",
     precio: 5300,
     ubicacion: "Barcelona",
     descripcion:
-      "Volkswagen Polo 1.2 TDI de 75 CV, acabado Advance, 5 puertas, con cambio manual y etiqueta medioambiental B. Año 2011 con 168.000 km. En muy buen estado general y con el mantenimiento al día. Motor diésel muy económico y fiable, ideal para ciudad. ITV en vigor hasta octubre de 2027. Equipado con aire acondicionado, control de crucero, elevalunas eléctricos delanteros, espejos eléctricos y calefactables y ordenador de a bordo. Visitas con cita previa en Barcelona.",
+      "Volkswagen Polo 1.2 TDI de 75 CV, acabado Advance, 5 puertas, con cambio manual y etiqueta medioambiental B. Año 2011 con 169.000 km. En muy buen estado general y con el mantenimiento al día. Motor diésel muy económico y fiable, ideal para ciudad. ITV en vigor hasta octubre de 2027. Equipado con aire acondicionado, control de crucero, elevalunas eléctricos delanteros, espejos eléctricos y calefactables y ordenador de a bordo. Visitas con cita previa en Barcelona.",
     imagenes: [
       "/coches/vw polo blanco2/polo1.jpg",
       "/coches/vw polo blanco2/polo2.jpg",
@@ -745,7 +745,7 @@ export const mockCars: Car[] = [
     kilometraje: 178000,
     combustible: "diésel",
     transmision: "manual",
-    precio: 5300,
+    precio: 5200,
     ubicacion: "Barcelona",
     descripcion:
       "SEAT Ibiza 1.2 TDI de 75 CV, 5 puertas, con cambio manual y etiqueta medioambiental B. Año 2011 con 178.000 km. En muy buen estado general y con el mantenimiento al día. Embrague cambiado. Motor diésel muy económico y fiable. ITV en vigor hasta octubre de 2027. Equipado con aire acondicionado, control de crucero, elevalunas eléctricos en las 4 puertas, retrovisores eléctricos y ordenador de a bordo. Visitas con cita previa en Barcelona.",
