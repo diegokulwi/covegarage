@@ -129,7 +129,7 @@ export const mockCars: Car[] = [
     kilometraje: 127500,
     combustible: "gasolina",
     transmision: "manual",
-    precio: 14250,
+    precio: 14490,
     ubicacion: "Barcelona",
     descripcion:
       "Seat Ateca XCELLENCE Plus en excelente estado, muy cuidado y con mantenimiento al día. Unidad nacional equipada con Full LED, techo panorámico eléctrico, modos de conducción y Apple CarPlay / Android Auto. Cámara de marcha atrás, acceso y arranque sin llave, maletero eléctrico, asientos de alcántara, climatizador automático bizona. Visitas con cita previa en Barcelona.",
@@ -604,7 +604,7 @@ export const mockCars: Car[] = [
     kilometraje: 140000,
     combustible: "gasolina",
     transmision: "manual",
-    precio: 9890,
+    precio: 9750,
     ubicacion: "Barcelona",
     descripcion:
       "Volkswagen Polo 1.0 TSI de 95 CV en color naranja, con cambio manual y etiqueta medioambiental C. Año 2018 con 140.000 km. Bien mantenido, ITV en vigor hasta 2028. Equipado con App-Connect (Apple CarPlay / Android Auto), aire acondicionado, control de crucero, volante multifunción, luces automáticas, faros antiniebla y llantas de aleación. Visitas con cita previa en Barcelona.",
@@ -652,7 +652,7 @@ export const mockCars: Car[] = [
     kilometraje: 272000,
     combustible: "diésel",
     transmision: "manual",
-    precio: 3999,
+    precio: 3990,
     ubicacion: "Barcelona",
     descripcion:
       "Citroen Grand C4 Picasso 1.6 HDi de 110 CV, acabado Exclusive, con cambio manual y etiqueta medioambiental B. Monovolumen familiar de 7 plazas reales, 5 puertas y maletero amplio. Año 2010 con 272.000 km. Lleva motor, turbo y distribución nuevos, cambiados en julio: lo que más preocupa en un diésel con muchos kilómetros ya está resuelto. Neumáticos con mucha vida útil. Equipado con climatizador automático, control de crucero y limitador de velocidad, sensores de aparcamiento traseros y elevalunas eléctricos. Ideal para familias grandes o para quien necesite espacio de verdad. Visitas con cita previa en Barcelona.",
@@ -700,7 +700,7 @@ export const mockCars: Car[] = [
     kilometraje: 169000,
     combustible: "diésel",
     transmision: "manual",
-    precio: 5300,
+    precio: 5200,
     ubicacion: "Barcelona",
     descripcion:
       "Volkswagen Polo 1.2 TDI de 75 CV, acabado Advance, 5 puertas, con cambio manual y etiqueta medioambiental B. Año 2011 con 169.000 km. En muy buen estado general y con el mantenimiento al día. Motor diésel muy económico y fiable, ideal para ciudad. ITV en vigor hasta octubre de 2027. Equipado con aire acondicionado, control de crucero, elevalunas eléctricos delanteros, espejos eléctricos y calefactables y ordenador de a bordo. Visitas con cita previa en Barcelona.",
@@ -715,7 +715,7 @@ export const mockCars: Car[] = [
       "/coches/vw polo blanco2/polo8.jpeg",
       "/coches/vw polo blanco2/polo9.jpg",
     ],
-    estado: "disponible",
+    estado: "reservado",
     destacado: false,
     fechaPublicacion: "2026-10-24",
     potencia: 75,
@@ -745,7 +745,7 @@ export const mockCars: Car[] = [
     kilometraje: 178000,
     combustible: "diésel",
     transmision: "manual",
-    precio: 5200,
+    precio: 5100,
     ubicacion: "Barcelona",
     descripcion:
       "SEAT Ibiza 1.2 TDI de 75 CV, 5 puertas, con cambio manual y etiqueta medioambiental B. Año 2011 con 178.000 km. En muy buen estado general y con el mantenimiento al día. Embrague cambiado. Motor diésel muy económico y fiable. ITV en vigor hasta octubre de 2027. Equipado con aire acondicionado, control de crucero, elevalunas eléctricos en las 4 puertas, retrovisores eléctricos y ordenador de a bordo. Visitas con cita previa en Barcelona.",
@@ -791,7 +791,7 @@ export const mockCars: Car[] = [
     kilometraje: 124000,
     combustible: "gasolina",
     transmision: "manual",
-    precio: 7300,
+    precio: 7000,
     ubicacion: "Barcelona",
     descripcion:
       "Ford Focus 1.0 EcoBoost Trend+ de 125 CV, 5 puertas, con cambio manual y etiqueta medioambiental C. Año 2014 con 124.000 km. En muy buen estado general, muy cuidado y con todos los mantenimientos realizados en casa oficial Ford. Correa de distribución cambiada en junio de 2026, a los 121.000 km. ITV en vigor. Equipado con climatizador automático, control de crucero, sensores de aparcamiento delanteros y traseros, elevalunas eléctricos en las 4 puertas, retrovisores eléctricos y Ford SYNC con Bluetooth. Visitas con cita previa en Barcelona.",
