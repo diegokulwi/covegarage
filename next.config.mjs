@@ -16,12 +16,12 @@ const nextConfig = {
       },
     ],
   },
-  // la dirección antigua del Ibiza FR Plus (decía 2020, el coche es de 2018) sigue funcionando y lleva a la nueva
+  // la dirección del Ibiza FR Plus que decía 2018 (el coche es de 2020) sigue funcionando y lleva a la buena
   async redirects() {
     return [
       {
-        source: "/coches/seat-ibiza-fr-plus-2020",
-        destination: "/coches/seat-ibiza-fr-plus-2018",
+        source: "/coches/seat-ibiza-fr-plus-2018",
+        destination: "/coches/seat-ibiza-fr-plus-2020",
         permanent: true,
       },
     ];
