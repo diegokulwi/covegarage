@@ -715,7 +715,7 @@ export const mockCars: Car[] = [
       "/coches/vw polo blanco2/polo8.jpeg",
       "/coches/vw polo blanco2/polo9.jpg",
     ],
-    estado: "reservado",
+    estado: "vendido",
     destacado: false,
     fechaPublicacion: "2026-10-24",
     potencia: 75,
