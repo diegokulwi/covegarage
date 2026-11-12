@@ -129,7 +129,7 @@ export const mockCars: Car[] = [
     kilometraje: 127500,
     combustible: "gasolina",
     transmision: "manual",
-    precio: 14590,
+    precio: 14750,
     ubicacion: "Barcelona",
     descripcion:
       "Seat Ateca XCELLENCE Plus en excelente estado, muy cuidado y con mantenimiento al día. Unidad nacional equipada con Full LED, techo panorámico eléctrico, modos de conducción y Apple CarPlay / Android Auto. Cámara de marcha atrás, acceso y arranque sin llave, maletero eléctrico, asientos de alcántara, climatizador automático bizona. Visitas con cita previa en Barcelona.",
