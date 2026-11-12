@@ -129,7 +129,7 @@ export const mockCars: Car[] = [
     kilometraje: 127500,
     combustible: "gasolina",
     transmision: "manual",
-    precio: 14750,
+    precio: 14590,
     ubicacion: "Barcelona",
     descripcion:
       "Seat Ateca XCELLENCE Plus en excelente estado, muy cuidado y con mantenimiento al día. Unidad nacional equipada con Full LED, techo panorámico eléctrico, modos de conducción y Apple CarPlay / Android Auto. Cámara de marcha atrás, acceso y arranque sin llave, maletero eléctrico, asientos de alcántara, climatizador automático bizona. Visitas con cita previa en Barcelona.",
@@ -745,7 +745,7 @@ export const mockCars: Car[] = [
     kilometraje: 178000,
     combustible: "diésel",
     transmision: "manual",
-    precio: 5100,
+    precio: 5000,
     ubicacion: "Barcelona",
     descripcion:
       "SEAT Ibiza 1.2 TDI de 75 CV, 5 puertas, con cambio manual y etiqueta medioambiental B. Año 2011 con 178.000 km. En muy buen estado general y con el mantenimiento al día. Embrague cambiado. Motor diésel muy económico y fiable. ITV en vigor hasta octubre de 2027. Equipado con aire acondicionado, control de crucero, elevalunas eléctricos en las 4 puertas, retrovisores eléctricos y ordenador de a bordo. Visitas con cita previa en Barcelona.",
