@@ -207,7 +207,7 @@ export const mockCars: Car[] = [
       "/coches/seat ibiza rojo/ibiza9.jpg",
       "/coches/seat ibiza rojo/ibiza10-v2.jpg",
     ],
-    estado: "disponible",
+    estado: "reservado",
     destacado: true,
     fechaPublicacion: "2024-03-10",
     potencia: 116,
