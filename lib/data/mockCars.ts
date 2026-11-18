@@ -885,7 +885,7 @@ export const mockCars: Car[] = [
     slug: "vw-tiguan-20-tsi-200cv-2010",
     marca: "Volkswagen",
     modelo: "Tiguan",
-    version: "2.0 TSI Highline 4Motion DSG (200 CV)",
+    version: "2.0 TSI Highline 4Motion (200 CV)",
     año: 2010,
     kilometraje: 159000,
     combustible: "gasolina",
@@ -893,7 +893,7 @@ export const mockCars: Car[] = [
     precio: 8990,
     ubicacion: "Barcelona",
     descripcion:
-      "Volkswagen Tiguan 2.0 TSI Highline de 200 CV, 5 puertas, con cambio automático DSG de 6 velocidades, tracción total 4Motion y etiqueta medioambiental C. Año 2010 con 159.000 km. En impecable estado, con el mantenimiento al día y segundo propietario. Motor gasolina turbo con distribución por cadena. ITV en vigor hasta noviembre de 2027. Equipado con asientos delanteros calefactables, asiento del conductor eléctrico con memoria, interior de cuero negro, techo solar, pantalla con CarPlay, equipo de audio Dynaudio, llantas de aleación de 18\", climatizador, control de crucero, elevalunas eléctricos en las 4 puertas y retrovisores eléctricos y calefactables. Visitas con cita previa en Barcelona.",
+      "Volkswagen Tiguan 2.0 TSI Highline de 200 CV, 5 puertas, con cambio automático de 6 velocidades, tracción total 4Motion y etiqueta medioambiental C. Año 2010 con 159.000 km. En impecable estado, con el mantenimiento al día y segundo propietario. Motor gasolina turbo con distribución por cadena. ITV en vigor hasta noviembre de 2027. Equipado con asientos delanteros calefactables, asiento del conductor eléctrico con memoria, interior de cuero negro, techo solar, pantalla con CarPlay, equipo de audio Dynaudio, llantas de aleación de 18\", climatizador, control de crucero, elevalunas eléctricos en las 4 puertas y retrovisores eléctricos y calefactables. Visitas con cita previa en Barcelona.",
     imagenes: [
       "/coches/vw tiguan azul/tiguan-portada.jpg",
       "/coches/vw tiguan azul/tiguan2.jpeg",
@@ -923,7 +923,7 @@ export const mockCars: Car[] = [
     libroRevisiones: false,
     equipamiento: [
       "Tracción total 4Motion",
-      "Cambio automático DSG de 6 velocidades",
+      "Cambio automático de 6 velocidades",
       "Distribución por cadena",
       "Equipo de audio Dynaudio",
       "Asientos delanteros calefactables",
