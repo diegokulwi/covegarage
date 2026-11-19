@@ -745,7 +745,7 @@ export const mockCars: Car[] = [
     kilometraje: 179000,
     combustible: "diésel",
     transmision: "manual",
-    precio: 5000,
+    precio: 5200,
     ubicacion: "Barcelona",
     descripcion:
       "SEAT Ibiza 1.2 TDI de 75 CV, 5 puertas, con cambio manual y etiqueta medioambiental B. Año 2011 con 179.000 km. En muy buen estado general y con el mantenimiento al día. Embrague cambiado. Motor diésel muy económico y fiable. ITV en vigor hasta octubre de 2027. Equipado con aire acondicionado, control de crucero, elevalunas eléctricos en las 4 puertas, retrovisores eléctricos y ordenador de a bordo. Visitas con cita previa en Barcelona.",
@@ -890,7 +890,7 @@ export const mockCars: Car[] = [
     kilometraje: 159000,
     combustible: "gasolina",
     transmision: "automático",
-    precio: 8990,
+    precio: 8750,
     ubicacion: "Barcelona",
     descripcion:
       "Volkswagen Tiguan 2.0 TSI Highline de 200 CV, 5 puertas, con cambio automático de 6 velocidades, tracción total 4Motion y etiqueta medioambiental C. Año 2010 con 159.000 km. En impecable estado, con el mantenimiento al día y segundo propietario. Motor gasolina turbo con distribución por cadena. ITV en vigor hasta noviembre de 2027. Equipado con asientos delanteros calefactables, asiento del conductor eléctrico con memoria, interior de cuero negro, techo solar, pantalla con CarPlay, equipo de audio Dynaudio, llantas de aleación de 18\", climatizador, control de crucero, elevalunas eléctricos en las 4 puertas y retrovisores eléctricos y calefactables. Visitas con cita previa en Barcelona.",
