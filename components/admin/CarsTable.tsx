@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Copy, ExternalLink, MessageSquare, MoreVertical, Pencil, Plus, Search, Trash2 } from "lucide-react";
+import { Copy, ExternalLink, MessageSquare, MoreVertical, Pencil, Plus, Search, Trash2, Video } from "lucide-react";
 import type { AdminCar } from "@/lib/admin/cars";
 import type { CarStatus } from "@/types/car";
 import { ESTADO_LABELS, ESTADOS } from "@/lib/admin/car-options";
@@ -12,6 +12,8 @@ import { SITE_URL } from "@/lib/site";
 import { deleteCarAction, duplicateCarAction, quickUpdateCarAction } from "@/app/admin/actions";
 import { Badge, Btn, Card, Empty, Field, LinkBtn, Notice, dateOnly, inputClass, money } from "@/components/admin/ui";
 import WallapopDialog from "@/components/admin/WallapopDialog";
+import VideosDialog from "@/components/admin/VideosDialog";
+import type { VideoRow } from "@/lib/admin/videos";
 
 type ClientOption = { id: number; name: string; phone: string };
 
@@ -200,10 +202,12 @@ function RowMenu({ car, onWallapop, onDuplicate, onDelete }: { car: AdminCar; on
 export default function CarsTable({
   cars,
   clients,
+  videos,
   initialEstado,
 }: {
   cars: AdminCar[];
   clients: ClientOption[];
+  videos: Record<string, VideoRow[]>;
   initialEstado: string;
 }) {
   const router = useRouter();
@@ -213,6 +217,7 @@ export default function CarsTable({
   const [error, setError] = useState("");
   const [sale, setSale] = useState<AdminCar | null>(null);
   const [wallapop, setWallapop] = useState<AdminCar | null>(null);
+  const [videoCar, setVideoCar] = useState<AdminCar | null>(null);
 
   const counts = useMemo(() => {
     const c: Record<string, number> = { todos: cars.length, disponible: 0, reservado: 0, vendido: 0 };
@@ -335,6 +340,15 @@ export default function CarsTable({
                   <Badge tone={estadoTone[c.estado]} className="xl:hidden">
                     Publicado {dateOnly(c.fechaPublicacion)}
                   </Badge>
+                  <button
+                    type="button"
+                    title="Vídeos para enviar a clientes"
+                    onClick={() => setVideoCar(c)}
+                    className="inline-flex items-center gap-1.5 h-8 px-2.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-100 transition-colors"
+                  >
+                    <Video className="w-4 h-4" />
+                    {(videos[c.id] ?? []).length > 0 ? (videos[c.id] ?? []).length : "Vídeos"}
+                  </button>
                   <RowMenu
                     car={c}
                     onWallapop={() => setWallapop(c)}
@@ -373,6 +387,7 @@ export default function CarsTable({
         />
       )}
       {wallapop && <WallapopDialog car={wallapop} onClose={() => setWallapop(null)} />}
+      {videoCar && <VideosDialog car={videoCar} videos={videos[videoCar.id] ?? []} onClose={() => setVideoCar(null)} />}
     </>
   );
 }

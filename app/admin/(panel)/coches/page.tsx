@@ -1,6 +1,7 @@
 import { Plus } from "lucide-react";
 import { listAdminCars } from "@/lib/admin/cars";
 import { listClients } from "@/lib/admin/clients";
+import { listAllVideos } from "@/lib/admin/videos";
 import { LinkBtn, PageHeader } from "@/components/admin/ui";
 import CarsTable from "@/components/admin/CarsTable";
 
@@ -8,7 +9,7 @@ export const dynamic = "force-dynamic";
 export const metadata = { title: "Coches" };
 
 export default async function CochesPage({ searchParams }: { searchParams: { estado?: string } }) {
-  const [cars, clients] = await Promise.all([listAdminCars(), listClients()]);
+  const [cars, clients, videos] = await Promise.all([listAdminCars(), listClients(), listAllVideos()]);
   return (
     <>
       <PageHeader
@@ -23,6 +24,7 @@ export default async function CochesPage({ searchParams }: { searchParams: { est
       <CarsTable
         cars={cars}
         clients={clients.map((c) => ({ id: c.id, name: c.name, phone: c.phone }))}
+        videos={videos}
         initialEstado={searchParams.estado ?? "todos"}
       />
     </>

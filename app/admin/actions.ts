@@ -26,6 +26,7 @@ import {
   saveTestimonial,
 } from "@/lib/admin/content";
 import { changePassword } from "@/lib/admin/account";
+import { addVideo, deleteVideo } from "@/lib/admin/videos";
 
 type Ok = { ok: true } | { ok: false; error: string };
 
@@ -145,5 +146,18 @@ export async function moveItemAction(table: "faqs" | "testimonials", id: number,
   await requireAdmin();
   if (table !== "faqs" && table !== "testimonials") return { ok: false, error: "Lista no válida." };
   await moveItem(table, Number(id), dir === "up" ? "up" : "down");
+  return { ok: true };
+}
+
+// ---------- vídeos de los coches (solo enlaces) ----------
+
+export async function addVideoAction(carId: string, input: { title?: string; url?: string }): Promise<Ok> {
+  const admin = await requireAdmin();
+  return addVideo(String(carId), input ?? {}, admin.email);
+}
+
+export async function deleteVideoAction(id: number): Promise<Ok> {
+  const admin = await requireAdmin();
+  await deleteVideo(Number(id), admin.email);
   return { ok: true };
 }

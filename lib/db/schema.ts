@@ -11,7 +11,7 @@ import { mockCars } from "@/lib/data/mockCars";
 import { faqs } from "@/lib/data/faqs";
 import { siteContent } from "@/lib/data/mockSettings";
 
-const SCHEMA_VERSION = 2;
+const SCHEMA_VERSION = 3;
 
 const TABLES = [
   "app_meta",
@@ -24,6 +24,7 @@ const TABLES = [
   "admin_users",
   "rate_events",
   "audit_log",
+  "car_videos",
 ];
 
 // Supabase publica por su API todas las tablas del esquema "public". Se activa la seguridad por filas SIN ninguna
@@ -147,6 +148,16 @@ create table if not exists audit_log (
   summary text not null default ''
 );
 create index if not exists audit_at_idx on audit_log (at desc);
+
+create table if not exists car_videos (
+  id serial primary key,
+  car_id text not null references cars (id) on delete cascade,
+  title text not null default '',
+  url text not null,
+  position integer not null default 0,
+  created_at timestamptz not null default now()
+);
+create index if not exists car_videos_car_idx on car_videos (car_id, position, id);
 `;
 
 declare global {
