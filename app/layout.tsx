@@ -22,7 +22,7 @@ const barlowCondensed = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.covegarage.com"),
+  metadataBase: new URL("https://www.covegarage.es"),
   title: {
     default: `${siteSettings.nombreEmpresa} — ${siteSettings.slogan}`,
     template: `%s | ${siteSettings.nombreEmpresa}`,
@@ -53,8 +53,8 @@ const businessJsonLd = {
   "@type": "AutoDealer",
   name: siteSettings.nombreEmpresa,
   description: siteSettings.descripcion,
-  image: "https://www.covegarage.com/logo1.png",
-  url: "https://www.covegarage.com",
+  image: "https://www.covegarage.es/logo1.png",
+  url: "https://www.covegarage.es",
   telephone: siteSettings.telefono,
   address: {
     "@type": "PostalAddress",
