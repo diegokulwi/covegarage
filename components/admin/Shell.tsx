@@ -16,6 +16,7 @@ import {
   ExternalLink,
   Menu,
   X,
+  Wallet,
 } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { SITE_URL } from "@/lib/site";
@@ -26,6 +27,7 @@ const NAV = [
   { href: "/coches", label: "Coches", icon: Car },
   { href: "/consultas", label: "Consultas", icon: Inbox, badge: true },
   { href: "/clientes", label: "Clientes", icon: Users },
+  { href: "/contabilidad", label: "Contabilidad", icon: Wallet },
   { href: "/resenas", label: "Reseñas", icon: Star },
   { href: "/preguntas", label: "Preguntas frecuentes", icon: HelpCircle },
   { href: "/cuenta", label: "Mi cuenta", icon: UserCog },

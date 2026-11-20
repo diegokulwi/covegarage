@@ -166,6 +166,10 @@ export function Empty({ title, text, action }: { title: string; text?: string; a
 export const money = (n: number) =>
   new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
 
+/** Con céntimos y siempre con punto de miles (para la contabilidad: 3.100,00 € y 12.656,19 €). */
+export const moneyCents = (n: number) =>
+  new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", useGrouping: "always" }).format(n);
+
 export const dateTime = (d: Date | string) =>
   new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Europe/Madrid" }).format(
     new Date(d)

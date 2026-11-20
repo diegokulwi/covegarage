@@ -21,6 +21,10 @@ const nextConfig = {
       },
     ],
   },
+  // El lector de Excel del panel (exceljs) se carga tal cual desde node_modules en el servidor, sin empaquetarlo.
+  experimental: {
+    serverComponentsExternalPackages: ["exceljs"],
+  },
   // la dirección del Ibiza FR Plus que decía 2018 (el coche es de 2020) sigue funcionando y lleva a la buena
   async redirects() {
     return [

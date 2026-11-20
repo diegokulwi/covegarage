@@ -11,7 +11,7 @@ import { mockCars } from "@/lib/data/mockCars";
 import { faqs } from "@/lib/data/faqs";
 import { siteContent } from "@/lib/data/mockSettings";
 
-const SCHEMA_VERSION = 3;
+const SCHEMA_VERSION = 4;
 
 const TABLES = [
   "app_meta",
@@ -25,6 +25,8 @@ const TABLES = [
   "rate_events",
   "audit_log",
   "car_videos",
+  "acc_entries",
+  "acc_vehicles",
 ];
 
 // Supabase publica por su API todas las tablas del esquema "public". Se activa la seguridad por filas SIN ninguna
@@ -158,6 +160,28 @@ create table if not exists car_videos (
   created_at timestamptz not null default now()
 );
 create index if not exists car_videos_car_idx on car_videos (car_id, position, id);
+
+-- Contabilidad: el libro diario del Excel (se sustituye entero cada vez que se sube el archivo) y los nombres de los coches.
+create table if not exists acc_entries (
+  id serial primary key,
+  position integer not null default 0,
+  num integer,
+  fecha date not null,
+  concepto text not null default '',
+  coche text not null default '',
+  categoria text not null default '',
+  tipo text not null default '',
+  quien text not null default '',
+  importe numeric(12, 2) not null default 0,
+  observaciones text not null default ''
+);
+create index if not exists acc_entries_fecha_idx on acc_entries (fecha, position);
+create index if not exists acc_entries_coche_idx on acc_entries (coche);
+create table if not exists acc_vehicles (
+  plate text primary key,
+  nombre text not null default '',
+  fecha_compra date
+);
 `;
 
 declare global {
