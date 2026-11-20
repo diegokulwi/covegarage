@@ -207,7 +207,7 @@ export const mockCars: Car[] = [
       "/coches/seat ibiza rojo/ibiza9.jpg",
       "/coches/seat ibiza rojo/ibiza10-v2.jpg",
     ],
-    estado: "reservado",
+    estado: "vendido",
     destacado: true,
     fechaPublicacion: "2024-03-10",
     potencia: 116,
@@ -745,7 +745,7 @@ export const mockCars: Car[] = [
     kilometraje: 179000,
     combustible: "diésel",
     transmision: "manual",
-    precio: 5200,
+    precio: 5100,
     ubicacion: "Barcelona",
     descripcion:
       "SEAT Ibiza 1.2 TDI de 75 CV, 5 puertas, con cambio manual y etiqueta medioambiental B. Año 2011 con 179.000 km. En muy buen estado general y con el mantenimiento al día. Embrague cambiado. Motor diésel muy económico y fiable. ITV en vigor hasta octubre de 2027. Equipado con aire acondicionado, control de crucero, elevalunas eléctricos en las 4 puertas, retrovisores eléctricos y ordenador de a bordo. Visitas con cita previa en Barcelona.",
