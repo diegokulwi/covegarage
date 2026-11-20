@@ -7,6 +7,7 @@ import { getCarBySlug, getSimilarCars, getCars, getSlugRedirect } from "@/lib/se
 // getCars is used only for generateStaticParams
 import { formatCarTitle, formatPrice } from "@/lib/utils/formatters";
 import { jsonLd } from "@/lib/utils/jsonld";
+import { SITE_URL } from "@/lib/site";
 import { Car } from "@/types/car";
 
 const AVAILABILITY: Record<Car["estado"], string> = {
@@ -17,7 +18,7 @@ const AVAILABILITY: Record<Car["estado"], string> = {
 
 // Las fotos de los coches pueden ser archivos de la web ("/coches/…") o enlaces completos (fotos subidas desde el panel).
 const absoluteUrl = (src: string) =>
-  /^https?:\/\//i.test(src) ? src : `https://www.covegarage.com${encodeURI(src)}`;
+  /^https?:\/\//i.test(src) ? src : `${SITE_URL}${encodeURI(src)}`;
 
 // Ficha de vehículo (Schema.org Car + Offer) — precio, km y disponibilidad
 // legibles directamente por Google y por las IA, sin tener que leer la página.
@@ -39,11 +40,11 @@ function buildCarJsonLd(car: Car) {
     ...(car.color ? { color: car.color } : {}),
     ...(car.puertas ? { numberOfDoors: car.puertas } : {}),
     image: car.imagenes[0] ? absoluteUrl(car.imagenes[0]) : undefined,
-    url: `https://www.covegarage.com/coches/${car.slug}`,
+    url: `https://www.covegarage.es/coches/${car.slug}`,
     itemCondition: "https://schema.org/UsedCondition",
     offers: {
       "@type": "Offer",
-      url: `https://www.covegarage.com/coches/${car.slug}`,
+      url: `https://www.covegarage.es/coches/${car.slug}`,
       availability: AVAILABILITY[car.estado],
       itemCondition: "https://schema.org/UsedCondition",
       ...(car.estado !== "vendido" ? { price: car.precio, priceCurrency: "EUR" } : {}),

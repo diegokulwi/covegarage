@@ -48,7 +48,7 @@ export default function CarInterestForm({ car }: CarInterestFormProps) {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           Coche: carName,
-          Ficha: `https://www.covegarage.com/coches/${car.slug}`,
+          Ficha: `https://www.covegarage.es/coches/${car.slug}`,
           Nombre: form.nombre,
           Email: form.email,
           Teléfono: form.telefono,

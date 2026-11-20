@@ -8,6 +8,7 @@ import { Copy, ExternalLink, MessageSquare, MoreVertical, Pencil, Plus, Search, 
 import type { AdminCar } from "@/lib/admin/cars";
 import type { CarStatus } from "@/types/car";
 import { ESTADO_LABELS, ESTADOS } from "@/lib/admin/car-options";
+import { SITE_URL } from "@/lib/site";
 import { deleteCarAction, duplicateCarAction, quickUpdateCarAction } from "@/app/admin/actions";
 import { Badge, Btn, Card, Empty, Field, LinkBtn, Notice, dateOnly, inputClass, money } from "@/components/admin/ui";
 import WallapopDialog from "@/components/admin/WallapopDialog";
@@ -179,7 +180,7 @@ function RowMenu({ car, onWallapop, onDuplicate, onDelete }: { car: AdminCar; on
         <Link href={`/coches/${car.id}`} className={item}>
           <Pencil className="w-4 h-4 text-slate-400" /> Editar
         </Link>
-        <a href={`https://www.covegarage.com/coches/${car.slug}`} target="_blank" rel="noopener noreferrer" className={item}>
+        <a href={`${SITE_URL}/coches/${car.slug}`} target="_blank" rel="noopener noreferrer" className={item}>
           <ExternalLink className="w-4 h-4 text-slate-400" /> Ver en la web
         </a>
         <button type="button" className={item} onClick={() => { done(); onWallapop(); }}>

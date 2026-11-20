@@ -3,7 +3,7 @@ import { loadAllCars } from "@/lib/services/cars";
 import { ciudades } from "@/lib/data/ciudades";
 import { categorias } from "@/lib/data/categorias";
 
-const BASE_URL = "https://www.covegarage.com";
+const BASE_URL = "https://www.covegarage.es";
 
 // Se genera en cada petición (Google lo lee pocas veces al día): así siempre refleja los coches que hay en ese
 // momento, sin depender de la caché de páginas. Con base de datos, lee de ahí; sin ella, de lib/data/mockCars.ts.

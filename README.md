@@ -141,7 +141,7 @@ Cada coche tiene esta estructura:
 - **Base de datos**: Postgres (en Vercel, la integración de **Neon**; variable `DATABASE_URL`). Las tablas se crean solas la
   primera vez (`lib/db/schema.ts`) y se rellenan con los datos de `lib/data/*` (coches, reseñas, preguntas frecuentes).
   Desde ese momento **manda la base de datos**.
-- **Web pública** (`www.covegarage.com`): sigue siendo estática y rápida. Cuando se cambia algo en el panel se llama a
+- **Web pública** (`www.covegarage.es`): sigue siendo estática y rápida. Cuando se cambia algo en el panel se llama a
   `revalidatePath("/", "layout")` y las páginas se regeneran al momento, sin esperar a un despliegue nuevo.
   Sin `DATABASE_URL` funciona como siempre con `lib/data/*` (plan B).
 - **Panel** (`admin.covegarage.com`, código en `app/admin`): es el mismo proyecto de Next. `middleware.ts` reparte por dominio:

@@ -17,7 +17,7 @@ const barlowCondensed = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.covegarage.com"),
+  metadataBase: new URL("https://www.covegarage.es"),
   title: {
     default: `${siteSettings.nombreEmpresa} — ${siteSettings.slogan}`,
     template: `%s | ${siteSettings.nombreEmpresa}`,

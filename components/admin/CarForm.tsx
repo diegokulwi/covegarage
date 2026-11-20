@@ -17,6 +17,7 @@ import {
   TRANSMISIONES,
 } from "@/lib/admin/car-options";
 import { suggestSlug } from "@/lib/admin/slug";
+import { SITE_URL } from "@/lib/site";
 import { saveCarAction } from "@/app/admin/actions";
 import { Btn, Card, CardTitle, Field, LinkBtn, Notice, inputClass, textareaClass } from "@/components/admin/ui";
 import PhotoManager from "@/components/admin/PhotoManager";
@@ -313,7 +314,7 @@ export default function CarForm({ car }: { car?: AdminCar }) {
               </div>
             )}
             <span className="block text-xs text-slate-400 mt-1">
-              covegarage.com/coches/<strong>{slug || "…"}</strong>
+              {SITE_URL.replace("https://", "")}/coches/<strong>{slug || "…"}</strong>
               {car && slugOpen && slug !== car.slug ? " — la dirección antigua llevará a la nueva (redirección permanente)." : ""}
             </span>
           </div>
@@ -325,7 +326,7 @@ export default function CarForm({ car }: { car?: AdminCar }) {
           <div className="flex items-center gap-2">
             <LinkBtn href="/coches" variant="ghost">Cancelar</LinkBtn>
             {car && (
-              <LinkBtn href={`https://www.covegarage.com/coches/${car.slug}`} variant="secondary">
+              <LinkBtn href={`${SITE_URL}/coches/${car.slug}`} variant="secondary">
                 <ExternalLink className="w-4 h-4" /> Ver en la web
               </LinkBtn>
             )}

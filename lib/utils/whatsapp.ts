@@ -2,7 +2,7 @@ import { siteSettings } from "@/lib/data/mockSettings";
 import { trackEvent } from "@/lib/utils/analytics";
 import { formatPrice } from "@/lib/utils/formatters";
 
-const SITE_URL = "https://www.covegarage.com";
+const SITE_URL = "https://www.covegarage.es";
 
 export function generateWhatsAppUrl(message?: string): string {
   const phone = siteSettings.whatsapp;

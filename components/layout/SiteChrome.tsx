@@ -12,8 +12,8 @@ const businessJsonLd = {
   "@type": "AutoDealer",
   name: siteSettings.nombreEmpresa,
   description: siteSettings.descripcion,
-  image: "https://www.covegarage.com/logo1.png",
-  url: "https://www.covegarage.com",
+  image: "https://www.covegarage.es/logo1.png",
+  url: "https://www.covegarage.es",
   telephone: siteSettings.telefono,
   address: {
     "@type": "PostalAddress",

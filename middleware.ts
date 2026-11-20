@@ -3,9 +3,9 @@ import { NextResponse, type NextRequest } from "next/server";
 /**
  * Reparte el tráfico entre la web pública y el panel de administración.
  *
- *  - admin.covegarage.com (y admin.localhost en local): todo lo que se pida se sirve desde app/admin/*
- *    (las direcciones del navegador no llevan "/admin": /coches, /clientes, /login…).
- *  - Cualquier otro dominio (www.covegarage.com, *.vercel.app…): el panel no existe, /admin devuelve 404.
+ *  - admin.covegarage.com, admin.covegarage.es (y admin.localhost en local): todo lo que se pida se sirve desde
+ *    app/admin/* (las direcciones del navegador no llevan "/admin": /coches, /clientes, /login…).
+ *  - Cualquier otro dominio (www.covegarage.es, *.vercel.app…): el panel no existe, /admin devuelve 404.
  *
  * Solo se ejecuta para el dominio del panel y para /admin/*; el resto de la web pública no pasa por aquí.
  * Aquí NO se comprueba la sesión: eso lo hace cada página y cada acción del panel (lib/auth/session.ts).
@@ -13,7 +13,7 @@ import { NextResponse, type NextRequest } from "next/server";
 
 function isAdminHost(host: string | null): boolean {
   const h = (host ?? "").toLowerCase().split(":")[0];
-  return h === "admin.covegarage.com" || h === "admin.localhost";
+  return h === "admin.covegarage.com" || h === "admin.covegarage.es" || h === "admin.localhost";
 }
 
 function withPanelHeaders(res: NextResponse): NextResponse {
@@ -60,7 +60,7 @@ export const config = {
     // Todo lo que se pida en el dominio del panel (menos los archivos estáticos de Next y los iconos de la web).
     {
       source: "/((?!_next/static|_next/image|favicon.ico|icon.png|apple-icon.png).*)",
-      has: [{ type: "host", value: "(admin\\.covegarage\\.com|admin\\.localhost)" }],
+      has: [{ type: "host", value: "(admin\\.covegarage\\.(com|es)|admin\\.localhost)" }],
     },
     // En cualquier dominio, /admin/* (para esconderlo fuera del dominio del panel).
     "/admin/:path*",
