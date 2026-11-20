@@ -1,7 +1,9 @@
 import { ChevronDown } from "lucide-react";
-import { faqs } from "@/lib/data/faqs";
+import { getFaqs } from "@/lib/services/content";
+import { jsonLd as toJsonLd } from "@/lib/utils/jsonld";
 
-export default function FAQSection() {
+export default async function FAQSection() {
+  const faqs = await getFaqs();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -19,7 +21,7 @@ export default function FAQSection() {
     <section id="faqs" className="py-20 bg-white border-t border-slate-100 scroll-mt-24">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: toJsonLd(jsonLd) }}
       />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">

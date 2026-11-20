@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 
+// Último recurso (sin cabecera ni pie): las páginas no encontradas de la web pública usan
+// app/(site)/not-found.tsx, que sí lleva el marco completo.
 export default function NotFound() {
   return (
     <div className="min-h-[70vh] flex items-center justify-center px-4">

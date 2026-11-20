@@ -1,13 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { SlidersHorizontal, X } from "lucide-react";
-import { CarFilters as FiltersType, CarExtra, CarroceriaType, EtiquetaType } from "@/types/car";
+import { Car, CarFilters as FiltersType, CarExtra, CarroceriaType, EtiquetaType } from "@/types/car";
 import { Select } from "@/components/ui/Input";
 import { cn } from "@/lib/utils/cn";
-import { getModelosByMarca } from "@/lib/services/cars";
+import { listModelosByMarca } from "@/lib/cars/filter";
 
 interface CarFiltersProps {
+  /** Todos los coches: de aquí salen los modelos que se ofrecen al elegir una marca. */
+  cars: Car[];
   onFilter: (filters: FiltersType) => void;
   totalResults: number;
   initialFilters?: FiltersType;
@@ -45,20 +47,15 @@ const PRECIOS = [
 
 const AÑOS = Array.from({ length: 2026 - 2005 + 1 }, (_, i) => 2005 + i).reverse();
 
-export default function CarFilters({ onFilter, totalResults, initialFilters = {} }: CarFiltersProps) {
+export default function CarFilters({ cars, onFilter, totalResults, initialFilters = {} }: CarFiltersProps) {
   const [filters, setFilters] = useState<FiltersType>(initialFilters);
   const [showFilters, setShowFilters] = useState(false);
   const [potencia, setPotencia] = useState(500);
   const [km, setKm] = useState(300000);
-  const [modelosDisponibles, setModelosDisponibles] = useState<string[]>([]);
-
-  useEffect(() => {
-    if (filters.marca) {
-      getModelosByMarca(filters.marca).then(setModelosDisponibles);
-    } else {
-      setModelosDisponibles([]);
-    }
-  }, [filters.marca]);
+  const modelosDisponibles = useMemo(
+    () => (filters.marca ? listModelosByMarca(cars, filters.marca) : []),
+    [cars, filters.marca]
+  );
 
   const activeCount =
     Object.entries(filters).filter(([, v]) =>

@@ -7,6 +7,7 @@ import Button from "@/components/ui/Button";
 import { siteSettings } from "@/lib/data/mockSettings";
 import { generateWhatsAppUrl } from "@/lib/utils/whatsapp";
 import { trackLead } from "@/lib/utils/analytics";
+import { captureLead } from "@/lib/utils/leadCapture";
 import ContactPreference, { ContactPref } from "@/components/forms/ContactPreference";
 
 export default function ContactForm() {
@@ -29,6 +30,15 @@ export default function ContactForm() {
     if (!valid) { setEmailError("Introduce un email válido (ejemplo@dominio.com)"); return; }
     setLoading(true);
     setSubmitError(false);
+
+    captureLead({
+      kind: "contacto",
+      nombre: form.nombre,
+      email: form.email,
+      telefono: form.telefono,
+      mensaje: form.mensaje,
+      extra: { "Prefiere contacto por": pref },
+    });
 
     try {
       const res = await fetch("https://formspree.io/f/xgogdkay", {

@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Barlow_Condensed } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import FAQSection from "@/components/sections/FAQSection";
-import ContactTracker from "@/components/layout/ContactTracker";
 import { siteSettings } from "@/lib/data/mockSettings";
 
 const inter = Inter({
@@ -46,60 +41,15 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-// Ficha de negocio (Schema.org AutoDealer) — le dice a Google qué es,
-// dónde está y cuándo abre Cove Garage BCN, para Maps y búsqueda local.
-const businessJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "AutoDealer",
-  name: siteSettings.nombreEmpresa,
-  description: siteSettings.descripcion,
-  image: "https://www.covegarage.com/logo1.png",
-  url: "https://www.covegarage.com",
-  telephone: siteSettings.telefono,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Carrer de Moscou, 22",
-    addressLocality: siteSettings.ciudad,
-    postalCode: "08005",
-    addressCountry: "ES",
-  },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      opens: "10:00",
-      closes: "20:00",
-    },
-  ],
-};
-
-const GA_MEASUREMENT_ID = "G-F96CWNQV08";
-
+// Layout raíz mínimo: fuentes, estilos y <html>/<body>. La cabecera, el pie y Analytics de la web
+// pública están en components/layout/SiteChrome.tsx (los usa app/(site)/layout.tsx); el panel de
+// administración (app/admin) tiene su propio marco.
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" className={`${inter.variable} ${barlowCondensed.variable}`}>
-      <body className="min-h-screen flex flex-col bg-dark-900">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }}
-        />
-        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} strategy="afterInteractive" />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
-          `}
-        </Script>
-        <ContactTracker />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <FAQSection />
-        <Footer />
-      </body>
+      <body className="min-h-screen flex flex-col bg-dark-900">{children}</body>
     </html>
   );
 }

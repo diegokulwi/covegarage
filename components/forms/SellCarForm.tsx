@@ -6,6 +6,7 @@ import { Input, Textarea, Select } from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import { generateWhatsAppUrl } from "@/lib/utils/whatsapp";
 import { trackLead } from "@/lib/utils/analytics";
+import { captureLead } from "@/lib/utils/leadCapture";
 import ContactPreference, { ContactPref } from "@/components/forms/ContactPreference";
 
 const MARCAS_MODELOS: Record<string, string[]> = {
@@ -99,6 +100,24 @@ export default function SellCarForm() {
     if (!valid) { setEmailError("Introduce un email válido (ejemplo@dominio.com)"); return; }
     setLoading(true);
     setSubmitError("");
+
+    captureLead({
+      kind: "vender_coche",
+      nombre: form.nombre,
+      email: form.email,
+      telefono: form.telefono,
+      mensaje: form.mensaje,
+      extra: {
+        "Prefiere contacto por": pref,
+        Marca: form.marcaCoche,
+        Modelo: form.modeloCoche,
+        Año: form.añoCoche,
+        Kilometraje: form.kilometrajeCoche,
+        "Potencia (kW)": form.potenciaKw,
+        Combustible: form.combustibleCoche,
+        Transmisión: form.transmisionCoche,
+      },
+    });
 
     try {
       const res = await fetch("https://formspree.io/f/xkodyrjv", {

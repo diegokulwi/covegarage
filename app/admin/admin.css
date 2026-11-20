@@ -1,0 +1,19 @@
+/* El panel comparte los estilos globales de la web, que ponen los títulos en mayúsculas y con otra fuente.
+   Aquí se devuelven a un estilo normal (más legible para trabajar con datos). */
+.admin-root h1,
+.admin-root h2,
+.admin-root h3,
+.admin-root h4 {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.admin-root {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  color-scheme: light;
+}
+
+.admin-root ::selection {
+  background: rgba(125, 200, 50, 0.35);
+}

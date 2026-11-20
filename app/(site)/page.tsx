@@ -14,7 +14,8 @@ import { getFeaturedCars } from "@/lib/services/cars";
 import { siteSettings } from "@/lib/data/mockSettings";
 
 export const metadata: Metadata = {
-  title: `${siteSettings.nombreEmpresa} — Compra y venta de coches en Barcelona`,
+  // absoluto: sin la plantilla "%s | Cove Garage BCN" del layout raíz (la portada nunca la llevó)
+  title: { absolute: `${siteSettings.nombreEmpresa} — Compra y venta de coches en Barcelona` },
   description:
     "Especialistas en compra y venta de vehículos de segunda mano en Barcelona. Más de 5 años de experiencia, trato directo y precios competitivos.",
   alternates: {

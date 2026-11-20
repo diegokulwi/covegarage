@@ -7,6 +7,7 @@ import Button from "@/components/ui/Button";
 import { siteSettings } from "@/lib/data/mockSettings";
 import { generateWhatsAppUrl } from "@/lib/utils/whatsapp";
 import { trackLead } from "@/lib/utils/analytics";
+import { captureLead } from "@/lib/utils/leadCapture";
 import ContactPreference, { ContactPref } from "@/components/forms/ContactPreference";
 
 const PRESUPUESTOS = [
@@ -31,6 +32,14 @@ export default function CarRequestForm() {
     e.preventDefault();
     setLoading(true);
     setSubmitError(false);
+
+    captureLead({
+      kind: "busqueda_coche",
+      nombre: form.nombre,
+      telefono: form.telefono,
+      mensaje: form.busqueda,
+      extra: { Presupuesto: form.presupuesto, "Prefiere contacto por": pref },
+    });
 
     try {
       const res = await fetch("https://formspree.io/f/xgogdkay", {

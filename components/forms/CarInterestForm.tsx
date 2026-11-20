@@ -9,6 +9,7 @@ import { siteSettings } from "@/lib/data/mockSettings";
 import { formatCarTitle } from "@/lib/utils/formatters";
 import { generateCarWhatsAppUrl } from "@/lib/utils/whatsapp";
 import { trackLead } from "@/lib/utils/analytics";
+import { captureLead } from "@/lib/utils/leadCapture";
 import ContactPreference, { ContactPref } from "@/components/forms/ContactPreference";
 
 interface CarInterestFormProps {
@@ -29,6 +30,17 @@ export default function CarInterestForm({ car }: CarInterestFormProps) {
     e.preventDefault();
     setLoading(true);
     setSubmitError(false);
+
+    captureLead({
+      kind: "interes_coche",
+      nombre: form.nombre,
+      email: form.email,
+      telefono: form.telefono,
+      mensaje: form.mensaje,
+      carSlug: car.slug,
+      carLabel: carName,
+      extra: { "Prefiere contacto por": pref },
+    });
 
     try {
       const res = await fetch("https://formspree.io/f/xpqvbdpl", {

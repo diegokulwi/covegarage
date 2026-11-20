@@ -109,7 +109,9 @@ export const siteSettings: SiteSettings = {
 
 ### Agregar o editar coches
 
-Edita el archivo: `lib/data/mockCars.ts`
+Se hace desde el **panel de administración** (`admin.covegarage.com`, ver más abajo). El archivo `lib/data/mockCars.ts`
+ya solo sirve como copia inicial de la base de datos y como plan B si la base de datos no está configurada: **si la base
+de datos está activa, editar ese archivo no cambia la web**.
 
 Cada coche tiene esta estructura:
 ```typescript
@@ -132,53 +134,51 @@ Cada coche tiene esta estructura:
 
 ---
 
-## Fase futura: Conexión a Supabase
+## Base de datos y panel de administración
 
-Cuando se quiera conectar Supabase, solo hay que:
+### Cómo está montado
 
-1. **Instalar el cliente**:
-```bash
-npm install @supabase/supabase-js
-```
+- **Base de datos**: Postgres (en Vercel, la integración de **Neon**; variable `DATABASE_URL`). Las tablas se crean solas la
+  primera vez (`lib/db/schema.ts`) y se rellenan con los datos de `lib/data/*` (coches, reseñas, preguntas frecuentes).
+  Desde ese momento **manda la base de datos**.
+- **Web pública** (`www.covegarage.com`): sigue siendo estática y rápida. Cuando se cambia algo en el panel se llama a
+  `revalidatePath("/", "layout")` y las páginas se regeneran al momento, sin esperar a un despliegue nuevo.
+  Sin `DATABASE_URL` funciona como siempre con `lib/data/*` (plan B).
+- **Panel** (`admin.covegarage.com`, código en `app/admin`): es el mismo proyecto de Next. `middleware.ts` reparte por dominio:
+  en `admin.*` todo se sirve desde `app/admin` (las direcciones no llevan `/admin`), y en el resto de dominios `/admin` da 404.
+  En local: `http://admin.localhost:3000`.
+- **Acceso**: usuario + contraseña (scrypt), sesión en cookie firmada y `HttpOnly`, freno a intentos repetidos. Cada página y
+  cada acción del panel comprueba la sesión (`lib/auth/session.ts`), no solo el middleware. El primer acceso se crea en `/login`
+  con el código `ADMIN_SETUP_TOKEN` (cuando ya hay un usuario ese paso desaparece).
+- **Fotos** subidas desde el panel: Vercel Blob (`BLOB_READ_WRITE_TOKEN`). En local se guardan en `public/uploads` (no va a git).
+- **Clientes**: los 4 formularios de la web siguen enviando el correo por Formspree y además guardan una copia en la base de
+  datos (`/api/leads`), que es lo que ve el panel en *Consultas* y *Clientes*.
 
-2. **Crear variables de entorno** (`.env.local`):
-```
-NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=tu-anon-key
-```
+### Variables de entorno
 
-3. **Reemplazar la implementación** en `lib/services/cars.ts`:
+Ver `.env.example`. En Vercel: Project → Settings → Environment Variables (la base de datos y Blob las ponen solas sus integraciones).
 
-```typescript
-// Antes (mock):
-export async function getCars(): Promise<Car[]> {
-  return mockCars;
-}
+### Trabajar en local
 
-// Después (Supabase):
-export async function getCars(): Promise<Car[]> {
-  const { data } = await supabase.from('cars').select('*');
-  return data ?? [];
-}
-```
+1. Tener un Postgres (por ejemplo uno local) y crear `.env.local` con `DATABASE_URL`, `ADMIN_SESSION_SECRET` y `ADMIN_SETUP_TOKEN`.
+2. `npm run dev` y abrir `http://admin.localhost:3000` (crea tu acceso de prueba) y `http://localhost:3000` (la web).
 
-Los componentes no necesitan ningún cambio. La arquitectura está diseñada para este cambio.
-
----
-
-## Panel de administración (fase futura)
-
-Estructura prevista para la siguiente fase:
+### Estructura del panel
 
 ```
-app/
-└── admin/
-    ├── layout.tsx          # Auth guard
-    ├── page.tsx            # Dashboard
-    ├── coches/             # Gestión de coches
-    ├── leads/              # Gestión de leads
-    ├── contenido/          # Edición de textos
-    └── configuracion/      # Datos de contacto
+app/admin/
+├── login/                  # Entrar / primer acceso
+├── (panel)/                # Todo lo de dentro exige sesión
+│   ├── page.tsx            # Resumen
+│   ├── coches/             # Listado, alta y edición (fotos, estado, precio…)
+│   ├── consultas/          # Bandeja de formularios de la web
+│   ├── clientes/           # Fichas de clientes y su historial
+│   ├── resenas/  preguntas/  cuenta/
+├── actions.ts              # Acciones del servidor (todas empiezan con requireAdmin())
+└── api/upload/             # Subida de fotos
+lib/admin/                  # Lógica: coches, clientes, contenido, estadísticas, historial
+lib/auth/                   # Contraseñas y sesión
+lib/db/                     # Conexión y tablas
 ```
 
 ---

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import CarDetail from "@/components/cars/CarDetail";
 import CarGrid from "@/components/cars/CarGrid";
 import CarRequestSection from "@/components/sections/CarRequestSection";
-import { getCarBySlug, getSimilarCars, getCars } from "@/lib/services/cars";
+import { getCarBySlug, getSimilarCars, getCars, getSlugRedirect } from "@/lib/services/cars";
 // getCars is used only for generateStaticParams
 import { formatCarTitle, formatPrice } from "@/lib/utils/formatters";
+import { jsonLd } from "@/lib/utils/jsonld";
 import { Car } from "@/types/car";
 
 const AVAILABILITY: Record<Car["estado"], string> = {
@@ -13,6 +14,10 @@ const AVAILABILITY: Record<Car["estado"], string> = {
   reservado: "https://schema.org/Reserved",
   vendido: "https://schema.org/OutOfStock",
 };
+
+// Las fotos de los coches pueden ser archivos de la web ("/coches/…") o enlaces completos (fotos subidas desde el panel).
+const absoluteUrl = (src: string) =>
+  /^https?:\/\//i.test(src) ? src : `https://www.covegarage.com${encodeURI(src)}`;
 
 // Ficha de vehículo (Schema.org Car + Offer) — precio, km y disponibilidad
 // legibles directamente por Google y por las IA, sin tener que leer la página.
@@ -33,7 +38,7 @@ function buildCarJsonLd(car: Car) {
     vehicleTransmission: car.transmision.charAt(0).toUpperCase() + car.transmision.slice(1),
     ...(car.color ? { color: car.color } : {}),
     ...(car.puertas ? { numberOfDoors: car.puertas } : {}),
-    image: car.imagenes[0] ? `https://www.covegarage.com${encodeURI(car.imagenes[0])}` : undefined,
+    image: car.imagenes[0] ? absoluteUrl(car.imagenes[0]) : undefined,
     url: `https://www.covegarage.com/coches/${car.slug}`,
     itemCondition: "https://schema.org/UsedCondition",
     offers: {
@@ -78,7 +83,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CarDetailPage({ params }: Props) {
   const car = await getCarBySlug(params.slug);
 
-  if (!car) notFound();
+  if (!car) {
+    // Si la dirección se cambió desde el panel, la antigua lleva a la nueva (redirección permanente).
+    const nueva = await getSlugRedirect(params.slug);
+    if (nueva) permanentRedirect(`/coches/${nueva}`);
+    notFound();
+  }
 
   const similar = await getSimilarCars(car.id);
 
@@ -86,7 +96,7 @@ export default async function CarDetailPage({ params }: Props) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildCarJsonLd(car)) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(buildCarJsonLd(car)) }}
       />
       <CarDetail car={car} />
 

@@ -6,7 +6,7 @@ import CarGrid from "@/components/cars/CarGrid";
 import CarFilters from "@/components/cars/CarFilters";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import CarRequestSection from "@/components/sections/CarRequestSection";
-import { getCars } from "@/lib/services/cars";
+import { filterCars } from "@/lib/cars/filter";
 import { Car, CarFilters as FiltersType } from "@/types/car";
 
 type SortOption = "relevantes" | "precio_asc" | "precio_desc" | "km_asc" | "km_desc" | "nuevos" | "antiguos" | "potencia";
@@ -74,13 +74,13 @@ export default function CochesExplorer({ initialCars }: { initialCars: Car[] }) 
   const [sortBy, setSortBy] = useState<SortOption>("relevantes");
   const sorted = useMemo(() => sortCars(allFiltered, sortBy), [allFiltered, sortBy]);
 
-  const handleUrlFilters = async (filters: FiltersType) => {
+  const handleUrlFilters = (filters: FiltersType) => {
     setInitialFilters(filters);
-    setAllFiltered(Object.keys(filters).length > 0 ? await getCars(filters) : initialCars);
+    setAllFiltered(Object.keys(filters).length > 0 ? filterCars(initialCars, filters) : initialCars);
   };
 
-  const handleFilter = async (filters: FiltersType) => {
-    setAllFiltered(await getCars(filters));
+  const handleFilter = (filters: FiltersType) => {
+    setAllFiltered(filterCars(initialCars, filters));
   };
 
   return (
@@ -112,6 +112,7 @@ export default function CochesExplorer({ initialCars }: { initialCars: Car[] }) 
 
           <aside className="hidden lg:block w-72 shrink-0 sticky top-24">
             <CarFilters
+              cars={initialCars}
               onFilter={handleFilter}
               totalResults={sorted.length}
               initialFilters={initialFilters}
@@ -140,6 +141,7 @@ export default function CochesExplorer({ initialCars }: { initialCars: Car[] }) 
 
             <div className="lg:hidden mb-6">
               <CarFilters
+                cars={initialCars}
                 onFilter={handleFilter}
                 totalResults={sorted.length}
                 initialFilters={initialFilters}

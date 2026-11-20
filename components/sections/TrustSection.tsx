@@ -1,5 +1,5 @@
 import { Star } from "lucide-react";
-import { siteContent } from "@/lib/data/mockSettings";
+import { getTestimonios } from "@/lib/services/content";
 
 const STATS = [
   { value: "+100", label: "Coches vendidos" },
@@ -8,8 +8,8 @@ const STATS = [
   { value: "30 días", label: "Tiempo medio de venta" },
 ];
 
-export default function TrustSection() {
-  const { testimonios } = siteContent;
+export default async function TrustSection() {
+  const testimonios = await getTestimonios();
 
   return (
     <section className="py-20 bg-dark-900">
