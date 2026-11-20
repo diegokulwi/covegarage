@@ -45,7 +45,7 @@ export default async function LoginPage() {
           ) : (
             <Notice tone="amber">
               {mode === "no-db" && "Falta conectar la base de datos (DATABASE_URL) en el servidor. Sin ella el panel no puede funcionar."}
-              {mode === "no-secret" && "Falta la clave de sesión del panel (ADMIN_SESSION_SECRET) en el servidor."}
+              {mode === "no-secret" && "Falta la clave de sesión del panel en el servidor."}
               {mode === "db-error" && "No se pudo conectar con la base de datos. Inténtalo de nuevo en un minuto."}
             </Notice>
           )}

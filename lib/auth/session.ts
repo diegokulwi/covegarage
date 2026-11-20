@@ -6,7 +6,7 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { isDbConfigured, queryOne } from "@/lib/db";
+import { dbUrl, isDbConfigured, queryOne } from "@/lib/db";
 import { ensureReady } from "@/lib/db/schema";
 
 const MAX_AGE_SECONDS = 14 * 24 * 60 * 60; // 14 días
@@ -19,14 +19,20 @@ export interface AdminUser {
   email: string;
 }
 
+/**
+ * Clave con la que se firman las sesiones. Si no se pone ADMIN_SESSION_SECRET (32+ caracteres), se deriva de la
+ * conexión a la base de datos, que ya es un secreto largo y único: quien la tuviera ya podría tocar la base de datos.
+ */
 function secret(): string {
   const s = process.env.ADMIN_SESSION_SECRET || "";
-  if (s.length < 32) throw new Error("Falta ADMIN_SESSION_SECRET (mínimo 32 caracteres).");
-  return s;
+  if (s.length >= 32) return s;
+  const db = dbUrl();
+  if (db) return createHmac("sha256", "cove-garage-admin-session").update(db).digest("hex");
+  throw new Error("Falta ADMIN_SESSION_SECRET o la conexión a la base de datos.");
 }
 
 export function sessionConfigured(): boolean {
-  return (process.env.ADMIN_SESSION_SECRET || "").length >= 32;
+  return (process.env.ADMIN_SESSION_SECRET || "").length >= 32 || isDbConfigured();
 }
 
 const b64u = (b: Buffer | string) => Buffer.from(b).toString("base64url");
