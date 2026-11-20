@@ -11,7 +11,39 @@ import { mockCars } from "@/lib/data/mockCars";
 import { faqs } from "@/lib/data/faqs";
 import { siteContent } from "@/lib/data/mockSettings";
 
-const SCHEMA_VERSION = 1;
+const SCHEMA_VERSION = 2;
+
+const TABLES = [
+  "app_meta",
+  "cars",
+  "slug_redirects",
+  "clients",
+  "inquiries",
+  "testimonials",
+  "faqs",
+  "admin_users",
+  "rate_events",
+  "audit_log",
+];
+
+// Supabase publica por su API todas las tablas del esquema "public". Se activa la seguridad por filas SIN ninguna
+// regla (por esa API no entra nadie) y se quitan los permisos a sus roles públicos. La web y el panel entran con la
+// conexión directa a Postgres (rol dueño de las tablas), que no se ve afectada. En otros Postgres no cambia nada.
+const SECURITY = `
+${TABLES.map((t) => `alter table ${t} enable row level security;`).join("\n")}
+do $$
+declare t text;
+begin
+  foreach t in array array[${TABLES.map((t) => `'${t}'`).join(",")}] loop
+    if exists (select 1 from pg_roles where rolname = 'anon') then
+      execute format('revoke all on table public.%I from anon', t);
+    end if;
+    if exists (select 1 from pg_roles where rolname = 'authenticated') then
+      execute format('revoke all on table public.%I from authenticated', t);
+    end if;
+  end loop;
+end $$;
+`;
 
 const DDL = `
 create table if not exists app_meta (
@@ -147,6 +179,7 @@ async function migrateAndSeed(): Promise<void> {
     if (Number(done[0]?.value ?? 0) >= SCHEMA_VERSION) return;
 
     await q(DDL);
+    await q(SECURITY);
 
     const flag = async (key: string) =>
       (await q("select 1 from app_meta where key = $1", [key])).length > 0;

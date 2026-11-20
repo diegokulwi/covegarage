@@ -3,7 +3,7 @@
  * Cada cambio refresca la web pública al momento (revalidatePath) y queda anotado en el historial.
  */
 import { revalidatePath } from "next/cache";
-import { del } from "@vercel/blob";
+import { deleteImages } from "@/lib/admin/storage";
 import { dbQuery } from "@/lib/db/schema";
 import { withTransaction } from "@/lib/db";
 import { logAction } from "@/lib/admin/audit";
@@ -83,7 +83,10 @@ export function isAllowedImage(src: string): boolean {
   if (src.startsWith("/") && !src.startsWith("//") && !src.includes("..")) return true;
   try {
     const u = new URL(src);
-    return u.protocol === "https:" && u.hostname.endsWith(".public.blob.vercel-storage.com");
+    if (u.protocol !== "https:") return false;
+    // fotos subidas desde el panel: Vercel Blob o el almacén público de Supabase
+    if (u.hostname.endsWith(".public.blob.vercel-storage.com")) return true;
+    return u.hostname.endsWith(".supabase.co") && u.pathname.startsWith("/storage/v1/object/public/");
   } catch {
     return false;
   }
@@ -186,18 +189,8 @@ export function parseCarInput(raw: unknown): { ok: true; car: Car } | { ok: fals
 
 export type SaveResult = { ok: true; id: string; slug: string } | { ok: false; error: string };
 
-/** Foto subida desde el panel (Vercel Blob): se borra del almacén cuando deja de usarse en la ficha. */
-const isBlobUrl = (u: string) => /^https:\/\/[^/]+\.public\.blob\.vercel-storage\.com\//.test(u);
-
-async function dropBlobs(urls: string[]) {
-  const blobs = urls.filter(isBlobUrl);
-  if (blobs.length === 0 || !process.env.BLOB_READ_WRITE_TOKEN) return;
-  try {
-    await del(blobs);
-  } catch (e) {
-    console.error("[blob] no se pudieron borrar fotos antiguas:", e);
-  }
-}
+// Las fotos subidas desde el panel se borran del almacén cuando dejan de usarse en la ficha (ver lib/admin/storage.ts).
+const dropBlobs = deleteImages;
 
 export async function saveCar(raw: unknown, adminEmail: string): Promise<SaveResult> {
   const parsed = parseCarInput(raw);

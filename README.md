@@ -138,7 +138,9 @@ Cada coche tiene esta estructura:
 
 ### Cómo está montado
 
-- **Base de datos**: Postgres (en Vercel, la integración de **Neon**; variable `DATABASE_URL`). Las tablas se crean solas la
+- **Base de datos**: Postgres en **Supabase** (variable `DATABASE_URL`, la cadena del *Transaction pooler*; sirve cualquier
+  Postgres). Las tablas llevan la seguridad por filas activada y sin reglas, para que la API pública de Supabase no pueda
+  leerlas ni escribirlas: solo entra el servidor con la conexión directa. Las tablas se crean solas la
   primera vez (`lib/db/schema.ts`) y se rellenan con los datos de `lib/data/*` (coches, reseñas, preguntas frecuentes).
   Desde ese momento **manda la base de datos**.
 - **Web pública** (`www.covegarage.es`): sigue siendo estática y rápida. Cuando se cambia algo en el panel se llama a
@@ -150,13 +152,17 @@ Cada coche tiene esta estructura:
 - **Acceso**: usuario + contraseña (scrypt), sesión en cookie firmada y `HttpOnly`, freno a intentos repetidos. Cada página y
   cada acción del panel comprueba la sesión (`lib/auth/session.ts`), no solo el middleware. El primer acceso se crea en `/login`
   con el código `ADMIN_SETUP_TOKEN` (cuando ya hay un usuario ese paso desaparece).
-- **Fotos** subidas desde el panel: Vercel Blob (`BLOB_READ_WRITE_TOKEN`). En local se guardan en `public/uploads` (no va a git).
+- **Fotos** subidas desde el panel: Supabase Storage (`SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY`; el almacén público
+  «coches» se crea solo). También acepta Vercel Blob (`BLOB_READ_WRITE_TOKEN`). En local se guardan en `public/uploads` (no va a git).
+- **Plan gratuito de Supabase**: pausa los proyectos tras 7 días sin actividad; `vercel.json` programa una llamada diaria a
+  `/api/keepalive` (una consulta mínima) para evitarlo, y fija las funciones en Frankfurt (`fra1`), junto a la base de datos.
 - **Clientes**: los 4 formularios de la web siguen enviando el correo por Formspree y además guardan una copia en la base de
   datos (`/api/leads`), que es lo que ve el panel en *Consultas* y *Clientes*.
 
 ### Variables de entorno
 
-Ver `.env.example`. En Vercel: Project → Settings → Environment Variables (la base de datos y Blob las ponen solas sus integraciones).
+Ver `.env.example`. En Vercel: Project → Settings → Environment Variables (hay que pegar a mano `DATABASE_URL`, `SUPABASE_URL`,
+`SUPABASE_SERVICE_ROLE_KEY` y `ADMIN_SETUP_TOKEN`; después, un redeploy).
 
 ### Trabajar en local
 
