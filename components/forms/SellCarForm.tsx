@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { CheckCircle } from "lucide-react";
 import { Input, Textarea, Select } from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import { generateWhatsAppUrl } from "@/lib/utils/whatsapp";
 import { trackLead } from "@/lib/utils/analytics";
 import { captureLead } from "@/lib/utils/leadCapture";
+import { cn } from "@/lib/utils/cn";
 import ContactPreference, { ContactPref } from "@/components/forms/ContactPreference";
 
 const MARCAS_MODELOS: Record<string, string[]> = {
@@ -66,6 +67,83 @@ const onlyPhone = (e: React.ChangeEvent<HTMLInputElement>, setForm: (f: any) => 
   setForm({ ...form, telefono: val });
 };
 
+type PotenciaUnidad = "kW" | "CV";
+const UNIDADES_POTENCIA: PotenciaUnidad[] = ["kW", "CV"];
+const CV_POR_KW = 1.35962; // 1 kW = 1,35962 CV (caballo de vapor métrico)
+
+// "85 kW (116 CV)": lo que escribió el cliente y su equivalente en la otra unidad, para que el correo lo diga todo.
+const potenciaTexto = (valor: string, unidad: PotenciaUnidad) => {
+  const n = Number(valor);
+  if (!valor.trim() || !Number.isFinite(n) || n <= 0) return "";
+  return unidad === "kW"
+    ? `${n} kW (${Math.round(n * CV_POR_KW)} CV)`
+    : `${n} CV (${Math.round(n / CV_POR_KW)} kW)`;
+};
+
+// Potencia con selector de unidad: el cliente escribe el número y elige si son kW o CV.
+function PotenciaField({
+  value,
+  unit,
+  onValueChange,
+  onUnitChange,
+}: {
+  value: string;
+  unit: PotenciaUnidad;
+  onValueChange: (value: string) => void;
+  onUnitChange: (unit: PotenciaUnidad) => void;
+}) {
+  const name = useId();
+
+  return (
+    <div className="flex flex-col gap-1">
+      <label htmlFor="potencia" className="text-sm font-medium text-slate-700">
+        Potencia
+      </label>
+      <div className="flex gap-2">
+        <div className="min-w-0 flex-1">
+          <Input
+            id="potencia"
+            type="number"
+            inputMode="numeric"
+            placeholder={unit === "kW" ? "85" : "115"}
+            min={1}
+            max={unit === "kW" ? 800 : 1100}
+            value={value}
+            onChange={(e) => onValueChange(e.target.value)}
+          />
+        </div>
+        <div role="radiogroup" aria-label="Unidad de potencia" className="grid shrink-0 grid-cols-2 gap-1">
+          {UNIDADES_POTENCIA.map((u) => {
+            const selected = unit === u;
+            return (
+              <label
+                key={u}
+                className={cn(
+                  "flex items-center justify-center rounded-lg border px-3.5 py-3 text-sm font-semibold leading-6 cursor-pointer select-none transition-all",
+                  "focus-within:ring-2 focus-within:ring-brand-500",
+                  selected
+                    ? "border-brand-600 bg-brand-50 text-dark-900 ring-1 ring-brand-600"
+                    : "border-slate-200 bg-white text-slate-600 hover:border-slate-300"
+                )}
+              >
+                <input
+                  type="radio"
+                  name={name}
+                  value={u}
+                  checked={selected}
+                  onChange={() => onUnitChange(u)}
+                  className="sr-only"
+                />
+                {u}
+              </label>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function SellCarForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -80,7 +158,8 @@ export default function SellCarForm() {
     modeloCoche: "",
     añoCoche: "",
     kilometrajeCoche: "",
-    potenciaKw: "",
+    potencia: "",
+    potenciaUnidad: "kW" as PotenciaUnidad,
     combustibleCoche: "",
     transmisionCoche: "",
     mensaje: "",
@@ -101,6 +180,8 @@ export default function SellCarForm() {
     setLoading(true);
     setSubmitError("");
 
+    const potencia = potenciaTexto(form.potencia, form.potenciaUnidad);
+
     captureLead({
       kind: "vender_coche",
       nombre: form.nombre,
@@ -113,7 +194,7 @@ export default function SellCarForm() {
         Modelo: form.modeloCoche,
         Año: form.añoCoche,
         Kilometraje: form.kilometrajeCoche,
-        "Potencia (kW)": form.potenciaKw,
+        Potencia: potencia,
         Combustible: form.combustibleCoche,
         Transmisión: form.transmisionCoche,
       },
@@ -132,7 +213,7 @@ export default function SellCarForm() {
           Modelo: form.modeloCoche,
           Año: form.añoCoche,
           Kilometraje: form.kilometrajeCoche,
-          "Potencia (kW)": form.potenciaKw,
+          Potencia: potencia,
           Combustible: form.combustibleCoche,
           Transmisión: form.transmisionCoche,
           "Información adicional": form.mensaje,
@@ -214,16 +295,11 @@ export default function SellCarForm() {
             onChange={(e) => setForm({ ...form, kilometrajeCoche: e.target.value })}
           />
 
-          <Input
-            id="potencia"
-            label="Potencia (kW)"
-            type="number"
-            inputMode="numeric"
-            placeholder="85"
-            min={1}
-            max={800}
-            value={form.potenciaKw}
-            onChange={(e) => setForm({ ...form, potenciaKw: e.target.value })}
+          <PotenciaField
+            value={form.potencia}
+            unit={form.potenciaUnidad}
+            onValueChange={(potencia) => setForm({ ...form, potencia })}
+            onUnitChange={(potenciaUnidad) => setForm({ ...form, potenciaUnidad })}
           />
 
           <Select
