@@ -27,6 +27,7 @@ import {
 } from "@/lib/admin/content";
 import { changePassword } from "@/lib/admin/account";
 import { addVideo, deleteVideo } from "@/lib/admin/videos";
+import { linkWebCar, removeGestionCar, saveGestionCar } from "@/lib/admin/accounting";
 
 type Ok = { ok: true } | { ok: false; error: string };
 
@@ -160,4 +161,22 @@ export async function deleteVideoAction(id: number): Promise<Ok> {
   const admin = await requireAdmin();
   await deleteVideo(Number(id), admin.email);
   return { ok: true };
+}
+
+// ---------- contabilidad: enlaces con la web y coches en gestión de venta ----------
+
+/** Enlaza una matrícula del Excel con un coche de la web (carId vacío = quitar el enlace). */
+export async function linkWebCarAction(plate: string, carId: string): Promise<Ok> {
+  const admin = await requireAdmin();
+  return linkWebCar(String(plate ?? ""), String(carId ?? ""), admin.email);
+}
+
+export async function saveGestionCarAction(input: { plate?: string; carId?: string; agreed?: number | string }): Promise<Ok> {
+  const admin = await requireAdmin();
+  return saveGestionCar(input ?? {}, admin.email);
+}
+
+export async function removeGestionCarAction(plate: string): Promise<Ok> {
+  const admin = await requireAdmin();
+  return removeGestionCar(String(plate ?? ""), admin.email);
 }

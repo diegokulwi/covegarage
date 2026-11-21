@@ -11,7 +11,7 @@ import { mockCars } from "@/lib/data/mockCars";
 import { faqs } from "@/lib/data/faqs";
 import { siteContent } from "@/lib/data/mockSettings";
 
-const SCHEMA_VERSION = 4;
+const SCHEMA_VERSION = 5;
 
 const TABLES = [
   "app_meta",
@@ -27,6 +27,7 @@ const TABLES = [
   "car_videos",
   "acc_entries",
   "acc_vehicles",
+  "acc_links",
 ];
 
 // Supabase publica por su API todas las tablas del esquema "public". Se activa la seguridad por filas SIN ninguna
@@ -181,6 +182,16 @@ create table if not exists acc_vehicles (
   plate text primary key,
   nombre text not null default '',
   fecha_compra date
+);
+
+-- Contabilidad, datos que NO vienen del Excel (no se borran al subirlo): qué coche de la web es cada matrícula (para
+-- el precio de venta) y los coches en gestión de venta con el precio acordado con su dueño. Privado, no llega a la web.
+create table if not exists acc_links (
+  plate text primary key,
+  car_id text references cars (id) on delete set null,
+  kind text not null default '',
+  agreed_price numeric(12, 2),
+  updated_at timestamptz not null default now()
 );
 `;
 

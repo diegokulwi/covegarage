@@ -170,6 +170,10 @@ export const money = (n: number) =>
 export const moneyCents = (n: number) =>
   new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", useGrouping: "always" }).format(n);
 
+/** Euros enteros y siempre con punto de miles (5.200 €), para precios de venta. */
+export const moneyEuros = (n: number) =>
+  new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0, useGrouping: "always" }).format(n);
+
 export const dateTime = (d: Date | string) =>
   new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Europe/Madrid" }).format(
     new Date(d)

@@ -4,6 +4,7 @@
  * da igual si se mueven de sitio; lo que no puede cambiar es el nombre de las hojas ni el de las cabeceras.
  */
 import ExcelJS from "exceljs";
+import { normPlate, PLATE_RE } from "@/lib/admin/plate";
 
 export interface LedgerEntry {
   num: number | null;
@@ -39,7 +40,7 @@ const norm = (s: unknown): string =>
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
 
-export const normPlate = (s: unknown): string => String(s ?? "").toUpperCase().replace(/[\s.\-]+/g, "");
+export { normPlate };
 const clip = (s: unknown, n: number): string => String(s ?? "").replace(/\s+/g, " ").trim().slice(0, n);
 
 /** Valor de una celda: si es fórmula, su resultado guardado; si es texto con formato, el texto. */
@@ -150,7 +151,6 @@ function parseLedger(ws: ExcelJS.Worksheet, warnings: string[]): LedgerEntry[] {
   return entries;
 }
 
-const PLATE = /^(?=.*\d)(?=.*[A-Z])[A-Z0-9]{5,17}$/;
 
 function parseVehicles(ws: ExcelJS.Worksheet): LedgerVehicle[] {
   let header = 0;
@@ -183,7 +183,7 @@ function parseVehicles(ws: ExcelJS.Worksheet): LedgerVehicle[] {
     const p = normPlate(raw(row.getCell(plate)));
     const nombre = clip(raw(row.getCell(name)), 80);
     // Solo matrículas de verdad (así no se cuelan las tablitas de apuntes que hay a un lado de la hoja).
-    if (!PLATE.test(p) || !nombre) continue;
+    if (!PLATE_RE.test(p) || !nombre) continue;
     out.set(p, { plate: p, nombre, fechaCompra: date ? toDate(raw(row.getCell(date))) : null });
   }
   return Array.from(out.values());
